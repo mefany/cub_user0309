@@ -1,5 +1,6 @@
 import SEO from "components/SEO";
-import Link from "next/link";
+import { useEffect, useState } from "react";
+import api from "api/BookApi";
 import ShopLayout1 from "components/layouts/ShopLayout1";
 import Section1 from "pages-sections/market-1/Section1";
 import Section8 from "pages-sections/market-1/Section8";
@@ -8,7 +9,7 @@ import Section13 from "pages-sections/books/Section13";
 import axios from "axios";
 
 // =================================================================
-const MarketShop = (props) => {
+const MarketShop = props => {
   const mainCarouselData = [
     {
       title: "50% Off For Your First Shopping",
@@ -26,15 +27,26 @@ const MarketShop = (props) => {
     },
   ];
   const id = 31;
+  const [books, setBooks] = useState([]); // 전체 게시물 리스트
+
+  // 도서 리스트 조회 API
+  const getBookList = async () => {
+    const response = await api.BookList("asc");
+    console.log(response);
+    setBooks(response);
+  };
+  useEffect(() => {
+    getBookList();
+  }, []);
 
   return (
     <ShopLayout1>
-      <SEO title="CUBCUB" />
+      <SEO title='CUBCUB' />
       {/* HERO SLIDER SECTION */}
       <Section1 carouselData={mainCarouselData} />
 
       {/* newBooks */}
-      <Section11 moreItems={props.books} />
+      <Section11 moreItems={books} />
 
       {/* Shops */}
       <Section13 shops={props.shops} />
@@ -46,10 +58,10 @@ const MarketShop = (props) => {
 };
 
 export const getStaticProps = async () => {
-  const res = await axios.get(
-    "https://i9nwbiqoc6.execute-api.ap-northeast-2.amazonaws.com/test/trade?date_order=asc"
-  );
-  const books = await res.data;
+  // const res = await axios.get(
+  //   "https://i9nwbiqoc6.execute-api.ap-northeast-2.amazonaws.com/test/trade?date_order=asc"
+  // );
+  // const books = await res.data;
 
   const res2 = await axios.get(
     "https://i9nwbiqoc6.execute-api.ap-northeast-2.amazonaws.com/test/shop"
@@ -58,7 +70,7 @@ export const getStaticProps = async () => {
 
   return {
     props: {
-      books,
+      // books,
       shops,
     },
   };
