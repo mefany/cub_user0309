@@ -1,5 +1,3 @@
-import categoriesMegaMenu from "./categoriesMegaMenu"; // MEGAMENU DATA
-
 const megaMenus = [
   [
     {
@@ -184,7 +182,6 @@ const navbarNavigations = [
     megaMenu: false,
     megaMenuWithSub: true,
     title: "Full Screen Menu",
-    child: categoriesMegaMenu,
   },
   {
     megaMenu: false,

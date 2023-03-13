@@ -46,11 +46,6 @@ bazar-react/
     ├── support
     ├── 50+ Other pages
 ├── src/
-|   ├── __server__/
-|   |   ├── __api__
-|   |   |   ├── all api functions create inside
-|   |   ├── __db__
-|   |   |   ├── all dummy data inside
 |   ├── animations
 |   ├── components/
 |   |   ├── icons
@@ -159,7 +154,6 @@ const navbarNavigations = [
     megaMenu: false,
     megaMenuWithSub: true,
     title: "Categories",
-    child: categoriesMegaMenu,
   },
 ];
 ```

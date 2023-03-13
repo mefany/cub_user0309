@@ -10,7 +10,6 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import "nprogress/nprogress.css";
 import "simplebar/dist/simplebar.min.css";
-import "../src/__server__";
 
 //Binding events.
 Router.events.on("routeChangeStart", () => nProgress.start());
