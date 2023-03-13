@@ -1,7 +1,6 @@
 import products from "data/product-database";
 import { products as gadget } from "../gadget/data";
 import { products as market1 } from "../market-1/data";
-import { products as healthBeauty } from "../health-beauty/data";
 import {
   relatedProducts,
   frequentlyBoughtData,
@@ -11,7 +10,6 @@ const dbProducts = [...products]; // all used products in the bazaar template
 const productList = [
   ...dbProducts,
   ...gadget,
-  ...healthBeauty,
   ...market1,
   ...relatedProducts,
   ...frequentlyBoughtData,

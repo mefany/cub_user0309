@@ -4,7 +4,6 @@
 // PLEASE READ THE DOC https://bazaar-doc.netlify.app/mockserver
 import Mock from "./mock";
 import "./__db__/market-1";
-import "./__db__/health-beauty";
 import "./__db__/related-products";
 import "./__db__/shop";
 import "./__db__/sales";
