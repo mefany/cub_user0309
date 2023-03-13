@@ -31,7 +31,7 @@ yarn build || npm run build
 ## Folder structure
 
 ```ts
-bazar-react/
+Cubcub/
 ├── public/
 |   └── assets/
 |       └── images/
@@ -65,11 +65,6 @@ bazar-react/
 |   ├── lib
 └── README.md
 ```
-
-## Pages/Routing
-
-Bazaar react follows [Next.js routing standard](https://nextjs.org/docs/routing/introduction).
-All the routes/pages are inside `pages` folder.
 
 ## Compnents
 

@@ -3,18 +3,18 @@ import { CacheProvider } from "@emotion/react";
 import createEmotionServer from "@emotion/server/create-instance";
 import Document, { Head, Html, Main, NextScript } from "next/document";
 import createEmotionCache from "../src/createEmotionCache";
-export default class Bazaar extends Document {
+export default class Cubcub extends Document {
   render() {
     return (
-      <Html lang="en">
+      <Html lang='en'>
         <Head>
           <link
-            href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;900&display=swap"
-            rel="stylesheet"
+            href='https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;900&display=swap'
+            rel='stylesheet'
           />
           <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel='stylesheet'
+            href='https://fonts.googleapis.com/icon?family=Material+Icons'
           />
         </Head>
 
@@ -28,7 +28,7 @@ export default class Bazaar extends Document {
 } // `getInitialProps` belongs to `_document` (instead of `_app`),
 // it's compatible with static-site generation (SSG).
 
-Bazaar.getInitialProps = async (ctx) => {
+Cubcub.getInitialProps = async ctx => {
   // Resolution order
   //
   // On the server:
@@ -57,7 +57,7 @@ Bazaar.getInitialProps = async (ctx) => {
 
   ctx.renderPage = () =>
     originalRenderPage({
-      enhanceApp: (App) => (props) =>
+      enhanceApp: App => props =>
         (
           <CacheProvider value={cache}>
             <App {...props} />
@@ -69,7 +69,7 @@ Bazaar.getInitialProps = async (ctx) => {
   // See https://github.com/mui-org/material-ui/issues/26561#issuecomment-855286153
 
   const emotionStyles = extractCriticalToChunks(initialProps.html);
-  const emotionStyleTags = emotionStyles.styles.map((style) => (
+  const emotionStyleTags = emotionStyles.styles.map(style => (
     <style
       data-emotion={`${style.key} ${style.ids.join(" ")}`}
       key={style.key} // eslint-disable-next-line react/no-danger

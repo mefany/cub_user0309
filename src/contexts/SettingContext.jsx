@@ -8,24 +8,24 @@ const initialSettings = {
 };
 export const SettingsContext = createContext({
   settings: initialSettings,
-  updateSettings: (arg) => {},
+  updateSettings: arg => {},
 }); // ============================================================
 
 // ============================================================
 const SettingsProvider = ({ children }) => {
   const [settings, setSettings] = useState(initialSettings);
 
-  const updateSettings = (updatedSetting) => {
+  const updateSettings = updatedSetting => {
     setSettings(updatedSetting);
     window.localStorage.setItem(
-      "bazaar_settings",
+      "Cubcub_settings",
       JSON.stringify(updatedSetting)
     );
   };
 
   useEffect(() => {
     if (!window) return null;
-    const getItem = window.localStorage.getItem("bazaar_settings");
+    const getItem = window.localStorage.getItem("Cubcub_settings");
     if (getItem) setSettings(JSON.parse(getItem));
   }, []);
   return (

@@ -30,7 +30,7 @@ import NewAddressForm from "./NewAddressForm"; // ==============================
 // ====================================================================
 const Heading = ({ number, title }) => {
   return (
-    <FlexBox gap={1.5} alignItems="center" mb={3.5}>
+    <FlexBox gap={1.5} alignItems='center' mb={3.5}>
       <Avatar
         sx={{
           width: 32,
@@ -41,7 +41,7 @@ const Heading = ({ number, title }) => {
       >
         {number}
       </Avatar>
-      <Typography fontSize="20px">{title}</Typography>
+      <Typography fontSize='20px'>{title}</Typography>
     </FlexBox>
   );
 };
@@ -55,7 +55,7 @@ const CheckoutForm2 = () => {
   const [openEditForm, setOpenEditForm] = useState(false);
   const [selected, setSelected] = useState(false);
 
-  const handleFormSubmit = async (values) => {
+  const handleFormSubmit = async values => {
     router.push("/payment");
   };
 
@@ -63,7 +63,7 @@ const CheckoutForm2 = () => {
     setFieldValue(fieldName, value);
   };
 
-  const toggleHasVoucher = () => setHasVoucher((has) => !has);
+  const toggleHasVoucher = () => setHasVoucher(has => !has);
 
   useEffect(() => {
     let list = [];
@@ -89,13 +89,13 @@ const CheckoutForm2 = () => {
     else setAddressData(addressList2);
   }, [newAddress]);
 
-  const deleteAddress = (name) => {
-    const newArr = addressData.filter((item) => item.name !== name);
+  const deleteAddress = name => {
+    const newArr = addressData.filter(item => item.name !== name);
     setAddressData(newArr);
   };
 
-  const editHandler = (value) => {
-    const data = addressData.find((item) => item.name === value);
+  const editHandler = value => {
+    const data = addressData.find(item => item.name === value);
     setSelected(data);
     openEditForm ? setOpenEditForm(false) : setOpenEditForm(true);
   };
@@ -132,7 +132,7 @@ const CheckoutForm2 = () => {
               mb: 3,
             }}
           >
-            <Heading number={1} title="Delivery Date and Time" />
+            <Heading number={1} title='Delivery Date and Time' />
 
             <Box mb={3.5}>
               <Grid container spacing={3}>
@@ -140,15 +140,15 @@ const CheckoutForm2 = () => {
                   <TextField
                     select
                     fullWidth
-                    type="text"
-                    name="date"
-                    label="Delivery Date"
+                    type='text'
+                    name='date'
+                    label='Delivery Date'
                     onChange={handleChange}
                     value={values.date}
                     error={!!touched.date && !!errors.date}
                     helperText={touched.date && errors.date}
                   >
-                    {dateList.map((item) => (
+                    {dateList.map(item => (
                       <MenuItem value={item.value} key={item.label}>
                         {item.label}
                       </MenuItem>
@@ -159,15 +159,15 @@ const CheckoutForm2 = () => {
                   <TextField
                     select
                     fullWidth
-                    type="text"
-                    name="time"
-                    label="Delivery Time"
+                    type='text'
+                    name='time'
+                    label='Delivery Time'
                     onChange={handleChange}
                     value={values.time}
                     error={!!touched.time && !!errors.time}
                     helperText={touched.time && errors.time}
                   >
-                    {timeList.map((item) => (
+                    {timeList.map(item => (
                       <MenuItem value={item.value} key={item.value}>
                         {item.value}
                       </MenuItem>
@@ -184,7 +184,7 @@ const CheckoutForm2 = () => {
             }}
           >
             <FlexBetween>
-              <Heading number={2} title="Delivery Address" />
+              <Heading number={2} title='Delivery Address' />
 
               <NewAddressForm setNewAddress={setNewAddress} />
             </FlexBetween>
@@ -213,7 +213,7 @@ const CheckoutForm2 = () => {
                     )}
                   >
                     <FlexBox
-                      justifyContent="flex-end"
+                      justifyContent='flex-end'
                       sx={{
                         position: "absolute",
                         top: 5,
@@ -231,7 +231,7 @@ const CheckoutForm2 = () => {
                       )}
 
                       <IconButton
-                        size="small"
+                        size='small'
                         sx={{
                           mr: 1,
                         }}
@@ -244,8 +244,8 @@ const CheckoutForm2 = () => {
                         />
                       </IconButton>
                       <IconButton
-                        size="small"
-                        color="error"
+                        size='small'
+                        color='error'
                         onClick={() => deleteAddress(item.name)}
                       >
                         <DeleteOutline
@@ -257,11 +257,11 @@ const CheckoutForm2 = () => {
                     </FlexBox>
 
                     <H6 mb={0.5}>{item.name}</H6>
-                    <Paragraph color="grey.700">{item.street1}</Paragraph>
+                    <Paragraph color='grey.700'>{item.street1}</Paragraph>
                     {item.street2 && (
-                      <Paragraph color="grey.700">{item.address2}</Paragraph>
+                      <Paragraph color='grey.700'>{item.address2}</Paragraph>
                     )}
-                    <Paragraph color="grey.700">{item.phone}</Paragraph>
+                    <Paragraph color='grey.700'>{item.phone}</Paragraph>
                   </Card>
                 </Grid>
               ))}
@@ -273,7 +273,7 @@ const CheckoutForm2 = () => {
               mb: 3,
             }}
           >
-            <Heading number={3} title="Payment Details" />
+            <Heading number={3} title='Payment Details' />
 
             <Box mb={3.5}>
               <Typography mb={1.5}>Enter Card Information</Typography>
@@ -281,10 +281,10 @@ const CheckoutForm2 = () => {
                 <Grid item sm={6} xs={12}>
                   <TextField
                     fullWidth
-                    type="text"
-                    name="cardHolderName"
+                    type='text'
+                    name='cardHolderName'
                     onChange={handleChange}
-                    label="Enter Your Name"
+                    label='Enter Your Name'
                     value={values.cardHolderName}
                     error={!!touched.cardHolderName && !!errors.cardHolderName}
                     helperText={touched.cardHolderName && errors.cardHolderName}
@@ -293,29 +293,29 @@ const CheckoutForm2 = () => {
                 <Grid item sm={6} xs={12}>
                   <TextField
                     fullWidth
-                    type="number"
-                    name="cardNumber"
+                    type='number'
+                    name='cardNumber'
                     onChange={handleChange}
-                    label="Enter Your Card Number"
+                    label='Enter Your Card Number'
                     value={values.cardNumber}
                     error={!!touched.cardNumber && !!errors.cardNumber}
                     helperText={touched.cardNumber && errors.cardNumber}
                   />
                 </Grid>
                 <Grid item sm={12} xs={12}>
-                  <Box display="flex" justifyContent="space-between">
+                  <Box display='flex' justifyContent='space-between'>
                     <TextField
                       select
                       fullWidth
-                      type="number"
-                      name="cardMonth"
+                      type='number'
+                      name='cardMonth'
                       onChange={handleChange}
-                      label="Expire Card Month"
+                      label='Expire Card Month'
                       value={values.cardMonth}
                       error={!!touched.cardMonth && !!errors.cardMonth}
                       helperText={touched.cardMonth && errors.cardMonth}
                     >
-                      {months.map((item) => (
+                      {months.map(item => (
                         <MenuItem value={item} key={item}>
                           {item}
                         </MenuItem>
@@ -324,10 +324,10 @@ const CheckoutForm2 = () => {
                     <TextField
                       select
                       fullWidth
-                      type="number"
-                      name="cardYear"
+                      type='number'
+                      name='cardYear'
                       onChange={handleChange}
-                      label="Expire Card Year"
+                      label='Expire Card Year'
                       value={values.cardYear}
                       error={!!touched.cardYear && !!errors.cardYear}
                       helperText={touched.cardYear && errors.cardYear}
@@ -335,7 +335,7 @@ const CheckoutForm2 = () => {
                         mx: 3,
                       }}
                     >
-                      {years.map((item) => (
+                      {years.map(item => (
                         <MenuItem value={item} key={item}>
                           {item}
                         </MenuItem>
@@ -343,9 +343,9 @@ const CheckoutForm2 = () => {
                     </TextField>
                     <TextField
                       fullWidth
-                      type="number"
-                      name="cardCVC"
-                      label="CVC/CVV"
+                      type='number'
+                      name='cardCVC'
+                      label='CVC/CVV'
                       onChange={handleChange}
                       value={values.cardCVC}
                       error={!!touched.cardCVC && !!errors.cardCVC}
@@ -359,7 +359,7 @@ const CheckoutForm2 = () => {
                   mt: 1,
                 }}
                 control={<Checkbox />}
-                label="Save this card"
+                label='Save this card'
               />
             </Box>
 
@@ -367,7 +367,7 @@ const CheckoutForm2 = () => {
               <Typography mb={1.5}>Saved Cards</Typography>
 
               <Grid container spacing={3}>
-                {paymentMethodList.map((item) => (
+                {paymentMethodList.map(item => (
                   <Grid item md={4} sm={6} xs={12} key={item.last4Digits}>
                     <Card
                       sx={{
@@ -387,19 +387,19 @@ const CheckoutForm2 = () => {
                         setFieldValue
                       )}
                     >
-                      <Box height={24} width={36} position="relative" mb={1}>
+                      <Box height={24} width={36} position='relative' mb={1}>
                         <LazyImage
-                          layout="fill"
+                          layout='fill'
                           alt={item.name}
-                          objectFit="contain"
+                          objectFit='contain'
                           src={`/assets/images/payment-methods/${item.cardType}.svg`}
                         />
                       </Box>
 
-                      <Paragraph color="grey.700">
+                      <Paragraph color='grey.700'>
                         **** **** **** {item.last4Digits}
                       </Paragraph>
-                      <Paragraph color="grey.700">{item.name}</Paragraph>
+                      <Paragraph color='grey.700'>{item.name}</Paragraph>
                     </Card>
                   </Grid>
                 ))}
@@ -418,15 +418,15 @@ const CheckoutForm2 = () => {
             </Button>
 
             {hasVoucher && (
-              <FlexBox mt={3} gap={2} maxWidth="400px">
+              <FlexBox mt={3} gap={2} maxWidth='400px'>
                 <TextField
                   fullWidth
-                  name="voucher"
+                  name='voucher'
                   value={values.voucher}
                   onChange={handleChange}
-                  placeholder="Enter voucher code here"
+                  placeholder='Enter voucher code here'
                 />
-                <Button variant="contained" color="primary" type="button">
+                <Button variant='contained' color='primary' type='button'>
                   Apply
                 </Button>
               </FlexBox>
@@ -434,9 +434,9 @@ const CheckoutForm2 = () => {
 
             <Button
               fullWidth
-              type="submit"
-              color="primary"
-              variant="contained"
+              type='submit'
+              color='primary'
+              variant='contained'
               sx={{
                 mt: 3,
               }}
@@ -455,13 +455,13 @@ const addressList2 = [
     name: "Home",
     phone: "+17804084466",
     street2: "435 Bristol, MA 2351",
-    street1: "375 Subidbazaar, MA 2351",
+    street1: "375, MA 2351",
   },
   {
     name: "Office",
     phone: "+18334271710",
     street2: "968 Brockton, MA 2351",
-    street1: "645 Bondorbazaar, MA 2351",
+    street1: "645, MA 2351",
   },
   {
     name: "Office 2",

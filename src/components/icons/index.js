@@ -5,7 +5,7 @@ import BabyBoy from "./BabyBoy";
 import BabyFeeder from "./BabyFeeder";
 import BabyGirl from "./BabyGirl";
 import BasketBall from "./BasketBall";
-import BazaarIcon from "./BazaarIcon";
+import CommonIcon from "./CommonIcon";
 import BeautyProducts from "./BeautyProducts";
 import Beer from "./Beer";
 import Bottle from "./Bottle";
@@ -171,7 +171,7 @@ const appIcons = {
   AppleStore,
   BabyFeeder,
   BasketBall,
-  BazaarIcon,
+  CommonIcon,
   DrillMachine,
   BeautyProducts,
   CartIcon,

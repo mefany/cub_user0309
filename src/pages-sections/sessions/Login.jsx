@@ -157,7 +157,7 @@ const Login = () => {
     <Wrapper elevation={3} passwordVisibility={passwordVisibility}>
       <form onSubmit={handleSubmit}>
         {/* <CommonImage
-          src="/assets/images/bazaar-black-sm.svg"
+          src=""
           sx={{
             m: "auto",
           }}

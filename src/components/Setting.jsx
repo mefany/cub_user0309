@@ -126,10 +126,6 @@ const Setting = () => {
             }}
           />
 
-          <H6 textAlign='center' mb={2}>
-            Bazaar Demos
-          </H6>
-
           <FlexBox gap={2} flexWrap='wrap'>
             {demos.map(demo => (
               <StyledAvatar
