@@ -1,6 +1,6 @@
 import { Container, Grid } from "@mui/material";
 import Navigations from "./Navigations";
-import ShopLayout1 from "components/layouts/ShopLayout1";
+import DefaultLayout from "components/layouts/DefaultLayout";
 /**
  *  Used in:
  *  1. wish-list page
@@ -14,7 +14,7 @@ import ShopLayout1 from "components/layouts/ShopLayout1";
 
 // ======================================================
 const CustomerDashboardLayout = ({ children }) => (
-  <ShopLayout1>
+  <DefaultLayout>
     <Container
       sx={{
         my: "2rem",
@@ -41,7 +41,7 @@ const CustomerDashboardLayout = ({ children }) => (
         </Grid>
       </Grid>
     </Container>
-  </ShopLayout1>
+  </DefaultLayout>
 );
 
 export default CustomerDashboardLayout;

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Box, Container, styled, Tab, Tabs } from "@mui/material";
 import { H2 } from "components/Typography";
-import ShopLayout1 from "components/layouts/ShopLayout1";
+import DefaultLayout from "components/layouts/DefaultLayout";
 import BookIntro from "components/products/BookIntro";
 import ProductReview from "components/products/ProductReview";
 import AvailableShops from "components/products/AvailableShops";
@@ -23,7 +23,7 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
   },
 })); // ===============================================================
 
-const bookingUser = []
+const bookingUser = [];
 // ===============================================================
 const ProductDetails = props => {
   const router = useRouter();
@@ -67,13 +67,13 @@ const ProductDetails = props => {
     );
     const users = await res.data;
     if (users.length > 0) {
-      bookingUser = users
+      bookingUser = users;
     }
-    console.log('getBookingUser', bookingUser)
+    console.log("getBookingUser", bookingUser);
   };
 
   return (
-    <ShopLayout1>
+    <DefaultLayout>
       <Container
         sx={{
           my: 4,
@@ -109,7 +109,7 @@ const ProductDetails = props => {
         <AvailableBooks data={relatedBook} />
         <AvailableShops />
       </Container>
-    </ShopLayout1>
+    </DefaultLayout>
   );
 };
 

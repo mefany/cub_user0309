@@ -4,7 +4,7 @@ import SEO from "components/SEO";
 import LazyImage from "components/LazyImage";
 import BazaarCard from "components/BazaarCard";
 import { H1, Paragraph } from "components/Typography";
-import ShopLayout1 from "components/layouts/ShopLayout1"; // custom styled components
+import DefaultLayout from "components/layouts/DefaultLayout"; // custom styled components
 
 const Wrapper = styled(BazaarCard)(() => ({
   margin: "auto",
@@ -19,8 +19,8 @@ const StyledButton = styled(Button)(() => ({
 
 const OrderConfirmation = () => {
   return (
-    <ShopLayout1>
-      <SEO title="Order Confirmation" />
+    <DefaultLayout>
+      <SEO title='Order Confirmation' />
 
       <Container
         sx={{
@@ -32,30 +32,30 @@ const OrderConfirmation = () => {
           <LazyImage
             width={116}
             height={116}
-            alt="complete"
-            src="/assets/images/illustrations/party-popper.svg"
+            alt='complete'
+            src='/assets/images/illustrations/party-popper.svg'
           />
-          <H1 lineHeight={1.1} mt="1.5rem">
+          <H1 lineHeight={1.1} mt='1.5rem'>
             Your order is completed!
           </H1>
 
-          <Paragraph color="grey.800" mt="0.3rem">
+          <Paragraph color='grey.800' mt='0.3rem'>
             You will be receiving confirmation email with order details.
           </Paragraph>
 
-          <Link href="/home-1" passHref>
+          <Link href='/home-1' passHref>
             <StyledButton
-              color="primary"
+              color='primary'
               disableElevation
-              variant="contained"
-              className="button-link"
+              variant='contained'
+              className='button-link'
             >
               Browse products
             </StyledButton>
           </Link>
         </Wrapper>
       </Container>
-    </ShopLayout1>
+    </DefaultLayout>
   );
 };
 

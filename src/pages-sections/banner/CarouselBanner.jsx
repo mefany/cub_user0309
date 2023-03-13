@@ -3,16 +3,16 @@ import Carousel from "components/carousel/Carousel";
 import CarouselCard1 from "components/carousel-cards/CarouselCard1";
 
 // ======================================================
-const Section1 = ({ carouselData }) => {
+const CarouselBanner = ({ carouselData }) => {
   return (
-    <Box bgcolor="white" mb={7.5}>
+    <Box bgcolor='white' mb={7.5}>
       <Container
         sx={{
           py: 4,
         }}
       >
         <Carousel
-          spacing="0px"
+          spacing='0px'
           totalSlides={2}
           infinite={true}
           showDots={true}
@@ -29,4 +29,4 @@ const Section1 = ({ carouselData }) => {
   );
 };
 
-export default Section1;
+export default CarouselBanner;

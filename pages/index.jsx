@@ -1,15 +1,15 @@
-import SEO from "components/SEO";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import api from "api/BookApi";
-import ShopLayout1 from "components/layouts/ShopLayout1";
-import Section1 from "pages-sections/market-1/Section1";
-import Section8 from "pages-sections/market-1/Section8";
-import Section11 from "pages-sections/books/Section11";
-import Section13 from "pages-sections/books/Section13";
+import SEO from "components/SEO";
+import DefaultLayout from "components/layouts/DefaultLayout";
+import CarouselBanner from "pages-sections/banner/CarouselBanner";
+import PromotionBanner from "pages-sections/banner/PromotionBanner";
+import GridBookSection from "pages-sections/books/GridBookSection";
+import GridShopSection from "pages-sections/shops/GridShopSection";
 import axios from "axios";
 
 // =================================================================
-const MarketShop = props => {
+const IndexPage = props => {
   const mainCarouselData = [
     {
       title: "50% Off For Your First Shopping",
@@ -26,34 +26,34 @@ const MarketShop = props => {
       buttonLik: "#",
     },
   ];
-  const id = 31;
   const [books, setBooks] = useState([]); // 전체 게시물 리스트
 
   // 도서 리스트 조회 API
-  const getBookList = async () => {
+  const getBookList = useCallback(async () => {
     const response = await api.BookList("asc");
     console.log(response);
     setBooks(response);
-  };
+  });
   useEffect(() => {
     getBookList();
   }, []);
 
   return (
-    <ShopLayout1>
+    <DefaultLayout>
       <SEO title='CUBCUB' />
-      {/* HERO SLIDER SECTION */}
-      <Section1 carouselData={mainCarouselData} />
+
+      {/* main slide banner */}
+      <CarouselBanner carouselData={mainCarouselData} />
 
       {/* newBooks */}
-      <Section11 moreItems={books} />
+      <GridBookSection moreItems={books} />
 
       {/* Shops */}
-      <Section13 shops={props.shops} />
+      <GridShopSection shops={props.shops} />
 
-      {/* PROMO BANNERS */}
-      <Section8 />
-    </ShopLayout1>
+      {/* promotion banner */}
+      <PromotionBanner />
+    </DefaultLayout>
   );
 };
 
@@ -75,4 +75,4 @@ export const getStaticProps = async () => {
     },
   };
 };
-export default MarketShop;
+export default IndexPage;

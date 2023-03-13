@@ -10,20 +10,8 @@ const megaMenus = [
           url: "/market-1",
         },
         {
-          title: "Furniture",
-          url: "/furniture-shop",
-        },
-        {
           title: "Grocery-v1",
           url: "/grocery1",
-        },
-        {
-          title: "Grocery-v2",
-          url: "/grocery2",
-        },
-        {
-          title: "Grocery-v3",
-          url: "/grocery3",
         },
         {
           title: "Health and Beauty",
@@ -32,14 +20,6 @@ const megaMenus = [
         {
           title: "Fashion",
           url: "/fashion-shop",
-        },
-        {
-          title: "Gift Store",
-          url: "/gift-shop",
-        },
-        {
-          title: "Gadget",
-          url: "/gadget-shop",
         },
       ],
     },
@@ -188,45 +168,14 @@ const navbarNavigations = [
         title: "Market 2",
         url: "/market-2",
       },
-      {
-        title: "Furniture",
-        url: "/furniture-shop",
-      },
+
       {
         title: "Grocery 1",
         url: "/grocery1",
       },
       {
-        title: "Grocery 2",
-        url: "/grocery2",
-      },
-      {
-        title: "Grocery 3",
-        url: "/grocery3",
-      },
-      {
         title: "Health and Beauty",
         url: "/healthbeauty-shop",
-      },
-      {
-        title: "Fashion 1",
-        url: "/fashion-shop-1",
-      },
-      {
-        title: "Fashion 2",
-        url: "/fashion-shop-2",
-      },
-      {
-        title: "Fashion 3",
-        url: "/fashion-shop-3",
-      },
-      {
-        title: "Gift Store",
-        url: "/gift-shop",
-      },
-      {
-        title: "Gadget",
-        url: "/gadget-shop",
       },
     ],
   },

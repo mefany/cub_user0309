@@ -15,7 +15,7 @@ import CategorySectionCreator from "components/CategorySectionCreator";
 import { calculateDiscount, currency } from "lib"; // ========================================================
 
 // ========================================================
-const Section13 = ({ shops }) => {
+const GridShopSection = ({ shops }) => {
   const rating = 5;
   const width = useWindowSize();
   const [visibleSlides, setVisibleSlides] = useState(6);
@@ -97,4 +97,4 @@ const Section13 = ({ shops }) => {
   );
 };
 
-export default Section13;
+export default GridShopSection;

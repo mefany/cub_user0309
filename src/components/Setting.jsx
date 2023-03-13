@@ -39,7 +39,7 @@ const StyledIconButton = styled(IconButton)(({ theme }) => ({
   },
 }));
 const BodyWrapper = styled(Box, {
-  shouldForwardProp: (props) => props !== "showBody",
+  shouldForwardProp: props => props !== "showBody",
 })(({ theme, showBody }) => ({
   overflow: "auto",
   borderRadius: "4px",
@@ -84,8 +84,8 @@ const Setting = () => {
   return (
     <ClickAwayListener onClickAway={() => setShowBody(false)}>
       <MainContainer>
-        <Tooltip title="Settings & Demos" placement="left">
-          <StyledIconButton onClick={() => setShowBody((state) => !state)}>
+        <Tooltip title='Settings & Demos' placement='left'>
+          <StyledIconButton onClick={() => setShowBody(state => !state)}>
             {!showBody && <Settings />}
             {showBody && <Close />}
           </StyledIconButton>
@@ -126,12 +126,12 @@ const Setting = () => {
             }}
           />
 
-          <H6 textAlign="center" mb={2}>
+          <H6 textAlign='center' mb={2}>
             Bazaar Demos
           </H6>
 
-          <FlexBox gap={2} flexWrap="wrap">
-            {demos.map((demo) => (
+          <FlexBox gap={2} flexWrap='wrap'>
+            {demos.map(demo => (
               <StyledAvatar
                 key={demo.id}
                 src={demo.img}
@@ -156,50 +156,11 @@ const demos = [
     path: "/market-2",
     img: "/assets/images/landing/home/market-2.jpg",
   },
-  {
-    id: 2,
-    path: "/grocery2",
-    img: "/assets/images/landing/page-2.png",
-  },
-  {
-    id: 3,
-    path: "/fashion-shop-1",
-    img: "/assets/images/landing/page-3.png",
-  },
-  {
-    id: 4,
-    path: "/fashion-shop-2",
-    img: "/assets/images/landing/home/fashion-2.jpg",
-  },
-  {
-    id: 5,
-    path: "/fashion-shop-3",
-    img: "/assets/images/landing/home/fashion-3.jpg",
-  },
-  {
-    id: 6,
-    path: "/gadget-shop",
-    img: "/assets/images/landing/page-4.png",
-  },
-  {
-    id: 7,
-    path: "/furniture-shop",
-    img: "/assets/images/landing/furniture.png",
-  },
-  {
-    id: 8,
-    path: "/gift-shop",
-    img: "/assets/images/landing/gift-shop.png",
-  },
+
   {
     id: 9,
     path: "/grocery1",
     img: "/assets/images/landing/grocery1.png",
-  },
-  {
-    id: 10,
-    path: "/grocery3",
-    img: "/assets/images/landing/grocery3.png",
   },
   {
     id: 11,

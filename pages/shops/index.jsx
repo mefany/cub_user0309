@@ -1,40 +1,45 @@
-import { Container, Grid, Pagination, Box, Card, MenuItem, TextField, } from "@mui/material";
+import {
+  Container,
+  Grid,
+  Pagination,
+  Box,
+  Card,
+  MenuItem,
+  TextField,
+} from "@mui/material";
 import { FlexBox } from "components/flex-box";
 import { H2, Paragraph } from "components/Typography";
 import ShopCard1 from "components/shop/ShopCard1";
 import { FlexBetween } from "components/flex-box";
-import ShopLayout1 from "components/layouts/ShopLayout1";
+import DefaultLayout from "components/layouts/DefaultLayout";
 import api from "utils/__api__/shop";
 import axios from "axios";
 import Link from "next/link";
 
 // =============================================
 const ShopList = ({ shops }) => {
-  fetch(
-    `https://i9nwbiqoc6.execute-api.ap-northeast-2.amazonaws.com/test/shop`
-  )
-    .then((res) => res.json())
-    .then((data) => {
+  fetch(`https://i9nwbiqoc6.execute-api.ap-northeast-2.amazonaws.com/test/shop`)
+    .then(res => res.json())
+    .then(data => {
       console.log(data);
-    })
+    });
 
-  const handleOnChange = (e) => {
-    if (e.target.value !== 'latest') {
+  const handleOnChange = e => {
+    if (e.target.value !== "latest") {
       // setQuery(title + '&price_order=' + e.target.value)
     } else {
       // setQuery(title + '&date_order=asc')
     }
     // getSearchBooks(query)
-  }
+  };
   return (
-    <ShopLayout1>
+    <DefaultLayout>
       <Container
         sx={{
           mt: 4,
           mb: 6,
         }}
       >
-
         <Card
           elevation={1}
           sx={{
@@ -53,22 +58,22 @@ const ShopList = ({ shops }) => {
           <H2>매장 리스트</H2>
 
           <FlexBox
-            alignItems="center"
+            alignItems='center'
             columnGap={4}
-            flexWrap="wrap"
-            my="0.5rem"
+            flexWrap='wrap'
+            my='0.5rem'
           >
-            <FlexBox alignItems="center" gap={1} flex="1 1 0">
-              <Paragraph color="grey.600" whiteSpace="pre">
+            <FlexBox alignItems='center' gap={1} flex='1 1 0'>
+              <Paragraph color='grey.600' whiteSpace='pre'>
                 정렬 기준:
               </Paragraph>
 
               <TextField
                 select
                 fullWidth
-                size="small"
-                variant="outlined"
-                placeholder="Short by"
+                size='small'
+                variant='outlined'
+                placeholder='Short by'
                 defaultValue={sortOptions[0].value}
                 onChange={handleOnChange}
                 sx={{
@@ -76,7 +81,7 @@ const ShopList = ({ shops }) => {
                   minWidth: "250px",
                 }}
               >
-                {sortOptions.map((item) => (
+                {sortOptions.map(item => (
                   <MenuItem value={item.value} key={item.value}>
                     {item.label}
                   </MenuItem>
@@ -88,7 +93,7 @@ const ShopList = ({ shops }) => {
 
         {/* ALL SHOP LIST AREA */}
         <Grid container spacing={3}>
-          {shops.map((item) => (
+          {shops.map(item => (
             <Grid item lg={4} sm={6} xs={12} key={item.shop_uid}>
               <ShopCard1
                 name={item.shop_name}
@@ -113,7 +118,7 @@ const ShopList = ({ shops }) => {
           />
         </FlexBetween> */}
       </Container>
-    </ShopLayout1>
+    </DefaultLayout>
   );
 };
 

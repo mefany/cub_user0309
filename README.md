@@ -144,14 +144,8 @@ const navbarNavigations = [
     megaMenuWithSub: false,
     child: [
       { title: "Super Store", url: "/market-1" },
-      { title: "Furniture", url: "/furniture-shop" },
       { title: "Grocery-v1", url: "/grocery1" },
-      { title: "Grocery-v2", url: "/grocery2" },
-      { title: "Grocery-v3", url: "/grocery3" },
       { title: "Health and Beauty", url: "/healthbeauty-shop" },
-      { title: "Fashion", url: "/fashion-shop" },
-      { title: "Gift Store", url: "/gift-shop" },
-      { title: "Gadget", url: "/gadget-shop" },
     ],
   },
 
@@ -177,71 +171,13 @@ const megaMenus = [
   [
     {
       title: "Grocery",
-      child: [
-        { title: "Grocery-v1", url: "/grocery1" },
-        { title: "Grocery-v2", url: "/grocery2" },
-        { title: "Grocery-v3", url: "/grocery3" },
-      ],
+      child: [{ title: "Grocery-v1", url: "/grocery1" }],
     },
     {
       title: "Others",
-      child: [
-        { title: "Health and Beauty", url: "/healthbeauty-shop" },
-        { title: "Fashion", url: "/fashion-shop" },
-        { title: "Gift Store", url: "/gift-shop" },
-        { title: "Gadget", url: "/gadget-shop" },
-      ],
+      child: [{ title: "Health and Beauty", url: "/healthbeauty-shop" }],
     },
   ],
-];
-```
-
-## Categories With Sub Categories Mega Menus Structure
-
-```ts
-const categoriesMegaMenu = [
-  {
-    title: "Fashion",
-    child: [
-      {
-        title: "Men's Fashion",
-        child: [
-          { title: "T-Shirt", url: "#", Icon: Icons.Shirt },
-          { title: "Shirt", url: "#", Icon: Icons.Shirt },
-          { title: "Shoes", url: "#", Icon: Icons.Shirt },
-          { title: "Jeans Pant", url: "#", Icon: Icons.Shirt },
-          { title: "Gabardin Pant", url: "#", Icon: Icons.Shirt },
-          { title: "Formal Pant", url: "#", Icon: Icons.Shirt },
-          { title: "Formal Shirt", url: "#", Icon: Icons.Shirt },
-          { title: "Sunglass", url: "#", Icon: Icons.Shirt },
-        ],
-      },
-      {
-        title: "Women's Fashion",
-        child: [
-          { title: "Clothing", url: "#" },
-          { title: "Shoes", url: "#" },
-          { title: "Jewelry", url: "#" },
-          { title: "Watches", url: "#" },
-          { title: "Hand Bags", url: "#" },
-          { title: "Accessories", url: "#" },
-          { title: "Makeup", url: "#" },
-        ],
-      },
-
-      {
-        title: "Girls' Fashion",
-        child: [
-          { title: "Clothing", url: "#" },
-          { title: "Shoes", url: "#" },
-          { title: "Jewelry", url: "#" },
-          { title: "Watches", url: "#" },
-          { title: "Hand Bags", url: "#" },
-          { title: "Gadget", url: "#" },
-        ],
-      },
-    ],
-  },
 ];
 ```
 
@@ -269,7 +205,6 @@ Need Support? Create a ticket [HERE](https://support.ui-lib.com/help-center/tick
 ###### Aug 28, 2022
 
 - Add one Market homepage
-- Add two Fashion homepages
 - Add SEO component
 - Update layout code structure
 

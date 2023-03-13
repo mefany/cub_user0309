@@ -90,22 +90,6 @@ import Yogurt from "./Yogurt";
 import Youtube from "./Youtube";
 import YoutubeFilled from "./YoutubeFilled"; // furniture shop page icons
 
-import Home from "./Home";
-import Sofa from "./furniture-shop/Sofa";
-import Chair from "./furniture-shop/Chair";
-import Stool from "./furniture-shop/Stool";
-import Dining from "./furniture-shop/Dining";
-import Living from "./furniture-shop/Living";
-import Popular from "./furniture-shop/Popular";
-import RoomSet from "./furniture-shop/RoomSet";
-import Trending from "./furniture-shop/Trending";
-import Products from "./furniture-shop/Products";
-import Interior from "./furniture-shop/Interior";
-import Wardrobe from "./furniture-shop/Wardrobe";
-import Furniture from "./furniture-shop/Furniture";
-import Decoration from "./furniture-shop/Decoration";
-import RoundTable from "./furniture-shop/RoundTable"; // gift shop page icon
-
 import Toys from "./gift-shop/Toys";
 import Robot from "./gift-shop/Robot";
 import Flower from "./gift-shop/Flower";
@@ -150,22 +134,7 @@ const appIcons = {
   CustomerService,
   FeedbackThumbsUp,
   CreditCardVerified,
-  // furniture-shop-icons
-  Home,
-  Sofa,
-  Chair,
-  Stool,
-  Dining,
-  Living,
-  Popular,
-  RoomSet,
-  Trending,
-  Products,
-  Interior,
-  Wardrobe,
-  Furniture,
-  Decoration,
-  RoundTable,
+
   // gift-shop-page-icons
   Toys,
   Robot,

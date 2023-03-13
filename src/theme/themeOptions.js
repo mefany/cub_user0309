@@ -78,7 +78,7 @@ const themeOptions = (publicRuntimeConfig, pathname) => {
     AND FOLLOWING ENTIRE switch case BLOCK.
   */
 
-  const updateTheme = (themeName) => {
+  const updateTheme = themeName => {
     publicRuntimeConfig.theme = themeName;
     themeOptions = themesOptions[publicRuntimeConfig.theme];
   };
@@ -86,24 +86,12 @@ const themeOptions = (publicRuntimeConfig, pathname) => {
   switch (pathname) {
     case "/":
     case "/grocery1":
-    case "/grocery2":
-    case "/grocery3":
-    case "/gadget-shop":
-    case "/fashion-shop-1":
     case "/market-1":
       updateTheme(THEMES.DEFAULT);
       break;
 
-    case "/furniture-shop":
-      updateTheme(THEMES.FURNITURE);
-      break;
-
     case "/healthbeauty-shop":
       updateTheme(THEMES.HEALTH);
-      break;
-
-    case "/gift-shop":
-      updateTheme(THEMES.GIFT);
       break;
 
     default:

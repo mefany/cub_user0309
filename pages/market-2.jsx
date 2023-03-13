@@ -11,16 +11,16 @@ import Section6 from "pages-sections/market-2/Section6";
 import Section7 from "pages-sections/market-2/Section7";
 import Section8 from "pages-sections/market-2/Section8";
 import Section9 from "pages-sections/market-2/Section9";
-import ShopLayout1 from "components/layouts/ShopLayout1";
+import DefaultLayout from "components/layouts/DefaultLayout";
 import api from "utils/__api__/market-2"; // =======================================================
 
 // =======================================================
-const Market = (props) => {
+const Market = props => {
   const theme = useTheme();
   return (
-    <ShopLayout1 topbarBgColor={theme.palette.grey[900]}>
-      <SEO title="Market v2" />
-      <Box bgcolor="#F6F6F6">
+    <DefaultLayout topbarBgColor={theme.palette.grey[900]}>
+      <SEO title='Market v2' />
+      <Box bgcolor='#F6F6F6'>
         {/* HERO SLIDER AND GRID */}
         <Section1 carouselData={props.mainCarouselData} />
 
@@ -60,7 +60,7 @@ const Market = (props) => {
 
       {/* SETTINGS IS USED ONLY FOR DEMO, YOU CAN REMOVE THIS */}
       <Setting />
-    </ShopLayout1>
+    </DefaultLayout>
   );
 };
 

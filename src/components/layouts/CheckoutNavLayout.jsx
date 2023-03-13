@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Box, Container, Grid } from "@mui/material";
 import Stepper from "components/stepper/Stepper";
-import ShopLayout1 from "./ShopLayout1";
+import DefaultLayout from "./DefaultLayout";
 /**
  *  Used:
  *  1. cart page
@@ -17,7 +17,7 @@ const CheckoutNavLayout = ({ children }) => {
   const router = useRouter();
   const { pathname } = router;
 
-  const handleStepChange = (step) => {
+  const handleStepChange = step => {
     switch (step) {
       case 0:
         router.push("/cart");
@@ -59,7 +59,7 @@ const CheckoutNavLayout = ({ children }) => {
     }
   }, [pathname]);
   return (
-    <ShopLayout1>
+    <DefaultLayout>
       <Container
         sx={{
           my: 4,
@@ -85,7 +85,7 @@ const CheckoutNavLayout = ({ children }) => {
 
         {children}
       </Container>
-    </ShopLayout1>
+    </DefaultLayout>
   );
 };
 
