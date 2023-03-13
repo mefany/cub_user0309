@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Box } from "@mui/material";
-import BazaarCard from "components/BazaarCard";
-import BazaarRating from "components/BazaarRating";
+import CommonCard from "components/CommonCard";
+import CommonRating from "components/CommonRating";
 import { FlexBox } from "components/flex-box";
 import HoverBox from "components/HoverBox";
 import LazyImage from "components/LazyImage";
@@ -35,7 +35,7 @@ const GridShopSection = ({ shops }) => {
         <Carousel totalSlides={shops.length} visibleSlides={visibleSlides}>
           {shops.map(({ shop_uid, shop_name, shop_photo, address_full }) => (
             <Box py={0.5} key={shop_uid}>
-              <BazaarCard
+              <CommonCard
                 sx={{
                   p: "1rem",
                 }}
@@ -85,10 +85,10 @@ const GridShopSection = ({ shops }) => {
                           213m
                         </H4> */}
                     </FlexBox>
-                    {/* <BazaarRating value={rating || 0} color="warn" readOnly /> */}
+                    {/* <CommonRating value={rating || 0} color="warn" readOnly /> */}
                   </a>
                 </Link>
-              </BazaarCard>
+              </CommonCard>
             </Box>
           ))}
         </Carousel>

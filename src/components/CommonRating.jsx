@@ -1,7 +1,7 @@
 import { Rating } from "@mui/material";
 import { compose, spacing, styled, typography } from "@mui/system";
-const BazaarRating = styled(Rating)(compose(spacing, typography));
-BazaarRating.defaultProps = {
+const CommonRating = styled(Rating)(compose(spacing, typography));
+CommonRating.defaultProps = {
   fontSize: "1.25rem",
 };
-export default BazaarRating;
+export default CommonRating;

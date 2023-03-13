@@ -2,11 +2,11 @@ import Link from "next/link";
 import { Button, Container, styled } from "@mui/material";
 import SEO from "components/SEO";
 import LazyImage from "components/LazyImage";
-import BazaarCard from "components/BazaarCard";
+import CommonCard from "components/CommonCard";
 import { H1, Paragraph } from "components/Typography";
 import DefaultLayout from "components/layouts/DefaultLayout"; // custom styled components
 
-const Wrapper = styled(BazaarCard)(() => ({
+const Wrapper = styled(CommonCard)(() => ({
   margin: "auto",
   padding: "3rem",
   maxWidth: "630px",

@@ -12,13 +12,13 @@ import { useSnackbar } from "notistack";
 import ShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import LazyImage from "components/LazyImage";
 import { H3, Span } from "components/Typography";
-import BazaarRating from "components/BazaarRating";
+import CommonRating from "components/CommonRating";
 import { FlexBetween, FlexBox } from "components/flex-box";
 import ProductViewDialog from "components/products/ProductViewDialog";
 import { useAppContext } from "contexts/AppContext";
 import { calculateDiscount, currency } from "lib"; // styled components
 
-const StyledBazaarCard = styled(Box)(() => ({
+const StyledCommonCard = styled(Box)(() => ({
   height: "100%",
   margin: "auto",
   display: "flex",
@@ -120,17 +120,17 @@ const ContentWrapper = styled(Box)(() => ({
 })); // ====================================================================
 
 // ====================================================================
-const ProductCard10 = (props) => {
+const ProductCard10 = props => {
   const { off, id, title, price, imgUrl, rating, hideRating, slug } = props;
   const { enqueueSnackbar } = useSnackbar();
   const { state, dispatch } = useAppContext();
   const [openModal, setOpenModal] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const toggleIsFavorite = () => setIsFavorite((fav) => !fav);
+  const toggleIsFavorite = () => setIsFavorite(fav => !fav);
 
-  const toggleDialog = useCallback(() => setOpenModal((open) => !open), []);
-  const cartItem = state.cart.find((item) => item.slug === slug);
+  const toggleDialog = useCallback(() => setOpenModal(open => !open), []);
+  const cartItem = state.cart.find(item => item.slug === slug);
 
   const handleCartAmountChange = (amount, type) => () => {
     dispatch({
@@ -157,13 +157,13 @@ const ProductCard10 = (props) => {
   };
 
   return (
-    <StyledBazaarCard>
+    <StyledCommonCard>
       <ImageWrapper>
         {off !== 0 && (
-          <StyledChip color="primary" size="small" label={`${off}% off`} />
+          <StyledChip color='primary' size='small' label={`${off}% off`} />
         )}
 
-        <ImageBox className="hoverImgBox">
+        <ImageBox className='hoverImgBox'>
           <Link href={`/product/${slug}`}>
             <a>
               <LazyImage
@@ -171,8 +171,8 @@ const ProductCard10 = (props) => {
                 width={190}
                 height={190}
                 src={imgUrl}
-                layout="responsive"
-                objectFit="contain"
+                layout='responsive'
+                objectFit='contain'
               />
             </a>
           </Link>
@@ -190,24 +190,24 @@ const ProductCard10 = (props) => {
           }}
         />
 
-        <HoverButtonBox className="hoverButtonBox">
-          <Box className="buttonBox">
+        <HoverButtonBox className='hoverButtonBox'>
+          <Box className='buttonBox'>
             <ItemController>
               <Span onClick={toggleDialog}>
                 <RemoveRedEye />
               </Span>
 
-              <Divider orientation="vertical" flexItem />
+              <Divider orientation='vertical' flexItem />
 
               <Span onClick={toggleIsFavorite}>
                 {isFavorite ? (
-                  <Favorite color="primary" fontSize="small" />
+                  <Favorite color='primary' fontSize='small' />
                 ) : (
-                  <FavoriteBorder fontSize="small" color="primary" />
+                  <FavoriteBorder fontSize='small' color='primary' />
                 )}
               </Span>
 
-              <Divider orientation="vertical" flexItem />
+              <Divider orientation='vertical' flexItem />
 
               <Span onClick={handleCartAmountChange(1)}>
                 <ShoppingCartIcon />
@@ -216,18 +216,18 @@ const ProductCard10 = (props) => {
 
             {cartItem?.qty ? (
               <Button
-                color="primary"
-                variant="outlined"
-                className="addCartButton"
+                color='primary'
+                variant='outlined'
+                className='addCartButton'
                 onClick={handleCartAmountChange(cartItem.qty - 1, "remove")}
               >
                 <Remove /> Remove from Cart
               </Button>
             ) : (
               <Button
-                color="primary"
-                variant="outlined"
-                className="addCartButton"
+                color='primary'
+                variant='outlined'
+                className='addCartButton'
                 onClick={handleCartAmountChange(1)}
               >
                 <Add /> Add to Cart
@@ -243,10 +243,10 @@ const ProductCard10 = (props) => {
             <H3
               mb={1}
               title={title}
-              fontSize="14px"
-              fontWeight="600"
-              className="title"
-              color="text.secondary"
+              fontSize='14px'
+              fontWeight='600'
+              className='title'
+              color='text.secondary'
             >
               {title}
             </H3>
@@ -254,8 +254,8 @@ const ProductCard10 = (props) => {
         </Link>
 
         {!hideRating && (
-          <Box display="flex" alignItems="center">
-            <BazaarRating value={rating || 0} color="warn" readOnly />{" "}
+          <Box display='flex' alignItems='center'>
+            <CommonRating value={rating || 0} color='warn' readOnly />{" "}
             <Span
               sx={{
                 color: "grey.600",
@@ -264,19 +264,19 @@ const ProductCard10 = (props) => {
           </Box>
         )}
 
-        <FlexBox gap={1} alignItems="center" mt={0.5}>
-          <Box fontWeight="600" color="primary.main">
+        <FlexBox gap={1} alignItems='center' mt={0.5}>
+          <Box fontWeight='600' color='primary.main'>
             {calculateDiscount(price, off)}
           </Box>
 
           {off !== 0 && (
-            <Box color="grey.600" fontWeight="600">
+            <Box color='grey.600' fontWeight='600'>
               <del>{currency(price)}</del>
             </Box>
           )}
         </FlexBox>
       </ContentWrapper>
-    </StyledBazaarCard>
+    </StyledCommonCard>
   );
 };
 

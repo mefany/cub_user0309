@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Delete, Edit, RemoveRedEye } from "@mui/icons-material";
 import { Avatar, Box } from "@mui/material";
 import { FlexBox } from "components/flex-box";
-import BazaarSwitch from "components/BazaarSwitch";
+import CommonSwitch from "components/CommonSwitch";
 import { Paragraph, Small } from "components/Typography";
 import {
   StyledIconButton,
@@ -24,21 +24,21 @@ const SellerRow = ({ seller }) => {
   } = seller;
   const [shopPulish, setShopPublish] = useState(published);
   return (
-    <StyledTableRow tabIndex={-1} role="checkbox">
-      <StyledTableCell align="left">
-        <FlexBox alignItems="center" gap={1.5}>
+    <StyledTableRow tabIndex={-1} role='checkbox'>
+      <StyledTableCell align='left'>
+        <FlexBox alignItems='center' gap={1.5}>
           <Avatar src={image} alt={name} />
           <Box>
             <Paragraph>{name}</Paragraph>
-            <Small color="grey.600">{phone}</Small>
+            <Small color='grey.600'>{phone}</Small>
           </Box>
         </FlexBox>
       </StyledTableCell>
 
-      <StyledTableCell align="left">{shopName}</StyledTableCell>
+      <StyledTableCell align='left'>{shopName}</StyledTableCell>
 
       <StyledTableCell
-        align="left"
+        align='left'
         sx={{
           fontWeight: 400,
         }}
@@ -47,7 +47,7 @@ const SellerRow = ({ seller }) => {
       </StyledTableCell>
 
       <StyledTableCell
-        align="left"
+        align='left'
         sx={{
           fontWeight: 400,
         }}
@@ -55,15 +55,15 @@ const SellerRow = ({ seller }) => {
         {currency(balance)}
       </StyledTableCell>
 
-      <StyledTableCell align="left">
-        <BazaarSwitch
-          color="info"
+      <StyledTableCell align='left'>
+        <CommonSwitch
+          color='info'
           checked={shopPulish}
-          onChange={() => setShopPublish((state) => !state)}
+          onChange={() => setShopPublish(state => !state)}
         />
       </StyledTableCell>
 
-      <StyledTableCell align="center">
+      <StyledTableCell align='center'>
         <StyledIconButton>
           <Edit />
         </StyledIconButton>

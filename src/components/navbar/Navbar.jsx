@@ -6,7 +6,7 @@ import {
   ChevronRight,
   KeyboardArrowDown,
 } from "@mui/icons-material";
-import BazaarCard from "components/BazaarCard";
+import CommonCard from "components/CommonCard";
 import { FlexBox } from "components/flex-box";
 import Category from "components/icons/Category";
 import NavLink from "components/nav-link/NavLink";
@@ -51,7 +51,7 @@ const ParentNavItem = styled(Box)(({ theme }) => ({
     paddingRight: 8,
   },
 }));
-const NavBarWrapper = styled(BazaarCard)(({ theme, border }) => ({
+const NavBarWrapper = styled(CommonCard)(({ theme, border }) => ({
   height: "60px",
   display: "block",
   borderRadius: "0px",
@@ -139,7 +139,7 @@ const Navbar = ({ navListOpen, hideCategories, elevation, border }) => {
               </FlexBox>
 
               <ChildNavsWrapper className='child-nav-item'>
-                <BazaarCard
+                <CommonCard
                   elevation={3}
                   sx={{
                     mt: 2.5,
@@ -148,7 +148,7 @@ const Navbar = ({ navListOpen, hideCategories, elevation, border }) => {
                   }}
                 >
                   {renderNestedNav(nav.child)}
-                </BazaarCard>
+                </CommonCard>
               </ChildNavsWrapper>
             </FlexBox>
           );
@@ -178,7 +178,7 @@ const Navbar = ({ navListOpen, hideCategories, elevation, border }) => {
               </MenuItem>
 
               <ParentNavItem className='parent-nav-item'>
-                <BazaarCard
+                <CommonCard
                   sx={{
                     py: "0.5rem",
                     minWidth: "230px",
@@ -186,7 +186,7 @@ const Navbar = ({ navListOpen, hideCategories, elevation, border }) => {
                   elevation={3}
                 >
                   {renderNestedNav(nav.child)}
-                </BazaarCard>
+                </CommonCard>
               </ParentNavItem>
             </ParentNav>
           );

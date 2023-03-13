@@ -12,17 +12,17 @@ import axios from "axios";
 const IndexPage = props => {
   const mainCarouselData = [
     {
-      title: "50% Off For Your First Shopping",
+      title: "중고 책거래 플랫폼 CUBCUB 오픈!",
       imgUrl: "/assets/images/banners/main-banner.png",
-      description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lobortis consequat eu, quam etiam at quis ut convalliss.`,
-      buttonText: "Shop Now",
+      description: `우리동네 중고책 거래, 가까운 CUCUB 카페에서 만나보세요!`,
+      buttonText: "보러가기",
       buttonLik: "#",
     },
     {
-      title: "50% Off For Your First Shopping",
+      title: "중고 책거래 플랫폼 CUBCUB 오픈!",
       imgUrl: "/assets/images/banners/main-banner.png",
-      description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lobortis consequat eu, quam etiam at quis ut convalliss.`,
-      buttonText: "Shop Now",
+      description: `우리동네 중고책 거래, 가까운 CUCUB 카페에서 만나보세요!`,
+      buttonText: "보러가기",
       buttonLik: "#",
     },
   ];

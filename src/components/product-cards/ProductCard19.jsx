@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Box, Rating } from "@mui/material";
 import { FlexBox } from "components/flex-box";
-import BazaarImage from "components/BazaarImage";
+import CommonImage from "components/CommonImage";
 import NavLink from "components/nav-link/NavLink";
 import { Paragraph } from "components/Typography";
 import { currency } from "lib"; // ===========================================
@@ -12,7 +12,7 @@ const ProductCard19 = ({ image, title, price, slug }) => {
     <FlexBox
       mb={2}
       gap={2}
-      alignItems="center"
+      alignItems='center'
       sx={{
         " & a": {
           flexShrink: 0,
@@ -32,14 +32,14 @@ const ProductCard19 = ({ image, title, price, slug }) => {
     >
       <Link href={`/product/${slug}`}>
         <a>
-          <Box maxWidth={100} bgcolor="grey.300">
-            <BazaarImage width="100%" alt="product" src={image} />
+          <Box maxWidth={100} bgcolor='grey.300'>
+            <CommonImage width='100%' alt='product' src={image} />
           </Box>
         </a>
       </Link>
 
       <Box>
-        <NavLink href="#">
+        <NavLink href='#'>
           <Paragraph fontSize={16}>{title}</Paragraph>
         </NavLink>
         <Paragraph fontWeight={700}>{currency(price)}</Paragraph>

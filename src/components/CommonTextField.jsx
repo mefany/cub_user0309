@@ -1,7 +1,7 @@
 import { Box, TextField } from "@mui/material";
 import { Small } from "./Typography";
 
-const BazaarTextField = ({ label, InputProps, ...props }) => {
+const CommonTextField = ({ label, InputProps, ...props }) => {
   const boxProps = {};
   const textFieldProps = {};
 
@@ -15,11 +15,11 @@ const BazaarTextField = ({ label, InputProps, ...props }) => {
     <Box {...boxProps}>
       {label && (
         <Small
-          display="block"
+          display='block'
           mb={1}
-          textAlign="left"
-          fontWeight="600"
-          color="grey.700"
+          textAlign='left'
+          fontWeight='600'
+          color='grey.700'
         >
           {label}
         </Small>
@@ -66,4 +66,4 @@ const spacePropList = [
   "paddingX",
   "paddingY",
 ];
-export default BazaarTextField;
+export default CommonTextField;

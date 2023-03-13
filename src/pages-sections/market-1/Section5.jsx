@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import BazaarCard from "components/BazaarCard";
+import CommonCard from "components/CommonCard";
 import NewArrival from "components/icons/NewArrival";
 import ProductCard2 from "components/product-cards/ProductCard2";
 import CategorySectionCreator from "components/CategorySectionCreator";
@@ -9,10 +9,10 @@ const Section5 = ({ newArrivalsList }) => {
   return (
     <CategorySectionCreator
       icon={<NewArrival />}
-      title="New Arrivals"
-      seeMoreLink="#"
+      title='New Arrivals'
+      seeMoreLink='#'
     >
-      <BazaarCard
+      <CommonCard
         sx={{
           p: 2,
         }}
@@ -29,7 +29,7 @@ const Section5 = ({ newArrivalsList }) => {
             </Grid>
           ))}
         </Grid>
-      </BazaarCard>
+      </CommonCard>
     </CategorySectionCreator>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Grid, IconButton } from "@mui/material";
 import appIcons from "components/icons";
-import BazaarCard from "components/BazaarCard";
+import CommonCard from "components/CommonCard";
 import { H4, Span } from "components/Typography";
 const CARD_STYLE = {
   p: "3rem",
@@ -25,7 +25,7 @@ const Section12 = ({ serviceList }) => {
           const Icon = appIcons[item.icon];
           return (
             <Grid item lg={3} md={6} xs={12} key={item.id}>
-              <BazaarCard hoverEffect sx={CARD_STYLE}>
+              <CommonCard hoverEffect sx={CARD_STYLE}>
                 <IconButton
                   sx={{
                     width: 64,
@@ -34,18 +34,18 @@ const Section12 = ({ serviceList }) => {
                     backgroundColor: "grey.200",
                   }}
                 >
-                  <Icon fontSize="inherit" />
+                  <Icon fontSize='inherit' />
                 </IconButton>
 
-                <H4 mt={2.5} mb={1.25} textAlign="center">
+                <H4 mt={2.5} mb={1.25} textAlign='center'>
                   {item.title}
                 </H4>
 
-                <Span textAlign="center" color="grey.600">
+                <Span textAlign='center' color='grey.600'>
                   We offer competitive prices on our 100 million plus product
                   any range.
                 </Span>
-              </BazaarCard>
+              </CommonCard>
             </Grid>
           );
         })}

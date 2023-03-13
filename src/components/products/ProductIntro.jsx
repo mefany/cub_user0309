@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Add, Remove } from "@mui/icons-material";
 import { Avatar, Box, Button, Grid } from "@mui/material";
 import LazyImage from "components/LazyImage";
-import BazaarRating from "components/BazaarRating";
+import CommonRating from "components/CommonRating";
 import { H1, H2, H3, H6 } from "components/Typography";
 import { useAppContext } from "contexts/AppContext";
 import { FlexBox, FlexRowCenter } from "../flex-box";
@@ -15,11 +15,11 @@ const ProductIntro = ({ product }) => {
   const { state, dispatch } = useAppContext();
   const [selectedImage, setSelectedImage] = useState(0); // CHECK PRODUCT EXIST OR NOT IN THE CART
 
-  const cartItem = state.cart.find((item) => item.id === id); // HANDLE SELECT IMAGE
+  const cartItem = state.cart.find(item => item.id === id); // HANDLE SELECT IMAGE
 
-  const handleImageClick = (ind) => () => setSelectedImage(ind); // HANDLE CHANGE CART
+  const handleImageClick = ind => () => setSelectedImage(ind); // HANDLE CHANGE CART
 
-  const handleCartAmountChange = (amount) => () => {
+  const handleCartAmountChange = amount => () => {
     dispatch({
       type: "CHANGE_CART_AMOUNT",
       payload: {
@@ -34,30 +34,30 @@ const ProductIntro = ({ product }) => {
   };
 
   return (
-    <Box width="100%">
-      <Grid container spacing={3} justifyContent="space-around">
-        <Grid item md={6} xs={12} alignItems="center">
-          <FlexBox justifyContent="center" mb={6}>
+    <Box width='100%'>
+      <Grid container spacing={3} justifyContent='space-around'>
+        <Grid item md={6} xs={12} alignItems='center'>
+          <FlexBox justifyContent='center' mb={6}>
             <LazyImage
               alt={title}
               width={300}
               height={300}
-              loading="eager"
-              objectFit="contain"
+              loading='eager'
+              objectFit='contain'
               src={product.images[selectedImage]}
             />
           </FlexBox>
 
-          <FlexBox overflow="auto">
+          <FlexBox overflow='auto'>
             {images.map((url, ind) => (
               <FlexRowCenter
                 key={ind}
                 width={64}
                 height={64}
                 minWidth={64}
-                bgcolor="white"
-                border="1px solid"
-                borderRadius="10px"
+                bgcolor='white'
+                border='1px solid'
+                borderRadius='10px'
                 ml={ind === 0 ? "auto" : 0}
                 style={{
                   cursor: "pointer",
@@ -70,7 +70,7 @@ const ProductIntro = ({ product }) => {
               >
                 <Avatar
                   src={url}
-                  variant="square"
+                  variant='square'
                   sx={{
                     height: 40,
                   }}
@@ -80,38 +80,38 @@ const ProductIntro = ({ product }) => {
           </FlexBox>
         </Grid>
 
-        <Grid item md={6} xs={12} alignItems="center">
+        <Grid item md={6} xs={12} alignItems='center'>
           <H1 mb={2}>{title}</H1>
 
-          <FlexBox alignItems="center" mb={2}>
+          <FlexBox alignItems='center' mb={2}>
             <Box>Brand:</Box>
             <H6 ml={1}>Xiaomi</H6>
           </FlexBox>
 
-          <FlexBox alignItems="center" mb={2}>
-            <Box lineHeight="1">Rated:</Box>
-            <Box mx={1} lineHeight="1">
-              <BazaarRating
-                color="warn"
-                fontSize="1.25rem"
+          <FlexBox alignItems='center' mb={2}>
+            <Box lineHeight='1'>Rated:</Box>
+            <Box mx={1} lineHeight='1'>
+              <CommonRating
+                color='warn'
+                fontSize='1.25rem'
                 value={4}
                 readOnly
               />
             </Box>
-            <H6 lineHeight="1">(50)</H6>
+            <H6 lineHeight='1'>(50)</H6>
           </FlexBox>
 
           <Box mb={3}>
-            <H2 color="primary.main" mb={0.5} lineHeight="1">
+            <H2 color='primary.main' mb={0.5} lineHeight='1'>
               {currency(price)}
             </H2>
-            <Box color="inherit">Stock Available</Box>
+            <Box color='inherit'>Stock Available</Box>
           </Box>
 
           {!cartItem?.qty ? (
             <Button
-              color="primary"
-              variant="contained"
+              color='primary'
+              variant='contained'
               onClick={handleCartAmountChange(1)}
               sx={{
                 mb: 4.5,
@@ -122,40 +122,40 @@ const ProductIntro = ({ product }) => {
               Add to Cart
             </Button>
           ) : (
-            <FlexBox alignItems="center" mb={4.5}>
+            <FlexBox alignItems='center' mb={4.5}>
               <Button
-                size="small"
+                size='small'
                 sx={{
                   p: 1,
                 }}
-                color="primary"
-                variant="outlined"
+                color='primary'
+                variant='outlined'
                 onClick={handleCartAmountChange(cartItem?.qty - 1)}
               >
-                <Remove fontSize="small" />
+                <Remove fontSize='small' />
               </Button>
 
-              <H3 fontWeight="600" mx={2.5}>
+              <H3 fontWeight='600' mx={2.5}>
                 {cartItem?.qty.toString().padStart(2, "0")}
               </H3>
 
               <Button
-                size="small"
+                size='small'
                 sx={{
                   p: 1,
                 }}
-                color="primary"
-                variant="outlined"
+                color='primary'
+                variant='outlined'
                 onClick={handleCartAmountChange(cartItem?.qty + 1)}
               >
-                <Add fontSize="small" />
+                <Add fontSize='small' />
               </Button>
             </FlexBox>
           )}
 
-          <FlexBox alignItems="center" mb={2}>
+          <FlexBox alignItems='center' mb={2}>
             <Box>Sold By:</Box>
-            <Link href="/shops/fdfdsa">
+            <Link href='/shops/fdfdsa'>
               <a>
                 <H6 ml={1}>Mobile Store</H6>
               </a>

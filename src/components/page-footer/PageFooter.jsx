@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Box, Container, Grid, IconButton, styled } from "@mui/material";
 import AppStore from "components/AppStore";
 import { FlexBox } from "components/flex-box";
-import BazaarImage from "components/BazaarImage";
+import CommonImage from "components/CommonImage";
 import { Paragraph } from "components/Typography";
 import Google from "components/icons/Google";
 import Twitter from "components/icons/Twitter";
@@ -35,15 +35,15 @@ const PageFooter = ({ sx, id, bgcolor }) => {
   return (
     <StyledFooter id={id} sx={sx} bgcolor={bgcolor}>
       <Container>
-        <Link href="/">
+        <Link href='/'>
           <a>
-            <BazaarImage mb={2.5} src="/assets/images/logo.svg" alt="logo" />
+            <CommonImage mb={2.5} src='/assets/images/logo.svg' alt='logo' />
           </a>
         </Link>
 
         <Grid container spacing={6}>
           <Grid item md={6} sm={6} xs={12}>
-            <Paragraph mb={2.5} color="grey.300" maxWidth="370px">
+            <Paragraph mb={2.5} color='grey.300' maxWidth='370px'>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor
               libero id et, in gravida. Sit diam duis mauris nulla cursus. Erat
               et lectus vel ut sollicitudin elit at amet.
@@ -55,18 +55,18 @@ const PageFooter = ({ sx, id, bgcolor }) => {
           <Grid item md={6} sm={6} xs={12}>
             <Box mt={-0.6}>
               {customerCareLinks.map((item, ind) => (
-                <Link href="/" key={ind} passHref>
+                <Link href='/' key={ind} passHref>
                   <StyledLink>{item}</StyledLink>
                 </Link>
               ))}
             </Box>
 
-            <FlexBox className="flex" mx={-0.625} mt={2}>
+            <FlexBox className='flex' mx={-0.625} mt={2}>
               {iconList.map((item, ind) => (
                 <a
                   href={item.url}
-                  target="_blank"
-                  rel="noreferrer noopenner"
+                  target='_blank'
+                  rel='noreferrer noopenner'
                   key={ind}
                 >
                   <IconButton
@@ -77,7 +77,7 @@ const PageFooter = ({ sx, id, bgcolor }) => {
                       backgroundColor: "rgba(0,0,0,0.2)",
                     }}
                   >
-                    <item.icon fontSize="inherit" />
+                    <item.icon fontSize='inherit' />
                   </IconButton>
                 </a>
               ))}

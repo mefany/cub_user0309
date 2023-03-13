@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Box, Container, Grid } from "@mui/material";
-import BazaarCard from "components/BazaarCard";
+import CommonCard from "components/CommonCard";
 import RankBadge from "components/icons/RankBadge";
 import DottedStar from "components/icons/DottedStar";
 import ProductCard4 from "components/product-cards/ProductCard4";
@@ -17,17 +17,17 @@ const Section4 = ({ topRatedBrands, topRatedList }) => {
           <Grid item lg={6} xs={12}>
             <CategorySectionHeader
               icon={<RankBadge />}
-              title="Top Ratings"
-              seeMoreLink="#"
+              title='Top Ratings'
+              seeMoreLink='#'
             />
 
-            <BazaarCard
+            <CommonCard
               sx={{
                 p: 2,
               }}
             >
               <Grid container spacing={4}>
-                {topRatedList.map((item) => (
+                {topRatedList.map(item => (
                   <Grid item md={3} sm={6} xs={6} key={item.title}>
                     <Link href={`/product/${item.slug}`} passHref>
                       <a>
@@ -43,18 +43,18 @@ const Section4 = ({ topRatedBrands, topRatedList }) => {
                   </Grid>
                 ))}
               </Grid>
-            </BazaarCard>
+            </CommonCard>
           </Grid>
 
           {/* FEATURED BRANDS AREA */}
           <Grid item md={6} xs={12}>
             <CategorySectionHeader
               icon={<DottedStar />}
-              title="Featured Brands"
-              seeMoreLink="#"
+              title='Featured Brands'
+              seeMoreLink='#'
             />
 
-            <BazaarCard
+            <CommonCard
               sx={{
                 p: 2,
               }}
@@ -70,7 +70,7 @@ const Section4 = ({ topRatedBrands, topRatedList }) => {
                   </Grid>
                 ))}
               </Grid>
-            </BazaarCard>
+            </CommonCard>
           </Grid>
         </Grid>
       </Container>

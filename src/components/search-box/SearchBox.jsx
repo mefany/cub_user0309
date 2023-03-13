@@ -3,7 +3,7 @@ import { useEffect, useRef, useState, useTransition } from "react";
 import { Box, MenuItem, TextField, styled } from "@mui/material";
 import { KeyboardArrowDownOutlined } from "@mui/icons-material";
 import TouchRipple from "@mui/material/ButtonBase";
-import BazaarMenu from "components/BazaarMenu";
+import CommonMenu from "components/CommonMenu";
 import { FlexBox } from "components/flex-box";
 import { SearchOutlinedIcon, SearchResultCard } from "./styled";
 const DropDownHandler = styled(FlexBox)(({ theme }) => ({
@@ -22,9 +22,9 @@ const SearchBox = () => {
   const [category, setCategory] = useState("All Categories");
   const [resultList, setResultList] = useState([]);
 
-  const handleCategoryChange = (cat) => () => setCategory(cat);
+  const handleCategoryChange = cat => () => setCategory(cat);
 
-  const handleSearch = (e) => {
+  const handleSearch = e => {
     startTransition(() => {
       const value = e.target?.value;
       if (!value) setResultList([]);
@@ -39,8 +39,8 @@ const SearchBox = () => {
     return () => window.removeEventListener("click", null);
   }, []);
   const categoryDropdown = (
-    <BazaarMenu
-      direction="left"
+    <CommonMenu
+      direction='left'
       sx={{
         zIndex: 1502,
       }}
@@ -48,38 +48,38 @@ const SearchBox = () => {
         <DropDownHandler
           px={3}
           gap={0.5}
-          height="100%"
-          color="grey.700"
-          bgcolor="grey.100"
-          alignItems="center"
+          height='100%'
+          color='grey.700'
+          bgcolor='grey.100'
+          alignItems='center'
           component={TouchRipple}
         >
           {category}
-          <KeyboardArrowDownOutlined fontSize="small" color="inherit" />
+          <KeyboardArrowDownOutlined fontSize='small' color='inherit' />
         </DropDownHandler>
       }
     >
-      {categories.map((item) => (
+      {categories.map(item => (
         <MenuItem key={item} onClick={handleCategoryChange(item)}>
           {item}
         </MenuItem>
       ))}
-    </BazaarMenu>
+    </CommonMenu>
   );
   return (
     <Box
-      position="relative"
-      flex="1 1 0"
-      maxWidth="670px"
-      mx="auto"
+      position='relative'
+      flex='1 1 0'
+      maxWidth='670px'
+      mx='auto'
       {...{
         ref: parentRef,
       }}
     >
       <TextField
         fullWidth
-        variant="outlined"
-        placeholder="Searching for..."
+        variant='outlined'
+        placeholder='Searching for...'
         onChange={handleSearch}
         InputProps={{
           sx: {
@@ -93,13 +93,13 @@ const SearchBox = () => {
             },
           },
           endAdornment: categoryDropdown,
-          startAdornment: <SearchOutlinedIcon fontSize="small" />,
+          startAdornment: <SearchOutlinedIcon fontSize='small' />,
         }}
       />
 
       {resultList.length > 0 && (
         <SearchResultCard elevation={2}>
-          {resultList.map((item) => (
+          {resultList.map(item => (
             <Link href={`/product/search/${item}`} key={item} passHref>
               <MenuItem key={item}>{item}</MenuItem>
             </Link>

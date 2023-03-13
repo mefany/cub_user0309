@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Button } from "@mui/material";
 import { useRouter } from "next/router";
 import SEO from "components/SEO";
-import BazaarImage from "components/BazaarImage";
+import CommonImage from "components/CommonImage";
 import { FlexBox, FlexRowCenter } from "components/flex-box";
 
 const Error404 = () => {
@@ -11,10 +11,10 @@ const Error404 = () => {
   const handleGoBack = () => router.back();
 
   return (
-    <FlexRowCenter px={2} minHeight="100vh" flexDirection="column">
-      <SEO title="Nothing found" />
-      <BazaarImage
-        src="/assets/images/illustrations/404.svg"
+    <FlexRowCenter px={2} minHeight='100vh' flexDirection='column'>
+      <SEO title='Nothing found' />
+      <CommonImage
+        src='/assets/images/illustrations/404.svg'
         sx={{
           display: "block",
           maxWidth: 320,
@@ -23,10 +23,10 @@ const Error404 = () => {
         }}
       />
 
-      <FlexBox flexWrap="wrap">
+      <FlexBox flexWrap='wrap'>
         <Button
-          variant="outlined"
-          color="primary"
+          variant='outlined'
+          color='primary'
           sx={{
             m: 1,
           }}
@@ -35,10 +35,10 @@ const Error404 = () => {
           Go Back
         </Button>
 
-        <Link href="/" passHref legacyBehavior>
+        <Link href='/' passHref legacyBehavior>
           <Button
-            variant="contained"
-            color="primary"
+            variant='contained'
+            color='primary'
             sx={{
               m: 1,
             }}

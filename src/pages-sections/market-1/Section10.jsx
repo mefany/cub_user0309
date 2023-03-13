@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { Box, Container, Grid, styled } from "@mui/material";
 import LazyImage from "components/LazyImage";
-import BazaarCard from "components/BazaarCard";
+import CommonCard from "components/CommonCard";
 import CategoryIcon from "components/icons/Category";
 import CategorySectionHeader from "components/CategorySectionHeader";
-const StyledBazaarCard = styled(BazaarCard)(({ theme }) => ({
+const StyledCommonCard = styled(CommonCard)(({ theme }) => ({
   display: "flex",
   borderRadius: 8,
   padding: "0.75rem",
@@ -24,9 +24,9 @@ const Section10 = ({ categories }) => {
       }}
     >
       <CategorySectionHeader
-        seeMoreLink="#"
-        title="Categories"
-        icon={<CategoryIcon color="primary" />}
+        seeMoreLink='#'
+        title='Categories'
+        icon={<CategoryIcon color='primary' />}
       />
 
       <Grid container spacing={3}>
@@ -34,19 +34,19 @@ const Section10 = ({ categories }) => {
           <Grid item lg={2} md={3} sm={4} xs={12} key={ind}>
             <Link href={`/product/search/${item.slug}`} passHref>
               <a>
-                <StyledBazaarCard elevation={1}>
+                <StyledCommonCard elevation={1}>
                   <LazyImage
                     width={52}
                     height={52}
-                    alt="fashion"
+                    alt='fashion'
                     src={item.image}
-                    objectFit="contain"
-                    borderRadius="8px"
+                    objectFit='contain'
+                    borderRadius='8px'
                   />
-                  <Box fontWeight="600" ml={1.25}>
+                  <Box fontWeight='600' ml={1.25}>
                     {item.name}
                   </Box>
-                </StyledBazaarCard>
+                </StyledCommonCard>
               </a>
             </Link>
           </Grid>

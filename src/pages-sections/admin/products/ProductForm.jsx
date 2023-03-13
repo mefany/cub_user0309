@@ -13,7 +13,7 @@ import { Clear } from "@mui/icons-material";
 import { Formik } from "formik";
 import DropZone from "components/DropZone";
 import { FlexBox } from "components/flex-box";
-import BazaarImage from "components/BazaarImage"; // styled components
+import CommonImage from "components/CommonImage"; // styled components
 
 const UploadImageBox = styled(Box)(({ theme }) => ({
   width: 70,
@@ -35,12 +35,12 @@ const StyledClear = styled(Clear)(() => ({
 })); // ================================================================
 
 // ================================================================
-const ProductForm = (props) => {
+const ProductForm = props => {
   const { initialValues, validationSchema, handleFormSubmit } = props;
   const [files, setFiles] = useState([]); // HANDLE UPDATE NEW IMAGE VIA DROP ZONE
 
-  const handleChangeDropZone = (files) => {
-    files.forEach((file) =>
+  const handleChangeDropZone = files => {
+    files.forEach(file =>
       Object.assign(file, {
         preview: URL.createObjectURL(file),
       })
@@ -48,8 +48,8 @@ const ProductForm = (props) => {
     setFiles(files);
   }; // HANDLE DELETE UPLOAD IMAGE
 
-  const handleFileDelete = (file) => () => {
-    setFiles((files) => files.filter((item) => item.name !== file.name));
+  const handleFileDelete = file => () => {
+    setFiles(files => files.filter(item => item.name !== file.name));
   };
 
   return (
@@ -76,11 +76,11 @@ const ProductForm = (props) => {
               <Grid item sm={6} xs={12}>
                 <TextField
                   fullWidth
-                  name="name"
-                  label="Name"
-                  color="info"
-                  size="medium"
-                  placeholder="Name"
+                  name='name'
+                  label='Name'
+                  color='info'
+                  size='medium'
+                  placeholder='Name'
                   value={values.name}
                   onBlur={handleBlur}
                   onChange={handleChange}
@@ -92,30 +92,30 @@ const ProductForm = (props) => {
                 <TextField
                   select
                   fullWidth
-                  color="info"
-                  size="medium"
-                  name="category"
+                  color='info'
+                  size='medium'
+                  name='category'
                   onBlur={handleBlur}
-                  placeholder="Category"
+                  placeholder='Category'
                   onChange={handleChange}
                   value={values.category}
-                  label="Select Category"
+                  label='Select Category'
                   error={!!touched.category && !!errors.category}
                   helperText={touched.category && errors.category}
                 >
-                  <MenuItem value="electronics">Electronics</MenuItem>
-                  <MenuItem value="fashion">Fashion</MenuItem>
+                  <MenuItem value='electronics'>Electronics</MenuItem>
+                  <MenuItem value='fashion'>Fashion</MenuItem>
                 </TextField>
               </Grid>
 
               <Grid item xs={12}>
-                <DropZone onChange={(files) => handleChangeDropZone(files)} />
+                <DropZone onChange={files => handleChangeDropZone(files)} />
 
-                <FlexBox flexDirection="row" mt={2} flexWrap="wrap" gap={1}>
+                <FlexBox flexDirection='row' mt={2} flexWrap='wrap' gap={1}>
                   {files.map((file, index) => {
                     return (
                       <UploadImageBox key={index}>
-                        <BazaarImage src={file.preview} width="100%" />
+                        <CommonImage src={file.preview} width='100%' />
                         <StyledClear onClick={handleFileDelete(file)} />
                       </UploadImageBox>
                     );
@@ -128,13 +128,13 @@ const ProductForm = (props) => {
                   rows={6}
                   multiline
                   fullWidth
-                  color="info"
-                  size="medium"
-                  name="description"
-                  label="Description"
+                  color='info'
+                  size='medium'
+                  name='description'
+                  label='Description'
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  placeholder="Description"
+                  placeholder='Description'
                   value={values.description}
                   error={!!touched.description && !!errors.description}
                   helperText={touched.description && errors.description}
@@ -143,11 +143,11 @@ const ProductForm = (props) => {
               <Grid item sm={6} xs={12}>
                 <TextField
                   fullWidth
-                  name="stock"
-                  color="info"
-                  size="medium"
-                  label="Stock"
-                  placeholder="Stock"
+                  name='stock'
+                  color='info'
+                  size='medium'
+                  label='Stock'
+                  placeholder='Stock'
                   onBlur={handleBlur}
                   value={values.stock}
                   onChange={handleChange}
@@ -158,11 +158,11 @@ const ProductForm = (props) => {
               <Grid item sm={6} xs={12}>
                 <TextField
                   fullWidth
-                  name="tags"
-                  label="Tags"
-                  color="info"
-                  size="medium"
-                  placeholder="Tags"
+                  name='tags'
+                  label='Tags'
+                  color='info'
+                  size='medium'
+                  placeholder='Tags'
                   onBlur={handleBlur}
                   value={values.tags}
                   onChange={handleChange}
@@ -173,15 +173,15 @@ const ProductForm = (props) => {
               <Grid item sm={6} xs={12}>
                 <TextField
                   fullWidth
-                  name="price"
-                  color="info"
-                  size="medium"
-                  type="number"
+                  name='price'
+                  color='info'
+                  size='medium'
+                  type='number'
                   onBlur={handleBlur}
                   value={values.price}
-                  label="Regular Price"
+                  label='Regular Price'
                   onChange={handleChange}
-                  placeholder="Regular Price"
+                  placeholder='Regular Price'
                   error={!!touched.price && !!errors.price}
                   helperText={touched.price && errors.price}
                 />
@@ -189,14 +189,14 @@ const ProductForm = (props) => {
               <Grid item sm={6} xs={12}>
                 <TextField
                   fullWidth
-                  color="info"
-                  size="medium"
-                  type="number"
-                  name="sale_price"
-                  label="Sale Price"
+                  color='info'
+                  size='medium'
+                  type='number'
+                  name='sale_price'
+                  label='Sale Price'
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  placeholder="Sale Price"
+                  placeholder='Sale Price'
                   value={values.sale_price}
                   error={!!touched.sale_price && !!errors.sale_price}
                   helperText={touched.sale_price && errors.sale_price}
@@ -204,7 +204,7 @@ const ProductForm = (props) => {
               </Grid>
 
               <Grid item sm={6} xs={12}>
-                <Button variant="contained" color="info" type="submit">
+                <Button variant='contained' color='info' type='submit'>
                   Save product
                 </Button>
               </Grid>

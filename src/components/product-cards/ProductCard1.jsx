@@ -5,15 +5,15 @@ import { Box, Button, Chip, IconButton, styled } from "@mui/material";
 import { useSnackbar } from "notistack";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import LazyImage from "components/LazyImage";
-import BazaarCard from "components/BazaarCard";
+import CommonCard from "components/CommonCard";
 import { H3, Span } from "components/Typography";
-import BazaarRating from "components/BazaarRating";
+import CommonRating from "components/CommonRating";
 import { useAppContext } from "contexts/AppContext";
 import ProductViewDialog from "components/products/ProductViewDialog";
 import { FlexBox } from "../flex-box";
 import { calculateDiscount, currency } from "lib"; // styled components
 
-const StyledBazaarCard = styled(BazaarCard)(() => ({
+const StyledCommonCard = styled(CommonCard)(() => ({
   height: "100%",
   margin: "auto",
   display: "flex",
@@ -84,40 +84,41 @@ const ProductCard1 = ({
   const { state, dispatch } = useAppContext();
   const [openModal, setOpenModal] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
-  const toggleIsFavorite = () => setIsFavorite((fav) => !fav);
-  const toggleDialog = useCallback(() => setOpenModal((open) => !open), []);
-
+  const toggleIsFavorite = () => setIsFavorite(fav => !fav);
+  const toggleDialog = useCallback(() => setOpenModal(open => !open), []);
 
   return (
-    <StyledBazaarCard hoverEffect={hoverEffect}>
+    <StyledCommonCard hoverEffect={hoverEffect}>
       <ImageWrapper>
         {!!discount && (
-          <StyledChip color="primary" size="small" label={`${discount}% off`} />
+          <StyledChip color='primary' size='small' label={`${discount}% off`} />
         )}
 
-        <HoverIconWrapper className="hover-box">
+        <HoverIconWrapper className='hover-box'>
           <IconButton onClick={toggleDialog}>
-            <RemoveRedEye color="disabled" fontSize="small" />
+            <RemoveRedEye color='disabled' fontSize='small' />
           </IconButton>
 
           <IconButton onClick={toggleIsFavorite}>
             {isFavorite ? (
-              <Favorite color="primary" fontSize="small" />
+              <Favorite color='primary' fontSize='small' />
             ) : (
-              <FavoriteBorder fontSize="small" color="disabled" />
+              <FavoriteBorder fontSize='small' color='disabled' />
             )}
           </IconButton>
         </HoverIconWrapper>
 
         <Link href={`/book/${trade_uid}`}>
           <a>
-            {imgUrl && <LazyImage
-              src={imgUrl}
-              width={0}
-              height={0}
-              layout="responsive"
-              alt={title}
-            />}
+            {imgUrl && (
+              <LazyImage
+                src={imgUrl}
+                width={0}
+                height={0}
+                layout='responsive'
+                alt={title}
+              />
+            )}
           </a>
         </Link>
       </ImageWrapper>
@@ -135,26 +136,26 @@ const ProductCard1 = ({
 
       <ContentWrapper>
         <FlexBox>
-          <Box flex="1 1 0" minWidth="0px" mr={1}>
+          <Box flex='1 1 0' minWidth='0px' mr={1}>
             <Link href={`/book/${trade_uid}`}>
               <a>
                 <H3
                   mb={1}
                   title={title}
-                  fontSize="14px"
-                  fontWeight="600"
-                  className="title"
-                  color="text.secondary"
+                  fontSize='14px'
+                  fontWeight='600'
+                  className='title'
+                  color='text.secondary'
                 >
                   {title}
                 </H3>
                 <H3
                   mb={1}
                   title={shop_name}
-                  fontSize="14px"
-                  fontWeight="600"
-                  className="shop_name"
-                  color="grey.600"
+                  fontSize='14px'
+                  fontWeight='600'
+                  className='shop_name'
+                  color='grey.600'
                 >
                   {shop_name}
                 </H3>
@@ -162,25 +163,24 @@ const ProductCard1 = ({
             </Link>
 
             {/* {!hideRating && (
-              <BazaarRating value={rating || 0} color="warn" readOnly />
+              <CommonRating value={rating || 0} color="warn" readOnly />
             )} */}
 
             {showProductSize && (
-              <Span color="grey.600" mb={1} display="block">
+              <Span color='grey.600' mb={1} display='block'>
                 {showProductSize}
               </Span>
             )}
 
-            <FlexBox alignItems="center" gap={1} mt={0.5}>
-              <Box fontWeight="600" color="primary.main">
+            <FlexBox alignItems='center' gap={1} mt={0.5}>
+              <Box fontWeight='600' color='primary.main'>
                 {sell_price}원
               </Box>
-
             </FlexBox>
           </Box>
         </FlexBox>
       </ContentWrapper>
-    </StyledBazaarCard>
+    </StyledCommonCard>
   );
 };
 

@@ -10,8 +10,8 @@ import {
   styled,
 } from "@mui/material";
 import { FlexBox } from "components/flex-box";
-import BazaarImage from "components/BazaarImage";
-import BazaarRating from "components/BazaarRating";
+import CommonImage from "components/CommonImage";
+import CommonRating from "components/CommonRating";
 import Carousel from "components/carousel/Carousel";
 import { H1, H2, H3, H6, Paragraph } from "components/Typography";
 import { useAppContext } from "contexts/AppContext";
@@ -52,12 +52,12 @@ const ContentWrapper = styled(Box)(({ theme }) => ({
 })); // =====================================================
 
 // =====================================================
-const ProductViewDialog = (props) => {
+const ProductViewDialog = props => {
   const { product, openDialog, handleCloseDialog } = props;
   const { state, dispatch } = useAppContext();
-  const cartItem = state.cart.find((item) => item.id === product.id);
+  const cartItem = state.cart.find(item => item.id === product.id);
 
-  const handleCartAmountChange = (amount) => () => {
+  const handleCartAmountChange = amount => () => {
     dispatch({
       type: "CHANGE_CART_AMOUNT",
       payload: {
@@ -89,7 +89,7 @@ const ProductViewDialog = (props) => {
             <Grid item md={6} xs={12}>
               <Carousel totalSlides={product.imgGroup.length} visibleSlides={1}>
                 {product.imgGroup.map((item, index) => (
-                  <BazaarImage
+                  <CommonImage
                     key={index}
                     src={item}
                     sx={{
@@ -106,23 +106,23 @@ const ProductViewDialog = (props) => {
               </Carousel>
             </Grid>
 
-            <Grid item md={6} xs={12} alignSelf="center">
+            <Grid item md={6} xs={12} alignSelf='center'>
               <H2>{product.title}</H2>
 
-              <Paragraph py={1} color="grey.500" fontWeight={600} fontSize={13}>
+              <Paragraph py={1} color='grey.500' fontWeight={600} fontSize={13}>
                 CATEGORY: Cosmetic
               </Paragraph>
 
-              <H1 color="primary.main">{currency(product.price)}</H1>
+              <H1 color='primary.main'>{currency(product.price)}</H1>
 
-              <FlexBox alignItems="center" gap={1}>
-                <BazaarRating
-                  color="warn"
-                  fontSize="1.25rem"
+              <FlexBox alignItems='center' gap={1}>
+                <CommonRating
+                  color='warn'
+                  fontSize='1.25rem'
                   value={4}
                   readOnly
                 />
-                <H6 lineHeight="1">(50)</H6>
+                <H6 lineHeight='1'>(50)</H6>
               </FlexBox>
 
               <Paragraph my={2}>
@@ -139,9 +139,9 @@ const ProductViewDialog = (props) => {
 
               {!cartItem?.qty ? (
                 <Button
-                  size="large"
-                  color="primary"
-                  variant="contained"
+                  size='large'
+                  color='primary'
+                  variant='contained'
                   onClick={handleCartAmountChange(1)}
                   sx={{
                     height: 45,
@@ -150,35 +150,35 @@ const ProductViewDialog = (props) => {
                   Add to Cart
                 </Button>
               ) : (
-                <FlexBox alignItems="center">
+                <FlexBox alignItems='center'>
                   <Button
-                    size="small"
-                    color="primary"
-                    variant="outlined"
+                    size='small'
+                    color='primary'
+                    variant='outlined'
                     sx={{
                       p: ".6rem",
                       height: 45,
                     }}
                     onClick={handleCartAmountChange(cartItem?.qty - 1)}
                   >
-                    <Remove fontSize="small" />
+                    <Remove fontSize='small' />
                   </Button>
 
-                  <H3 fontWeight="600" mx={2.5}>
+                  <H3 fontWeight='600' mx={2.5}>
                     {cartItem?.qty.toString().padStart(2, "0")}
                   </H3>
 
                   <Button
-                    size="small"
-                    color="primary"
-                    variant="outlined"
+                    size='small'
+                    color='primary'
+                    variant='outlined'
                     sx={{
                       p: ".6rem",
                       height: 45,
                     }}
                     onClick={handleCartAmountChange(cartItem?.qty + 1)}
                   >
-                    <Add fontSize="small" />
+                    <Add fontSize='small' />
                   </Button>
                 </FlexBox>
               )}
@@ -194,7 +194,7 @@ const ProductViewDialog = (props) => {
           }}
           onClick={handleCloseDialog}
         >
-          <Close fontSize="small" color="secondary" />
+          <Close fontSize='small' color='secondary' />
         </IconButton>
       </DialogContent>
     </Dialog>

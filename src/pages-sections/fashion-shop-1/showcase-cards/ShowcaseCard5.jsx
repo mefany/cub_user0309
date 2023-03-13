@@ -1,5 +1,5 @@
 import { alpha, Grid, styled } from "@mui/material";
-import BazaarImage from "components/BazaarImage";
+import CommonImage from "components/CommonImage";
 import { H1, Paragraph, Span } from "components/Typography";
 import { currency } from "lib";
 import Link from "next/link";
@@ -29,34 +29,34 @@ const StyledGrid = styled(Grid)(({ theme }) => ({
 
 const ShowcaseCard5 = () => {
   return (
-    <Link href="/home-3">
+    <Link href='/home-3'>
       <a>
         <StyledGrid container>
-          <Grid item sm={7} xs={12} p="2rem" className="grid-1">
-            <Paragraph color="grey.600" mb={1}>
+          <Grid item sm={7} xs={12} p='2rem' className='grid-1'>
+            <Paragraph color='grey.600' mb={1}>
               SPECIAL OFFER
             </Paragraph>
 
             <H1 lineHeight={1.3}>
-              <Span color="primary.600" lineHeight={1.3}>
+              <Span color='primary.600' lineHeight={1.3}>
                 {currency(100)} Off
               </Span>{" "}
               Over {currency(1200)}
             </H1>
 
-            <Paragraph color="grey.600" mt={1}>
+            <Paragraph color='grey.600' mt={1}>
               Handcrafted from genuine Italian. One inner compartment
             </Paragraph>
           </Grid>
 
-          <Grid item sm={5} xs={12} className="grid-2">
-            <BazaarImage
-              alt="apple-watch-1"
+          <Grid item sm={5} xs={12} className='grid-2'>
+            <CommonImage
+              alt='apple-watch-1'
               sx={{
                 mx: "auto",
                 maxHeight: "200px",
               }}
-              src="/assets/images/products/paper-bag.png"
+              src='/assets/images/products/paper-bag.png'
             />
           </Grid>
         </StyledGrid>

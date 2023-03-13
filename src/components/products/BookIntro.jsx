@@ -2,14 +2,14 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { Box, Grid } from "@mui/material";
 import LazyImage from "components/LazyImage";
-import BazaarRating from "components/BazaarRating";
+import CommonRating from "components/CommonRating";
 import { H1, H2, H6 } from "components/Typography";
 import BookIntroSeller from "components/products/BookIntroSeller";
 import BookIntroBuyer from "components/products/BookIntroBuyer";
 import { FlexBox } from "../flex-box";
 
 //================================================================
-const userType = ''
+const userType = "";
 // ================================================================
 const BookIntro = ({ data, bookingUser }) => {
   const {
@@ -25,12 +25,12 @@ const BookIntro = ({ data, bookingUser }) => {
 
   useEffect(() => {
     if (sessionStorage.getItem("token") === null) {
-      userType = 'guest'
+      userType = "guest";
     } else {
       if (user_uid == sessionStorage.getItem("user_uid")) {
-        userType = 'seller'
+        userType = "seller";
       } else {
-        userType = 'buyer'
+        userType = "buyer";
       }
     }
   }, []);
@@ -62,7 +62,7 @@ const BookIntro = ({ data, bookingUser }) => {
           <FlexBox alignItems='center' mb={2}>
             <Box lineHeight='1'>Rated:</Box>
             <Box mx={1} lineHeight='1'>
-              <BazaarRating
+              <CommonRating
                 color='warn'
                 fontSize='1.25rem'
                 value={4}
@@ -82,9 +82,16 @@ const BookIntro = ({ data, bookingUser }) => {
           {(() => {
             switch (userType) {
               case "seller":
-                return <BookIntroSeller bookingUser={bookingUser}></BookIntroSeller>;
+                return (
+                  <BookIntroSeller bookingUser={bookingUser}></BookIntroSeller>
+                );
               case "buyer":
-                return <BookIntroBuyer bookingUser={bookingUser} trade_uid={trade_uid}></BookIntroBuyer>
+                return (
+                  <BookIntroBuyer
+                    bookingUser={bookingUser}
+                    trade_uid={trade_uid}
+                  ></BookIntroBuyer>
+                );
               case "guest":
                 return <p>로그인 후 이용 가능합니다.</p>;
               default:

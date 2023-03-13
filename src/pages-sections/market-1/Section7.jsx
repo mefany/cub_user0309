@@ -2,19 +2,19 @@ import { useEffect, useState } from "react";
 import { Box, Container, Grid } from "@mui/material";
 import { H3 } from "components/Typography";
 import { FlexBox } from "components/flex-box";
-import BazaarCard from "components/BazaarCard";
+import CommonCard from "components/CommonCard";
 import ProductCategoryItem from "./ProductCategoryItem";
 import ProductCard1 from "components/product-cards/ProductCard1";
 import CategorySectionHeader from "components/CategorySectionHeader";
 
 // ======================================================
-const Section7 = (props) => {
+const Section7 = props => {
   const { productList, shops, brands, title } = props;
   const [list, setList] = useState([]);
   const [selected, setSelected] = useState("");
   const [type, setType] = useState("brands");
 
-  const handleCategoryClick = (brand) => () => {
+  const handleCategoryClick = brand => () => {
     if (selected.match(brand)) setSelected("");
     else setSelected(brand);
   };
@@ -29,8 +29,8 @@ const Section7 = (props) => {
         mb: "70px",
       }}
     >
-      <FlexBox gap="1.75rem">
-        <BazaarCard
+      <FlexBox gap='1.75rem'>
+        <CommonCard
           sx={{
             height: "100%",
             padding: "1.25rem",
@@ -45,7 +45,7 @@ const Section7 = (props) => {
             <H3
               fontSize={20}
               fontWeight={600}
-              padding="0.5rem 1rem"
+              padding='0.5rem 1rem'
               style={{
                 cursor: "pointer",
               }}
@@ -56,17 +56,17 @@ const Section7 = (props) => {
             </H3>
             <H3
               fontSize={20}
-              lineHeight="1.3"
-              color="grey.400"
+              lineHeight='1.3'
+              color='grey.400'
               fontWeight={600}
-              paddingTop="0.5rem"
+              paddingTop='0.5rem'
             >
               |
             </H3>
             <H3
               fontSize={20}
               fontWeight={600}
-              padding="0.5rem 1rem"
+              padding='0.5rem 1rem'
               style={{
                 cursor: "pointer",
               }}
@@ -77,7 +77,7 @@ const Section7 = (props) => {
             </H3>
           </FlexBox>
 
-          {list.map((item) => (
+          {list.map(item => (
             <ProductCategoryItem
               key={item.id}
               title={item.name}
@@ -104,13 +104,13 @@ const Section7 = (props) => {
               bgcolor: selected.match(`all-${type}`),
             }}
           />
-        </BazaarCard>
+        </CommonCard>
 
-        <Box flex="1 1 0" minWidth="0px">
-          <CategorySectionHeader title={title} seeMoreLink="#" />
+        <Box flex='1 1 0' minWidth='0px'>
+          <CategorySectionHeader title={title} seeMoreLink='#' />
 
           <Grid container spacing={3}>
-            {productList.map((item) => (
+            {productList.map(item => (
               <Grid item lg={4} sm={6} xs={12} key={item.id}>
                 <ProductCard1
                   hoverEffect

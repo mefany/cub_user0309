@@ -1,7 +1,7 @@
 import { Button, Grid, styled } from "@mui/material";
-import BazaarImage from "components/BazaarImage";
+import CommonImage from "components/CommonImage";
 import { FlexBetween } from "components/flex-box";
-// import { Paragraph } from "components/Typography"; // styled component
+import { Paragraph } from "components/Typography"; // styled component
 
 const StyledBox = styled(FlexBetween)(({ theme }) => ({
   ".title": {
@@ -52,20 +52,20 @@ const CarouselCard1 = ({
 }) => {
   return (
     <StyledBox>
-      <Grid container spacing={3} alignItems="center" justifyContent="center">
-        {/* <Grid item className="grid-item" sm={5} xs={12}>
-          <h1 className="title">{title}</h1>
-          <Paragraph color="secondary.main" mb={2.7}>
+      <Grid container spacing={3} alignItems='center' justifyContent='center'>
+        <Grid item className='grid-item' sm={5} xs={12}>
+          <h1 className='title'>{title}</h1>
+          <Paragraph color='secondary.main' mb={2.7}>
             {description}
           </Paragraph>
 
           <a href={buttonLik}>
             <Button
-              size="large"
+              size='large'
               color={buttonColor}
               disableElevation
-              variant="contained"
-              className="button-link"
+              variant='contained'
+              className='button-link'
               sx={{
                 height: 44,
                 borderRadius: "4px",
@@ -74,12 +74,12 @@ const CarouselCard1 = ({
               {buttonText}
             </Button>
           </a>
-        </Grid> */}
+        </Grid>
 
-        <Grid item sm={12} xs={12}>
-          <BazaarImage
+        {/* <Grid item sm={12} xs={12}>
+          <CommonImage
             src={imgUrl}
-            alt="Main-banner"
+            alt='Main-banner'
             sx={{
               mx: "auto",
               maxHeight: 400,
@@ -87,7 +87,7 @@ const CarouselCard1 = ({
               maxWidth: "100%",
             }}
           />
-        </Grid>
+        </Grid> */}
       </Grid>
     </StyledBox>
   );

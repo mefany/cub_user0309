@@ -7,7 +7,7 @@ import ShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useSnackbar } from "notistack";
 import LazyImage from "components/LazyImage";
 import { H3, Span } from "components/Typography";
-import BazaarRating from "components/BazaarRating";
+import CommonRating from "components/CommonRating";
 import { FlexBetween, FlexRowCenter } from "components/flex-box";
 import ProductViewDialog from "components/products/ProductViewDialog";
 import { useAppContext } from "contexts/AppContext";
@@ -89,7 +89,7 @@ const StyledChip = styled(Chip)(({ theme }) => ({
 })); // ============================================================
 
 // ============================================================
-const ProductCard16 = (props) => {
+const ProductCard16 = props => {
   const {
     sx,
     hideRating,
@@ -108,12 +108,12 @@ const ProductCard16 = (props) => {
   const [openModal, setOpenModal] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const toggleIsFavorite = () => setIsFavorite((fav) => !fav);
+  const toggleIsFavorite = () => setIsFavorite(fav => !fav);
 
-  const toggleDialog = useCallback(() => setOpenModal((open) => !open), []);
-  const cartItem = state.cart.find((item) => item.slug === slug);
+  const toggleDialog = useCallback(() => setOpenModal(open => !open), []);
+  const cartItem = state.cart.find(item => item.slug === slug);
 
-  const handleCartAmountChange = (qty) => () => {
+  const handleCartAmountChange = qty => () => {
     dispatch({
       type: "CHANGE_CART_AMOUNT",
       payload: {
@@ -132,9 +132,9 @@ const ProductCard16 = (props) => {
 
   return (
     <StyledCard sx={sx}>
-      <ImgBox id="imgBox">
+      <ImgBox id='imgBox'>
         {discount !== 0 && (
-          <StyledChip color="primary" size="small" label={`${discount}% off`} />
+          <StyledChip color='primary' size='small' label={`${discount}% off`} />
         )}
 
         <Link href={`/product/${slug}`}>
@@ -144,28 +144,28 @@ const ProductCard16 = (props) => {
               width={100}
               height={100}
               src={thumbnail}
-              layout="responsive"
-              objectFit="contain"
+              layout='responsive'
+              objectFit='contain'
             />
           </a>
         </Link>
 
-        <ItemController className="controlBox">
+        <ItemController className='controlBox'>
           <Span onClick={toggleDialog}>
             <PreviewIcon />
           </Span>
 
-          <Divider orientation="horizontal" flexItem />
+          <Divider orientation='horizontal' flexItem />
 
           <Span onClick={toggleIsFavorite}>
             {isFavorite ? (
-              <Favorite color="primary" fontSize="small" />
+              <Favorite color='primary' fontSize='small' />
             ) : (
-              <FavoriteBorder fontSize="small" color="primary" />
+              <FavoriteBorder fontSize='small' color='primary' />
             )}
           </Span>
 
-          <Divider orientation="horizontal" flexItem />
+          <Divider orientation='horizontal' flexItem />
 
           <Span
             onClick={handleCartAmountChange(
@@ -191,12 +191,12 @@ const ProductCard16 = (props) => {
 
       <ContentWrapper>
         <FlexRowCenter>
-          <Box pr={1} fontWeight="500" color="primary.main">
+          <Box pr={1} fontWeight='500' color='primary.main'>
             {calculateDiscount(price, discount)}
           </Box>
 
           {discount !== 0 && (
-            <Box color="grey.600" fontWeight="500">
+            <Box color='grey.600' fontWeight='500'>
               <del>{currency(price)}</del>
             </Box>
           )}
@@ -205,13 +205,13 @@ const ProductCard16 = (props) => {
         <Link href={`/product/${slug}`}>
           <a>
             <H3
-              my="6px"
+              my='6px'
               title={title}
-              fontSize="15px"
-              fontWeight="600"
-              className="title"
-              textAlign="center"
-              color="text.secondary"
+              fontSize='15px'
+              fontWeight='600'
+              className='title'
+              textAlign='center'
+              color='text.secondary'
             >
               {title}
             </H3>
@@ -220,7 +220,7 @@ const ProductCard16 = (props) => {
 
         {!hideRating && (
           <FlexRowCenter>
-            <BazaarRating value={rating || 0} color="warn" readOnly />{" "}
+            <CommonRating value={rating || 0} color='warn' readOnly />{" "}
             <Span
               sx={{
                 color: palette.grey[600],

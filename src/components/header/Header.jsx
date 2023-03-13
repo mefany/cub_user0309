@@ -7,7 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { KeyboardArrowDown, PersonOutline, Add } from "@mui/icons-material";
 import clsx from "clsx";
-import Image from "components/BazaarImage";
+import Image from "components/CommonImage";
 import { FlexBox } from "components/flex-box";
 import MiniCart from "components/mini-cart/MiniCart";
 import CategoryMenu from "components/categories/CategoryMenu";

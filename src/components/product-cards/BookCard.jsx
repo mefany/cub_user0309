@@ -6,14 +6,14 @@ import { Box, Chip, IconButton, styled } from "@mui/material";
 import { useSnackbar } from "notistack";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import LazyImage from "components/LazyImage";
-import BazaarCard from "components/BazaarCard";
+import CommonCard from "components/CommonCard";
 import { H3, Span, Paragraph } from "components/Typography";
-import BazaarRating from "components/BazaarRating";
+import CommonRating from "components/CommonRating";
 import { useAppContext } from "contexts/AppContext";
 import BookViewDialog from "components/products/BookViewDialog";
 import { FlexBox } from "../flex-box";
 
-const StyledBazaarCard = styled(BazaarCard)(() => ({
+const StyledCommonCard = styled(CommonCard)(() => ({
   height: "100%",
   margin: "auto",
   display: "flex",
@@ -87,33 +87,33 @@ const BookCard = ({
   const [openModal, setOpenModal] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const toggleIsFavorite = () => setIsFavorite((fav) => !fav);
+  const toggleIsFavorite = () => setIsFavorite(fav => !fav);
 
-  const toggleDialog = useCallback(() => setOpenModal((open) => !open), []);
-  const cartItem = state.cart.find((item) => item.slug === slug);
+  const toggleDialog = useCallback(() => setOpenModal(open => !open), []);
+  const cartItem = state.cart.find(item => item.slug === slug);
 
   return (
-    <StyledBazaarCard hoverEffect={hoverEffect}>
+    <StyledCommonCard hoverEffect={hoverEffect}>
       <ImageWrapper>
         {/* {!!discount && (
           <StyledChip color="primary" size="small" label={`${discount}% off`} />
         )} */}
         <StyledChip
-          color="primary"
-          size="small"
+          color='primary'
+          size='small'
           label={`${((sell_price / price) * 100).toFixed(0)}% 할인`}
         />
 
-        <HoverIconWrapper className="hover-box">
+        <HoverIconWrapper className='hover-box'>
           <IconButton onClick={toggleDialog}>
-            <RemoveRedEye color="disabled" fontSize="small" />
+            <RemoveRedEye color='disabled' fontSize='small' />
           </IconButton>
 
           <IconButton onClick={toggleIsFavorite}>
             {isFavorite ? (
-              <Favorite color="primary" fontSize="small" />
+              <Favorite color='primary' fontSize='small' />
             ) : (
-              <FavoriteBorder fontSize="small" color="disabled" />
+              <FavoriteBorder fontSize='small' color='disabled' />
             )}
           </IconButton>
         </HoverIconWrapper>
@@ -124,7 +124,7 @@ const BookCard = ({
               src={imgUrl}
               width={0}
               height={0}
-              layout="responsive"
+              layout='responsive'
               alt={title}
             />
           </a>
@@ -147,52 +147,58 @@ const BookCard = ({
 
       <ContentWrapper>
         <FlexBox>
-          <Box flex="1 1 0" minWidth="0px" mr={1}>
+          <Box flex='1 1 0' minWidth='0px' mr={1}>
             <Link href={`/book/${trade_uid}`}>
               <a>
                 <H3
                   title={title}
-                  fontSize="14px"
-                  fontWeight="600"
-                  className="title"
-                  color="text.secondary"
+                  fontSize='14px'
+                  fontWeight='600'
+                  className='title'
+                  color='text.secondary'
                 >
                   {title}
                 </H3>
-                <Paragraph py={1} color="grey.500" fontWeight={600} fontSize={13}>
+                <Paragraph
+                  py={1}
+                  color='grey.500'
+                  fontWeight={600}
+                  fontSize={13}
+                >
                   <Place
-                    fontSize="small"
+                    fontSize='small'
                     sx={{
                       fontSize: 17,
                     }}
-                  />{shop_name}
+                  />
+                  {shop_name}
                 </Paragraph>
               </a>
             </Link>
 
             {/* 
             {!hideRating && (
-              <BazaarRating value={rating || 0} color="warn" readOnly />
+              <CommonRating value={rating || 0} color="warn" readOnly />
             )} */}
 
             {showProductSize && (
-              <Span color="grey.600" mb={1} display="block">
+              <Span color='grey.600' mb={1} display='block'>
                 {showProductSize}
               </Span>
             )}
 
-            <FlexBox alignItems="center" gap={1} mt={0.5}>
-              <Box fontWeight="600" color="primary.main">
+            <FlexBox alignItems='center' gap={1} mt={0.5}>
+              <Box fontWeight='600' color='primary.main'>
                 {parseInt(sell_price).toLocaleString("ko-KR")}원
               </Box>
-              <Box color="grey.600" fontWeight="600">
+              <Box color='grey.600' fontWeight='600'>
                 <del>{parseInt(price).toLocaleString("ko-KR")}원</del>
               </Box>
             </FlexBox>
           </Box>
         </FlexBox>
       </ContentWrapper>
-    </StyledBazaarCard>
+    </StyledCommonCard>
   );
 };
 

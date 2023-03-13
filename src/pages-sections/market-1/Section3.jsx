@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import BazaarCard from "components/BazaarCard";
+import CommonCard from "components/CommonCard";
 import useWindowSize from "hooks/useWindowSize";
 import CategoryIcon from "components/icons/Category";
 import Carousel from "components/carousel/Carousel";
@@ -18,15 +18,15 @@ const Section3 = ({ categoryList }) => {
   }, [width]);
   return (
     <CategorySectionCreator
-      seeMoreLink="#"
-      title="Top Categories"
-      icon={<CategoryIcon color="primary" />}
+      seeMoreLink='#'
+      title='Top Categories'
+      icon={<CategoryIcon color='primary' />}
     >
       <Carousel totalSlides={5} visibleSlides={visibleSlides}>
-        {categoryList.map((item) => (
+        {categoryList.map(item => (
           <Link href={`/product/search/${item.slug}`} key={item.id} passHref>
             <a>
-              <BazaarCard
+              <CommonCard
                 sx={{
                   p: 2,
                 }}
@@ -37,7 +37,7 @@ const Section3 = ({ categoryList }) => {
                   subtitle={item.description}
                   imgUrl={item.image}
                 />
-              </BazaarCard>
+              </CommonCard>
             </a>
           </Link>
         ))}

@@ -1,5 +1,5 @@
 import { Box, styled } from "@mui/material";
-import BazaarImage from "components/BazaarImage"; // custom styled components
+import CommonImage from "components/CommonImage"; // custom styled components
 
 const CardWrapper = styled(Box)(() => ({
   overflow: "hidden",
@@ -25,7 +25,7 @@ const CardContent = styled(Box)(({ theme }) => ({
 const BannerCard3 = ({ img, children, ...props }) => {
   return (
     <CardWrapper {...props}>
-      <BazaarImage alt="category" height="100%" width="100%" src={img} />
+      <CommonImage alt='category' height='100%' width='100%' src={img} />
 
       <CardContent>{children}</CardContent>
     </CardWrapper>

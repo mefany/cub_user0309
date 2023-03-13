@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Fragment } from "react";
 import { Box, Button, Chip, styled, useTheme } from "@mui/material";
 import { Add, Remove } from "@mui/icons-material";
-import BazaarRating from "components/BazaarRating";
+import CommonRating from "components/CommonRating";
 import { FlexBox } from "components/flex-box";
 import LazyImage from "components/LazyImage";
 import { H3, Span } from "components/Typography";
@@ -112,7 +112,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
 })); // =======================================================
 
 // =======================================================
-const ProductCard17 = (props) => {
+const ProductCard17 = props => {
   const {
     sx,
     off,
@@ -129,7 +129,7 @@ const ProductCard17 = (props) => {
   const { palette } = useTheme();
   const { enqueueSnackbar } = useSnackbar();
   const { state, dispatch } = useAppContext();
-  const cartItem = state.cart.find((item) => item.slug === slug);
+  const cartItem = state.cart.find(item => item.slug === slug);
 
   const handleCartAmountChange = (amount, type) => () => {
     dispatch({
@@ -159,27 +159,27 @@ const ProductCard17 = (props) => {
     <StyledCard sx={sx}>
       <Link href={`/product/${slug}`}>
         <a>
-          <ImgBox id="imgBox">
+          <ImgBox id='imgBox'>
             {status && (
               <StatusChipBox>
                 <StatusChip>{status}</StatusChip>
-                <Box width="100%" display="flex">
-                  <Box className="triangle-left" />
-                  <Box className="triangle-right" />
+                <Box width='100%' display='flex'>
+                  <Box className='triangle-left' />
+                  <Box className='triangle-right' />
                 </Box>
               </StatusChipBox>
             )}
 
-            {off !== 0 && <StyledChip size="small" label={`${off}% off`} />}
+            {off !== 0 && <StyledChip size='small' label={`${off}% off`} />}
 
             <LazyImage
               alt={title}
               width={100}
               height={100}
               src={imgUrl}
-              id="productImg"
-              layout="responsive"
-              objectFit="contain"
+              id='productImg'
+              layout='responsive'
+              objectFit='contain'
             />
           </ImgBox>
         </a>
@@ -187,16 +187,16 @@ const ProductCard17 = (props) => {
 
       <ContentWrapper>
         <FlexBox>
-          <Box flex="1 1 0" minWidth="0px" mr={1}>
+          <Box flex='1 1 0' minWidth='0px' mr={1}>
             <Link href={`/product/${slug}`}>
               <a>
                 <H3
                   mb={1}
                   title={title}
-                  fontSize="24px" // textAlign="left"
-                  fontWeight="700"
-                  className="title"
-                  color="text.secondary"
+                  fontSize='24px' // textAlign="left"
+                  fontWeight='700'
+                  className='title'
+                  color='text.secondary'
                 >
                   {title}
                 </H3>
@@ -204,11 +204,11 @@ const ProductCard17 = (props) => {
             </Link>
 
             {!hideRating && (
-              <Box display="flex" alignItems="center">
-                <BazaarRating
+              <Box display='flex' alignItems='center'>
+                <CommonRating
                   fontSize={18}
                   value={rating || 0}
-                  color="warn"
+                  color='warn'
                   readOnly
                 />{" "}
                 <Span
@@ -230,13 +230,13 @@ const ProductCard17 = (props) => {
               ))}
             </ColorBox>
 
-            <FlexBox gap={1} alignItems="center" mt={0.5}>
-              <Box fontWeight="600" color="primary.main">
+            <FlexBox gap={1} alignItems='center' mt={0.5}>
+              <Box fontWeight='600' color='primary.main'>
                 {calculateDiscount(price, off)}
               </Box>
 
               {off !== 0 && (
-                <Box color="grey.600" fontWeight="600">
+                <Box color='grey.600' fontWeight='600'>
                   <del>{currency(price)}</del>
                 </Box>
               )}
@@ -244,30 +244,30 @@ const ProductCard17 = (props) => {
           </Box>
 
           <FlexBox
-            width="30px"
-            alignItems="center"
-            className="add-cart"
-            flexDirection="column-reverse"
+            width='30px'
+            alignItems='center'
+            className='add-cart'
+            flexDirection='column-reverse'
             justifyContent={!!cartItem?.qty ? "space-between" : "flex-start"}
           >
             <StyledButton
-              variant="outlined"
+              variant='outlined'
               onClick={handleCartAmountChange((cartItem?.qty || 0) + 1)}
             >
-              <Add fontSize="small" />
+              <Add fontSize='small' />
             </StyledButton>
 
             {!!cartItem?.qty && (
               <Fragment>
-                <Box color="text.primary" fontWeight="600">
+                <Box color='text.primary' fontWeight='600'>
                   {cartItem?.qty}
                 </Box>
 
                 <StyledButton
-                  variant="outlined"
+                  variant='outlined'
                   onClick={handleCartAmountChange(cartItem?.qty - 1, "remove")}
                 >
-                  <Remove fontSize="small" />
+                  <Remove fontSize='small' />
                 </StyledButton>
               </Fragment>
             )}

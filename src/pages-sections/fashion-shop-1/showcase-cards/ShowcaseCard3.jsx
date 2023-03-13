@@ -1,5 +1,5 @@
 import { Grid, styled } from "@mui/material";
-import BazaarImage from "components/BazaarImage";
+import CommonImage from "components/CommonImage";
 import NavLink2 from "components/nav-link/NavLink2";
 import { H1, Paragraph, Span } from "components/Typography";
 import Link from "next/link";
@@ -31,13 +31,13 @@ const StyledGrid = styled(Grid)(({ theme }) => ({
 
 const ShowcaseCard3 = () => {
   return (
-    <Link href="/home-3">
+    <Link href='/home-3'>
       <a>
         <StyledGrid container>
           <Grid item sm={6} xs={12}>
-            <BazaarImage
-              alt="apple-watch-1"
-              src="/assets/images/products/t-shirt2.png"
+            <CommonImage
+              alt='apple-watch-1'
+              src='/assets/images/products/t-shirt2.png'
               sx={{
                 mx: "auto",
                 maxWidth: "100%",
@@ -59,7 +59,7 @@ const ShowcaseCard3 = () => {
               with black satin lining
             </Paragraph>
 
-            <NavLink2 title="SHOP NOW" borderColor="grey.100" />
+            <NavLink2 title='SHOP NOW' borderColor='grey.100' />
           </Grid>
         </StyledGrid>
       </a>

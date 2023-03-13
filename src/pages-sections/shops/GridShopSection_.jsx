@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Box } from "@mui/material";
-import BazaarCard from "components/BazaarCard";
+import CommonCard from "components/CommonCard";
 import { FlexBox } from "components/flex-box";
 import HoverBox from "components/HoverBox";
 import LazyImage from "components/LazyImage";
@@ -33,7 +33,7 @@ const GridShopSection = ({ bigDiscountList }) => {
           {bigDiscountList.map(
             ({ id, title, thumbnail, price, discount, slug }) => (
               <Box py={0.5} key={id}>
-                <BazaarCard
+                <CommonCard
                   sx={{
                     p: "1rem",
                   }}
@@ -69,7 +69,7 @@ const GridShopSection = ({ bigDiscountList }) => {
                       </FlexBox>
                     </a>
                   </Link>
-                </BazaarCard>
+                </CommonCard>
               </Box>
             )
           )}

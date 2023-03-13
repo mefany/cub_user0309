@@ -1,5 +1,5 @@
 import { Box, List, ListItem, styled } from "@mui/material";
-import BazaarCard from "components/BazaarCard";
+import CommonCard from "components/CommonCard";
 const Wrapper = styled(Box)(({ theme }) => ({
   cursor: "pointer",
   transition: "color 150ms ease-in-out",
@@ -21,7 +21,7 @@ const MenusContainer = styled(Box)(() => ({
   maxHeight: "500px",
   position: "absolute",
 }));
-const StyledCard = styled(BazaarCard)(() => ({
+const StyledCard = styled(CommonCard)(() => ({
   marginTop: 12,
   height: "100%",
   display: "flex",

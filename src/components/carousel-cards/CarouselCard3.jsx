@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { styled } from "@mui/material";
 import { FlexBox } from "components/flex-box";
-import BazaarCard from "components/BazaarCard";
-import BazaarImage from "components/BazaarImage";
+import CommonCard from "components/CommonCard";
+import CommonImage from "components/CommonImage";
 import { H2, Paragraph, Small } from "components/Typography";
 // styled components
-const ContentWrapper = styled(BazaarCard)(({ theme }) => ({
+const ContentWrapper = styled(CommonCard)(({ theme }) => ({
   height: "100%",
   borderRadius: "2px",
   boxShadow: theme.shadows[4],
@@ -27,11 +27,11 @@ const CarouselCard3 = ({ product }) => {
   return (
     <ContentWrapper>
       <StyledFlexBox>
-        <H2 mb="0.5rem" textAlign="center" lineHeight={1.2}>
+        <H2 mb='0.5rem' textAlign='center' lineHeight={1.2}>
           {product.title}
         </H2>
 
-        <Paragraph color="grey.600" textAlign="center" mb="1.5rem">
+        <Paragraph color='grey.600' textAlign='center' mb='1.5rem'>
           Starting at ${product.price} & save upto {product.discount}%
         </Paragraph>
 
@@ -42,7 +42,7 @@ const CarouselCard3 = ({ product }) => {
         </Link>
       </StyledFlexBox>
 
-      <BazaarImage width="100%" src={product.thumbnail} alt="shoes" />
+      <CommonImage width='100%' src={product.thumbnail} alt='shoes' />
     </ContentWrapper>
   );
 };

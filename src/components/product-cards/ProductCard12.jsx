@@ -3,8 +3,8 @@ import { Box } from "@mui/material";
 import { FavoriteBorder } from "@mui/icons-material";
 import HoverBox from "components/HoverBox";
 import { H4 } from "components/Typography";
-import BazaarImage from "components/BazaarImage";
-import BazaarRating from "components/BazaarRating";
+import CommonImage from "components/CommonImage";
+import CommonRating from "components/CommonRating";
 import { FlexBetween, FlexBox } from "components/flex-box";
 import { calculateDiscount, currency } from "lib"; // ===========================================================
 
@@ -25,31 +25,31 @@ const ProductCard12 = ({
       <Link href={`/product/${slug}`}>
         <a>
           <HoverBox>
-            <BazaarImage
+            <CommonImage
               src={imgUrl}
-              width="100%"
-              height="auto"
+              width='100%'
+              height='auto'
               alt={title}
-              mx="auto"
+              mx='auto'
             />
           </HoverBox>
         </a>
       </Link>
 
       <FlexBetween>
-        <Box mt="1rem">
-          <H4 fontWeight="600" fontSize="14px" mb={0.5} title={title} ellipsis>
+        <Box mt='1rem'>
+          <H4 fontWeight='600' fontSize='14px' mb={0.5} title={title} ellipsis>
             {title}
           </H4>
-          {!hideReview && <BazaarRating value={rating} color="warn" readOnly />}
+          {!hideReview && <CommonRating value={rating} color='warn' readOnly />}
 
-          <FlexBox alignItems="center">
-            <Box pr={1} fontWeight="600" color="primary.main">
+          <FlexBox alignItems='center'>
+            <Box pr={1} fontWeight='600' color='primary.main'>
               {calculateDiscount(price, off)}
             </Box>
 
             {!!off && (
-              <Box color="grey.600" fontWeight="600">
+              <Box color='grey.600' fontWeight='600'>
                 <del>{currency(price)}</del>
               </Box>
             )}
@@ -58,8 +58,8 @@ const ProductCard12 = ({
 
         {!hideFavoriteIcon && (
           <FavoriteBorder
-            fontSize="small"
-            color="secondary"
+            fontSize='small'
+            color='secondary'
             sx={{
               opacity: 0.5,
               m: "1rem",

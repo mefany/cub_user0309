@@ -4,8 +4,8 @@ import Link from "next/link";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import { H1, H6 } from "components/Typography";
-import BazaarImage from "components/BazaarImage";
-import BazaarTextField from "components/BazaarTextField";
+import CommonImage from "components/CommonImage";
+import CommonTextField from "components/CommonTextField";
 import SocialButtons from "./SocialButtons";
 import EyeToggleButton from "./EyeToggleButton";
 import { FlexBox, FlexRowCenter } from "components/flex-box";
@@ -156,7 +156,7 @@ const Login = () => {
   return (
     <Wrapper elevation={3} passwordVisibility={passwordVisibility}>
       <form onSubmit={handleSubmit}>
-        {/* <BazaarImage
+        {/* <CommonImage
           src="/assets/images/bazaar-black-sm.svg"
           sx={{
             m: "auto",
@@ -175,7 +175,7 @@ const Login = () => {
           />
         </a>
 
-        <BazaarTextField
+        <CommonTextField
           mb={1.5}
           fullWidth
           name='email'
@@ -191,7 +191,7 @@ const Login = () => {
           helperText={touched.email && errors.email}
         />
 
-        <BazaarTextField
+        <CommonTextField
           mb={2}
           fullWidth
           size='small'

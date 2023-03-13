@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Avatar } from "@mui/material";
 import { Delete, RemoveRedEye } from "@mui/icons-material";
-import BazaarSwitch from "components/BazaarSwitch";
+import CommonSwitch from "components/CommonSwitch";
 import {
   StyledIconButton,
   StyledTableCell,
@@ -14,12 +14,12 @@ const BrandRow = ({ brand, selected }) => {
   const [featuredCategory, setFeaturedCategory] = useState(featured);
   const isItemSelected = selected.indexOf(name) !== -1;
   return (
-    <StyledTableRow tabIndex={-1} role="checkbox" selected={isItemSelected}>
-      <StyledTableCell align="center">#{id.split("-")[0]}</StyledTableCell>
+    <StyledTableRow tabIndex={-1} role='checkbox' selected={isItemSelected}>
+      <StyledTableCell align='center'>#{id.split("-")[0]}</StyledTableCell>
 
-      <StyledTableCell align="center">{name}</StyledTableCell>
+      <StyledTableCell align='center'>{name}</StyledTableCell>
 
-      <StyledTableCell align="center">
+      <StyledTableCell align='center'>
         <Avatar
           src={logo}
           sx={{
@@ -31,15 +31,15 @@ const BrandRow = ({ brand, selected }) => {
         />
       </StyledTableCell>
 
-      <StyledTableCell align="center">
-        <BazaarSwitch
-          color="info"
+      <StyledTableCell align='center'>
+        <CommonSwitch
+          color='info'
           checked={featuredCategory}
-          onChange={() => setFeaturedCategory((state) => !state)}
+          onChange={() => setFeaturedCategory(state => !state)}
         />
       </StyledTableCell>
 
-      <StyledTableCell align="center">
+      <StyledTableCell align='center'>
         <StyledIconButton>
           <RemoveRedEye />
         </StyledIconButton>

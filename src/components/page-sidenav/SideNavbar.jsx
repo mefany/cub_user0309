@@ -1,12 +1,12 @@
 import { Box, styled, useTheme } from "@mui/material";
 import appIcons from "components/icons";
 import Scrollbar from "components/Scrollbar";
-import BazaarCard from "components/BazaarCard";
+import CommonCard from "components/CommonCard";
 import { H5, Span } from "components/Typography";
 import Accordion from "components/accordion/Accordion";
 import { FlexBetween, FlexBox } from "components/flex-box";
 import AccordionHeader from "components/accordion/AccordionHeader";
-const NavbarRoot = styled(BazaarCard)(({ isfixed, theme, sidebarstyle }) => ({
+const NavbarRoot = styled(CommonCard)(({ isfixed, theme, sidebarstyle }) => ({
   height: "100%",
   boxShadow: "none",
   borderRadius: "8px",
@@ -64,7 +64,7 @@ const Circle = styled("span")(() => ({
 })); // ==================================================================
 
 // ==================================================================
-const SideNavbar = (props) => {
+const SideNavbar = props => {
   const {
     isFixed,
     navList,
@@ -75,8 +75,8 @@ const SideNavbar = (props) => {
   } = props;
   const { palette } = useTheme();
 
-  const renderChild = (childList) => {
-    return childList.map((item) => (
+  const renderChild = childList => {
+    return childList.map(item => (
       <StyledList
         key={item.title}
         onClick={() => handleSelect(item.title)}
@@ -85,8 +85,8 @@ const SideNavbar = (props) => {
           cursor: "pointer",
         }}
       >
-        <Circle className="listCircle" />
-        <Span py={0.75} flex="1 1 0">
+        <Circle className='listCircle' />
+        <Span py={0.75} flex='1 1 0'>
           {item.title}
         </Span>
       </StyledList>
@@ -104,7 +104,7 @@ const SideNavbar = (props) => {
         {navList.map((item, ind) => {
           return (
             <Box key={ind}>
-              <Box padding="16px 20px 5px 20px">
+              <Box padding='16px 20px 5px 20px'>
                 <H5>{item.category}</H5>
 
                 <BorderBox linestyle={lineStyle}>
@@ -116,22 +116,22 @@ const SideNavbar = (props) => {
               {item.categoryItem.map((item, ind) => {
                 const Icon = appIcons[item.icon];
                 return (
-                  <Box mb="2px" color="grey.700" key={ind}>
+                  <Box mb='2px' color='grey.700' key={ind}>
                     {item.child ? (
                       <Accordion>
                         <AccordionHeader
                           px={0}
                           py={0.75}
-                          className="linkList"
+                          className='linkList'
                           sx={{
                             ":hover": {
                               color: palette.primary.main,
                             },
                           }}
                         >
-                          <FlexBox gap={1.5} alignItems="center">
-                            <Icon fontSize="small" />
-                            <Span fontWeight="600">{item.title}</Span>
+                          <FlexBox gap={1.5} alignItems='center'>
+                            <Icon fontSize='small' />
+                            <Span fontWeight='600'>{item.title}</Span>
                           </FlexBox>
                         </AccordionHeader>
 
@@ -146,9 +146,9 @@ const SideNavbar = (props) => {
                           cursor: "pointer",
                         }}
                       >
-                        <FlexBox gap={1.5} className="linkList" py={0.75}>
-                          <Icon fontSize="small" />
-                          <Span fontWeight="600">{item.title}</Span>
+                        <FlexBox gap={1.5} className='linkList' py={0.75}>
+                          <Icon fontSize='small' />
+                          <Span fontWeight='600'>{item.title}</Span>
                         </FlexBox>
                       </Box>
                     )}

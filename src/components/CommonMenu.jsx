@@ -2,7 +2,7 @@ import { Menu } from "@mui/material";
 import { Children, cloneElement, Fragment, useState } from "react"; // ===============================================================
 
 // ===============================================================
-const BazaarMenu = ({
+const CommonMenu = ({
   open,
   handler,
   children,
@@ -12,11 +12,11 @@ const BazaarMenu = ({
 }) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleClick = (event) => setAnchorEl(event.currentTarget);
+  const handleClick = event => setAnchorEl(event.currentTarget);
 
   const handleClose = () => setAnchorEl(null);
 
-  const handleMenuItemClick = (customOnClick) => () => {
+  const handleMenuItemClick = customOnClick => () => {
     if (customOnClick) customOnClick();
     if (shouldCloseOnItemClick) handleClose();
   };
@@ -41,7 +41,7 @@ const BazaarMenu = ({
         }}
         {...props}
       >
-        {Children.map(children, (child) =>
+        {Children.map(children, child =>
           cloneElement(child, {
             onClick: handleMenuItemClick(child.props.onClick),
           })
@@ -51,4 +51,4 @@ const BazaarMenu = ({
   );
 };
 
-export default BazaarMenu;
+export default CommonMenu;

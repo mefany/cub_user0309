@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box, Container, Grid } from "@mui/material";
-import BazaarCard from "components/BazaarCard";
+import CommonCard from "components/CommonCard";
 import { FlexBox } from "components/flex-box";
 import ProductCategoryItem from "./ProductCategoryItem";
 import ProductCard1 from "components/product-cards/ProductCard1";
@@ -10,7 +10,7 @@ import CategorySectionHeader from "components/CategorySectionHeader";
 const Section6 = ({ carList, carBrands }) => {
   const [selected, setSelected] = useState("");
 
-  const handleCategoryClick = (brand) => () => {
+  const handleCategoryClick = brand => () => {
     if (selected === brand.slug) setSelected("");
     else setSelected(brand.slug);
   };
@@ -21,8 +21,8 @@ const Section6 = ({ carList, carBrands }) => {
         mb: "80px",
       }}
     >
-      <FlexBox gap="1.75rem">
-        <BazaarCard
+      <FlexBox gap='1.75rem'>
+        <CommonCard
           sx={{
             height: "100%",
             minWidth: "240px",
@@ -34,7 +34,7 @@ const Section6 = ({ carList, carBrands }) => {
             },
           }}
         >
-          {carBrands.map((brand) => (
+          {carBrands.map(brand => (
             <ProductCategoryItem
               id={brand.id}
               key={brand.id}
@@ -49,8 +49,8 @@ const Section6 = ({ carList, carBrands }) => {
           ))}
 
           <ProductCategoryItem
-            id="all"
-            title="View All Brands"
+            id='all'
+            title='View All Brands'
             isSelected={selected === "all"}
             sx={{
               mt: 8,
@@ -58,13 +58,13 @@ const Section6 = ({ carList, carBrands }) => {
               justifyContent: "center",
             }}
           />
-        </BazaarCard>
+        </CommonCard>
 
-        <Box flex="1 1 0" minWidth="0px">
-          <CategorySectionHeader title="Cars" seeMoreLink="#" />
+        <Box flex='1 1 0' minWidth='0px'>
+          <CategorySectionHeader title='Cars' seeMoreLink='#' />
 
           <Grid container spacing={3}>
-            {carList.map((item) => (
+            {carList.map(item => (
               <Grid item lg={4} sm={6} xs={12} key={item.id}>
                 <ProductCard1
                   hoverEffect

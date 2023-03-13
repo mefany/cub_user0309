@@ -1,5 +1,5 @@
 import { Box, styled } from "@mui/material";
-import BazaarImage from "components/BazaarImage";
+import CommonImage from "components/CommonImage";
 import NavLink2 from "components/nav-link/NavLink2";
 import { H1, Paragraph, Span } from "components/Typography";
 import Link from "next/link";
@@ -37,7 +37,7 @@ const StyledBox = styled(Box)(({ theme }) => ({
     },
   },
 }));
-const StyledImage = styled(BazaarImage)(({ theme }) => ({
+const StyledImage = styled(CommonImage)(({ theme }) => ({
   padding: "2.5rem",
   marginLeft: "auto",
   marginRight: "auto",
@@ -52,15 +52,15 @@ const StyledImage = styled(BazaarImage)(({ theme }) => ({
 
 const ShowcaseCard1 = () => {
   return (
-    <Link href="/home-3">
+    <Link href='/home-3'>
       <a>
         <StyledBox>
           <StyledImage
-            src="/assets/images/products/shoes-1.png"
-            alt="apple-watch-1"
+            src='/assets/images/products/shoes-1.png'
+            alt='apple-watch-1'
           />
 
-          <Box p="25px" className="content">
+          <Box p='25px' className='content'>
             <Paragraph mb={1}>SPECIAL OFFER</Paragraph>
 
             <H1 lineHeight={1.3}>
@@ -73,7 +73,7 @@ const ShowcaseCard1 = () => {
               with black satin lining
             </Paragraph>
 
-            <NavLink2 title="SHOP NOW" borderColor="grey.100" />
+            <NavLink2 title='SHOP NOW' borderColor='grey.100' />
           </Box>
         </StyledBox>
       </a>

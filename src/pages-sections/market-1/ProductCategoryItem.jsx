@@ -1,9 +1,9 @@
 import { styled } from "@mui/material";
-import BazaarCard from "components/BazaarCard";
+import CommonCard from "components/CommonCard";
 import LazyImage from "components/LazyImage";
 import { H4 } from "components/Typography"; // styled component
 
-const StyledBazaarCard = styled(BazaarCard)(({ theme }) => ({
+const StyledCommonCard = styled(CommonCard)(({ theme }) => ({
   gap: "1rem",
   display: "flex",
   borderRadius: 5,
@@ -24,7 +24,7 @@ const ProductCategoryItem = ({
   ...others
 }) => {
   return (
-    <StyledBazaarCard
+    <StyledCommonCard
       elevation={isSelected ? 2 : 0}
       sx={{
         bgcolor: isSelected ? "white" : "grey.100",
@@ -36,16 +36,16 @@ const ProductCategoryItem = ({
         <LazyImage
           width={20}
           height={20}
-          layout="fixed"
-          objectFit="cover"
+          layout='fixed'
+          objectFit='cover'
           src={imgUrl}
-          alt=""
+          alt=''
         />
       )}
-      <H4 lineHeight="1" textTransform="capitalize">
+      <H4 lineHeight='1' textTransform='capitalize'>
         {title}
       </H4>
-    </StyledBazaarCard>
+    </StyledCommonCard>
   );
 };
 

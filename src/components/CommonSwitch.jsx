@@ -30,6 +30,6 @@ const StyledSwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 
-const BazaarSwitch = (props) => <StyledSwitch {...props} />;
+const CommonSwitch = props => <StyledSwitch {...props} />;
 
-export default BazaarSwitch;
+export default CommonSwitch;

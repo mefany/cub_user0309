@@ -1,7 +1,7 @@
 import { Card, styled } from "@mui/material"; // ===============================================
 
 // ===============================================
-const BazaarCard = styled(({ hoverEffect, children, ...rest }) => (
+const CommonCard = styled(({ hoverEffect, children, ...rest }) => (
   <Card {...rest}>{children}</Card>
 ))(({ theme, hoverEffect }) => ({
   overflow: "unset",
@@ -13,7 +13,7 @@ const BazaarCard = styled(({ hoverEffect, children, ...rest }) => (
     }),
   },
 }));
-BazaarCard.defaultProps = {
+CommonCard.defaultProps = {
   hoverEffect: false,
 };
-export default BazaarCard;
+export default CommonCard;

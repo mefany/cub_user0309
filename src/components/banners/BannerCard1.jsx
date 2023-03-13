@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Box, Divider, styled } from "@mui/material";
-import BazaarImage from "components/BazaarImage";
+import CommonImage from "components/CommonImage";
 import { H2, Paragraph, Span } from "components/Typography"; // custom styled components
 
 const CardWrapper = styled(Box)(() => ({
@@ -18,7 +18,7 @@ const CardWrapper = styled(Box)(() => ({
   },
 }));
 const CardContent = styled(Box, {
-  shouldForwardProp: (props) => props !== "contentAlign",
+  shouldForwardProp: props => props !== "contentAlign",
 })(({ contentAlign }) => ({
   top: 0,
   zIndex: 1,
@@ -67,9 +67,9 @@ const BannerCard1 = ({
 }) => {
   return (
     <CardWrapper {...props}>
-      <BazaarImage alt="category" height="100%" width="100%" src={img} />
+      <CommonImage alt='category' height='100%' width='100%' src={img} />
 
-      <CardContent contentAlign={contentPosition} className="content">
+      <CardContent contentAlign={contentPosition} className='content'>
         <H2>{title}</H2>
         <Paragraph>{subTitle}</Paragraph>
         <Divider

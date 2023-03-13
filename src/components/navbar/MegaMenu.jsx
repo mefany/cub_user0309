@@ -1,7 +1,7 @@
 import { KeyboardArrowDown } from "@mui/icons-material";
 import { Box, Grid, List, ListItem, styled } from "@mui/material";
 import { H6 } from "components/Typography";
-import BazaarCard from "components/BazaarCard";
+import CommonCard from "components/CommonCard";
 import NavLink from "components/nav-link/NavLink";
 import { FlexRowCenter } from "components/flex-box"; // style components
 
@@ -38,7 +38,7 @@ const StyledNavLink = styled(NavLink)(() => ({
 })); // ===============================================================
 
 // ===============================================================
-const gridSize = (length) => {
+const gridSize = length => {
   if (length === 1) return 12;
   if (length === 2) return 6;
   if (length === 3) return 4;
@@ -51,7 +51,7 @@ const MegaMenu = ({ title, menuList }) => {
   const grid = gridSize(menuList.length);
   return (
     <Wrapper>
-      <FlexRowCenter alignItems="flex-end" gap={0.3}>
+      <FlexRowCenter alignItems='flex-end' gap={0.3}>
         {title}{" "}
         <KeyboardArrowDown
           sx={{
@@ -61,8 +61,8 @@ const MegaMenu = ({ title, menuList }) => {
         />
       </FlexRowCenter>
 
-      <MenusContainer className="menu-list">
-        <BazaarCard
+      <MenusContainer className='menu-list'>
+        <CommonCard
           elevation={3}
           sx={{
             mt: 1.5,
@@ -82,14 +82,14 @@ const MegaMenu = ({ title, menuList }) => {
                   },
                 }}
               >
-                {category.map((item) => {
+                {category.map(item => {
                   return (
                     <List key={item.title}>
                       <H6 mb={0.5} pl={4}>
                         {item.title}
                       </H6>
 
-                      {item.child.map((sub) => {
+                      {item.child.map(sub => {
                         return (
                           <MenuListItem key={sub.title}>
                             <StyledNavLink href={sub.url}>
@@ -104,7 +104,7 @@ const MegaMenu = ({ title, menuList }) => {
               </Grid>
             ))}
           </Grid>
-        </BazaarCard>
+        </CommonCard>
       </MenusContainer>
     </Wrapper>
   );

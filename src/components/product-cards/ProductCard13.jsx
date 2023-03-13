@@ -6,14 +6,14 @@ import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import { Box, Button, Chip, styled } from "@mui/material";
 import { useSnackbar } from "notistack";
 import LazyImage from "components/LazyImage";
-import BazaarCard from "components/BazaarCard";
+import CommonCard from "components/CommonCard";
 import { H3, Span } from "components/Typography";
-import BazaarRating from "components/BazaarRating";
+import CommonRating from "components/CommonRating";
 import { FlexBetween, FlexBox } from "components/flex-box";
 import ProductViewDialog from "components/products/ProductViewDialog";
 import { useAppContext } from "contexts/AppContext";
 import { calculateDiscount, currency } from "lib";
-const StyledBazaarCard = styled(BazaarCard)(({ theme }) => ({
+const StyledCommonCard = styled(CommonCard)(({ theme }) => ({
   height: "100%",
   margin: "auto",
   display: "flex",
@@ -94,7 +94,7 @@ const ContentWrapper = styled(FlexBox)(() => ({
 })); // ===============================================================
 
 // ===============================================================
-const ProductCard13 = (props) => {
+const ProductCard13 = props => {
   const {
     off,
     id,
@@ -111,10 +111,10 @@ const ProductCard13 = (props) => {
   const [openModal, setOpenModal] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
-  const toggleIsFavorite = () => setIsFavorite((fav) => !fav);
+  const toggleIsFavorite = () => setIsFavorite(fav => !fav);
 
-  const toggleDialog = useCallback(() => setOpenModal((open) => !open), []);
-  const cartItem = state.cart.find((item) => item.slug === slug);
+  const toggleDialog = useCallback(() => setOpenModal(open => !open), []);
+  const cartItem = state.cart.find(item => item.slug === slug);
 
   const handleCartAmountChange = (amount, type) => () => {
     dispatch({
@@ -141,10 +141,10 @@ const ProductCard13 = (props) => {
   };
 
   return (
-    <StyledBazaarCard hoverEffect={hoverEffect}>
+    <StyledCommonCard hoverEffect={hoverEffect}>
       <ImageWrapper>
         {off !== 0 && (
-          <StyledChip color="primary" size="small" label={`${off}% off`} />
+          <StyledChip color='primary' size='small' label={`${off}% off`} />
         )}
 
         <Link href={`/product/${slug}`}>
@@ -154,13 +154,13 @@ const ProductCard13 = (props) => {
               width={190}
               src={imgUrl}
               height={190}
-              layout="responsive"
-              objectFit="contain"
+              layout='responsive'
+              objectFit='contain'
             />
           </a>
         </Link>
 
-        <HoverWrapper className="controller">
+        <HoverWrapper className='controller'>
           <Span onClick={toggleDialog}>
             <RemoveRedEye />
           </Span>
@@ -174,9 +174,9 @@ const ProductCard13 = (props) => {
             }}
           >
             {isFavorite ? (
-              <Favorite color="primary" fontSize="small" />
+              <Favorite color='primary' fontSize='small' />
             ) : (
-              <FavoriteBorder fontSize="small" color="disabled" />
+              <FavoriteBorder fontSize='small' color='disabled' />
             )}
           </Span>
 
@@ -199,17 +199,17 @@ const ProductCard13 = (props) => {
       />
 
       <ContentWrapper>
-        <Box flex="1 1 0" minWidth="0px" mr={1}>
+        <Box flex='1 1 0' minWidth='0px' mr={1}>
           <Link href={`/product/${slug}`}>
             <a>
               <H3
                 mb={1}
                 title={title}
-                fontSize="14px"
-                textAlign="left"
-                fontWeight="600"
-                className="title"
-                color="text.secondary"
+                fontSize='14px'
+                textAlign='left'
+                fontWeight='600'
+                className='title'
+                color='text.secondary'
               >
                 {title}
               </H3>
@@ -217,19 +217,19 @@ const ProductCard13 = (props) => {
           </Link>
 
           {!hideRating && (
-            <FlexBox gap={1} alignItems="center">
-              <BazaarRating value={rating || 0} color="warn" readOnly />
-              <Span color="grey.600">{`(${rating})`}</Span>
+            <FlexBox gap={1} alignItems='center'>
+              <CommonRating value={rating || 0} color='warn' readOnly />
+              <Span color='grey.600'>{`(${rating})`}</Span>
             </FlexBox>
           )}
 
-          <FlexBox gap={1} alignItems="center" mt={0.5}>
-            <Box fontWeight={600} color="primary.main">
+          <FlexBox gap={1} alignItems='center' mt={0.5}>
+            <Box fontWeight={600} color='primary.main'>
               {calculateDiscount(price, off)}
             </Box>
 
             {off !== 0 && (
-              <Box color="grey.600" fontWeight={600}>
+              <Box color='grey.600' fontWeight={600}>
                 <del>{currency(price)}</del>
               </Box>
             )}
@@ -237,44 +237,44 @@ const ProductCard13 = (props) => {
         </Box>
 
         <FlexBox
-          width="30px"
-          alignItems="center"
-          className="add-cart"
-          flexDirection="column-reverse"
+          width='30px'
+          alignItems='center'
+          className='add-cart'
+          flexDirection='column-reverse'
           justifyContent={!!cartItem?.qty ? "space-between" : "flex-start"}
         >
           <Button
-            color="primary"
-            variant="outlined"
+            color='primary'
+            variant='outlined'
             sx={{
               padding: "3px",
             }}
             onClick={handleCartAmountChange((cartItem?.qty || 0) + 1)}
           >
-            <Add fontSize="small" />
+            <Add fontSize='small' />
           </Button>
 
           {!!cartItem?.qty && (
             <Fragment>
-              <Box color="text.primary" fontWeight="600">
+              <Box color='text.primary' fontWeight='600'>
                 {cartItem?.qty}
               </Box>
 
               <Button
-                color="primary"
-                variant="outlined"
+                color='primary'
+                variant='outlined'
                 sx={{
                   padding: "3px",
                 }}
                 onClick={handleCartAmountChange(cartItem?.qty - 1, "remove")}
               >
-                <Remove fontSize="small" />
+                <Remove fontSize='small' />
               </Button>
             </Fragment>
           )}
         </FlexBox>
       </ContentWrapper>
-    </StyledBazaarCard>
+    </StyledCommonCard>
   );
 };
 

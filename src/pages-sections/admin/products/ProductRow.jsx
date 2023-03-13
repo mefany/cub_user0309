@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { Delete, Edit, RemoveRedEye } from "@mui/icons-material";
 import { Avatar, Box } from "@mui/material";
 import { FlexBox } from "components/flex-box";
-import BazaarSwitch from "components/BazaarSwitch";
+import CommonSwitch from "components/CommonSwitch";
 import { Paragraph, Small } from "components/Typography";
 import { currency } from "lib";
 import {
@@ -19,9 +19,9 @@ const ProductRow = ({ product }) => {
   const router = useRouter();
   const [productPulish, setProductPublish] = useState(published);
   return (
-    <StyledTableRow tabIndex={-1} role="checkbox">
-      <StyledTableCell align="left">
-        <FlexBox alignItems="center" gap={1.5}>
+    <StyledTableRow tabIndex={-1} role='checkbox'>
+      <StyledTableCell align='left'>
+        <FlexBox alignItems='center' gap={1.5}>
           <Avatar
             src={image}
             sx={{
@@ -30,16 +30,16 @@ const ProductRow = ({ product }) => {
           />
           <Box>
             <Paragraph>{name}</Paragraph>
-            <Small color="grey.600">#{id.split("-")[0]}</Small>
+            <Small color='grey.600'>#{id.split("-")[0]}</Small>
           </Box>
         </FlexBox>
       </StyledTableCell>
 
-      <StyledTableCell align="left">
+      <StyledTableCell align='left'>
         <CategoryWrapper>{category}</CategoryWrapper>
       </StyledTableCell>
 
-      <StyledTableCell align="left">
+      <StyledTableCell align='left'>
         <Avatar
           src={brand}
           sx={{
@@ -50,17 +50,17 @@ const ProductRow = ({ product }) => {
         />
       </StyledTableCell>
 
-      <StyledTableCell align="left">{currency(price)}</StyledTableCell>
+      <StyledTableCell align='left'>{currency(price)}</StyledTableCell>
 
-      <StyledTableCell align="left">
-        <BazaarSwitch
-          color="info"
+      <StyledTableCell align='left'>
+        <CommonSwitch
+          color='info'
           checked={productPulish}
-          onChange={() => setProductPublish((state) => !state)}
+          onChange={() => setProductPublish(state => !state)}
         />
       </StyledTableCell>
 
-      <StyledTableCell align="center">
+      <StyledTableCell align='center'>
         <StyledIconButton onClick={() => router.push(`/admin/products/${id}`)}>
           <Edit />
         </StyledIconButton>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Box, Button, styled } from "@mui/material";
-import BazaarImage from "components/BazaarImage";
+import CommonImage from "components/CommonImage";
 import { H1, H3, Paragraph } from "components/Typography"; // custom styled components
 
 const CardWrapper = styled(Box)(() => ({
@@ -34,7 +34,7 @@ const CardContent = styled(Box)(() => ({
 const BannerCard2 = ({ img, url, text1, text2, text3 }) => {
   return (
     <CardWrapper>
-      <BazaarImage alt="category" height="100%" width="100%" src={img} />
+      <CommonImage alt='category' height='100%' width='100%' src={img} />
 
       <CardContent>
         <Box>
@@ -47,7 +47,7 @@ const BannerCard2 = ({ img, url, text1, text2, text3 }) => {
 
         <Link href={url}>
           <a>
-            <Button variant="outlined" size="large" color="info">
+            <Button variant='outlined' size='large' color='info'>
               Shop Now
             </Button>
           </a>
