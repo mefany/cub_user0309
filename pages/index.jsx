@@ -31,7 +31,6 @@ const IndexPage = props => {
   // 도서 리스트 조회 API
   const getBookList = useCallback(async () => {
     const response = await api.BookList("asc");
-    console.log(response);
     setBooks(response);
   });
   useEffect(() => {

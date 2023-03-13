@@ -165,11 +165,6 @@ const navbarNavigations = [
         url: "/market-1",
       },
       {
-        title: "Market 2",
-        url: "/market-2",
-      },
-
-      {
         title: "Grocery 1",
         url: "/grocery1",
       },

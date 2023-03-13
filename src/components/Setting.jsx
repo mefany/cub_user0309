@@ -151,11 +151,6 @@ const demos = [
     path: "/market-1",
     img: "/assets/images/landing/page-1.png",
   },
-  {
-    id: 1,
-    path: "/market-2",
-    img: "/assets/images/landing/home/market-2.jpg",
-  },
 
   {
     id: 9,

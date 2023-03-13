@@ -1,7 +1,6 @@
 import products from "data/product-database";
 import { products as gadget } from "../gadget/data";
 import { products as market1 } from "../market-1/data";
-import { products as market2 } from "../market-2/data";
 import { products as healthBeauty } from "../health-beauty/data";
 import {
   relatedProducts,
@@ -14,7 +13,6 @@ const productList = [
   ...gadget,
   ...healthBeauty,
   ...market1,
-  ...market2,
   ...relatedProducts,
   ...frequentlyBoughtData,
 ]; // get unique products from prouct list
