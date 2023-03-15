@@ -12,7 +12,6 @@ import { H2, Paragraph } from "components/Typography";
 import ShopCard1 from "components/shop/ShopCard1";
 import { FlexBetween } from "components/flex-box";
 import DefaultLayout from "components/layouts/DefaultLayout";
-import api from "utils/__api__/shop";
 import axios from "axios";
 import Link from "next/link";
 
