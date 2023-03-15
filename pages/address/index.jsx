@@ -7,7 +7,7 @@ import { FlexBox } from "components/flex-box";
 import UserDashboardHeader from "components/header/UserDashboardHeader";
 import CustomerDashboardLayout from "components/layouts/customer-dashboard";
 import CustomerDashboardNavigation from "components/layouts/customer-dashboard/Navigations";
-import api from "utils/__api__/address"; // =======================================================
+// import api from "utils/__api__/address"; // =======================================================
 
 // =======================================================
 const AddressList = ({ addressList }) => {
@@ -15,7 +15,7 @@ const AddressList = ({ addressList }) => {
 
   const HEADER_BUTTON = (
     <Button
-      color="primary"
+      color='primary'
       sx={{
         bgcolor: "primary.light",
         px: 4,
@@ -25,8 +25,8 @@ const AddressList = ({ addressList }) => {
     </Button>
   ); // HANDLE ADDRESS DELETE
 
-  const handleAddressDelete = (id) => {
-    setAllAddress(allAddress.filter((item) => item.id !== id));
+  const handleAddressDelete = id => {
+    setAllAddress(allAddress.filter(item => item.id !== id));
   };
 
   return (
@@ -34,13 +34,13 @@ const AddressList = ({ addressList }) => {
       {/* TITLE HEADER AREA */}
       <UserDashboardHeader
         icon={Place}
-        title="My Addresses"
+        title='My Addresses'
         button={HEADER_BUTTON}
         navigation={<CustomerDashboardNavigation />}
       />
 
       {/* ALL ADDRESS LIST AREA */}
-      {allAddress.map((address) => (
+      {allAddress.map(address => (
         <TableRow
           sx={{
             my: 2,
@@ -48,51 +48,51 @@ const AddressList = ({ addressList }) => {
           }}
           key={address.id}
         >
-          <Typography whiteSpace="pre" m={0.75} textAlign="left">
+          <Typography whiteSpace='pre' m={0.75} textAlign='left'>
             {address.title}
           </Typography>
 
-          <Typography flex="1 1 260px !important" m={0.75} textAlign="left">
+          <Typography flex='1 1 260px !important' m={0.75} textAlign='left'>
             {`${address.street}, ${address.city}`}
           </Typography>
 
-          <Typography whiteSpace="pre" m={0.75} textAlign="left">
+          <Typography whiteSpace='pre' m={0.75} textAlign='left'>
             {address.phone}
           </Typography>
 
-          <Typography whiteSpace="pre" textAlign="center" color="grey.600">
+          <Typography whiteSpace='pre' textAlign='center' color='grey.600'>
             <Link href={`/address/${address.id}`} passHref>
               <IconButton>
-                <Edit fontSize="small" color="inherit" />
+                <Edit fontSize='small' color='inherit' />
               </IconButton>
             </Link>
 
             <IconButton
-              onClick={(e) => {
+              onClick={e => {
                 e.stopPropagation();
                 handleAddressDelete(address.id);
               }}
             >
-              <Delete fontSize="small" color="inherit" />
+              <Delete fontSize='small' color='inherit' />
             </IconButton>
           </Typography>
         </TableRow>
       ))}
 
       {/* PAGINATION AREA */}
-      <FlexBox justifyContent="center" mt={5}>
-        <Pagination count={5} onChange={(data) => console.log(data)} />
+      <FlexBox justifyContent='center' mt={5}>
+        <Pagination count={5} onChange={data => console.log(data)} />
       </FlexBox>
     </CustomerDashboardLayout>
   );
 };
 
-export const getStaticProps = async () => {
-  const addressList = await api.getAddressList();
-  return {
-    props: {
-      addressList,
-    },
-  };
-};
+// export const getStaticProps = async () => {
+//   const addressList = await api.getAddressList();
+//   return {
+//     props: {
+//       addressList,
+//     },
+//   };
+// };
 export default AddressList;

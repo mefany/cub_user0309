@@ -23,7 +23,7 @@ import CustomerDashboardLayout from "components/layouts/customer-dashboard";
 import CustomerDashboardNavigation from "components/layouts/customer-dashboard/Navigations";
 import useWindowSize from "hooks/useWindowSize";
 import { currency } from "lib";
-import api from "utils/__api__/orders"; // styled components
+// import api from "utils/__api__/orders"; // styled components
 
 const StyledFlexbox = styled(FlexBetween)(({ theme }) => ({
   flexWrap: "wrap",
@@ -56,7 +56,7 @@ const OrderDetails = ({ order }) => {
 
   const HEADER_BUTTON = (
     <Button
-      color="primary"
+      color='primary'
       sx={{
         bgcolor: "primary.light",
         px: 4,
@@ -75,7 +75,7 @@ const OrderDetails = ({ order }) => {
       {/* TITLE HEADER AREA */}
       <UserDashboardHeader
         icon={ShoppingBag}
-        title="Order Details"
+        title='Order Details'
         navigation={<CustomerDashboardNavigation />}
         button={HEADER_BUTTON}
       />
@@ -90,7 +90,7 @@ const OrderDetails = ({ order }) => {
         <StyledFlexbox>
           {stepIconList.map((Icon, ind) => (
             <Fragment key={ind}>
-              <Box position="relative">
+              <Box position='relative'>
                 <Avatar
                   sx={{
                     width: 64,
@@ -100,7 +100,7 @@ const OrderDetails = ({ order }) => {
                   }}
                 >
                   <Icon
-                    color="inherit"
+                    color='inherit'
                     sx={{
                       fontSize: "32px",
                     }}
@@ -108,7 +108,7 @@ const OrderDetails = ({ order }) => {
                 </Avatar>
 
                 {ind < statusIndex && (
-                  <Box position="absolute" right="0" top="0">
+                  <Box position='absolute' right='0' top='0'>
                     <Avatar
                       sx={{
                         width: 22,
@@ -118,7 +118,7 @@ const OrderDetails = ({ order }) => {
                       }}
                     >
                       <Done
-                        color="inherit"
+                        color='inherit'
                         sx={{
                           fontSize: "1rem",
                         }}
@@ -130,7 +130,7 @@ const OrderDetails = ({ order }) => {
 
               {ind < stepIconList.length - 1 && (
                 <Box
-                  className="line"
+                  className='line'
                   bgcolor={ind < statusIndex ? "primary.main" : "grey.300"}
                 />
               )}
@@ -140,11 +140,11 @@ const OrderDetails = ({ order }) => {
 
         <FlexBox justifyContent={width < breakpoint ? "center" : "flex-end"}>
           <Typography
-            p="0.5rem 1rem"
-            textAlign="center"
-            borderRadius="300px"
-            color="primary.main"
-            bgcolor="primary.light"
+            p='0.5rem 1rem'
+            textAlign='center'
+            borderRadius='300px'
+            color='primary.main'
+            bgcolor='primary.light'
           >
             Estimated Delivery Date <b>4th October</b>
           </Typography>
@@ -166,16 +166,16 @@ const OrderDetails = ({ order }) => {
             bgcolor: "grey.200",
           }}
         >
-          <FlexBox className="pre" m={0.75} alignItems="center">
-            <Typography fontSize={14} color="grey.600" mr={0.5}>
+          <FlexBox className='pre' m={0.75} alignItems='center'>
+            <Typography fontSize={14} color='grey.600' mr={0.5}>
               Order ID:
             </Typography>
 
             <Typography fontSize={14}>{order.id}</Typography>
           </FlexBox>
 
-          <FlexBox className="pre" m={0.75} alignItems="center">
-            <Typography fontSize={14} color="grey.600" mr={0.5}>
+          <FlexBox className='pre' m={0.75} alignItems='center'>
+            <Typography fontSize={14} color='grey.600' mr={0.5}>
               Placed on:
             </Typography>
 
@@ -184,8 +184,8 @@ const OrderDetails = ({ order }) => {
             </Typography>
           </FlexBox>
 
-          <FlexBox className="pre" m={0.75} alignItems="center">
-            <Typography fontSize={14} color="grey.600" mr={0.5}>
+          <FlexBox className='pre' m={0.75} alignItems='center'>
+            <Typography fontSize={14} color='grey.600' mr={0.5}>
               Delivered on:
             </Typography>
 
@@ -200,11 +200,11 @@ const OrderDetails = ({ order }) => {
             <FlexBox
               px={2}
               py={1}
-              flexWrap="wrap"
-              alignItems="center"
+              flexWrap='wrap'
+              alignItems='center'
               key={ind}
             >
-              <FlexBox flex="2 2 260px" m={0.75} alignItems="center">
+              <FlexBox flex='2 2 260px' m={0.75} alignItems='center'>
                 <Avatar
                   src={item.product_img}
                   sx={{
@@ -213,23 +213,23 @@ const OrderDetails = ({ order }) => {
                   }}
                 />
                 <Box ml={2.5}>
-                  <H6 my="0px">{item.product_name}</H6>
+                  <H6 my='0px'>{item.product_name}</H6>
 
-                  <Typography fontSize="14px" color="grey.600">
+                  <Typography fontSize='14px' color='grey.600'>
                     {currency(item.product_price)} x {item.product_quantity}
                   </Typography>
                 </Box>
               </FlexBox>
 
-              <FlexBox flex="1 1 260px" m={0.75} alignItems="center">
-                <Typography fontSize="14px" color="grey.600">
+              <FlexBox flex='1 1 260px' m={0.75} alignItems='center'>
+                <Typography fontSize='14px' color='grey.600'>
                   Product properties: Black, L
                 </Typography>
               </FlexBox>
 
-              <FlexBox flex="160px" m={0.75} alignItems="center">
-                <Button variant="text" color="primary">
-                  <Typography fontSize="14px">Write a Review</Typography>
+              <FlexBox flex='160px' m={0.75} alignItems='center'>
+                <Button variant='text' color='primary'>
+                  <Typography fontSize='14px'>Write a Review</Typography>
                 </Button>
               </FlexBox>
             </FlexBox>
@@ -266,27 +266,27 @@ const OrderDetails = ({ order }) => {
             </H5>
 
             <FlexBetween mb={1}>
-              <Typography fontSize={14} color="grey.600">
+              <Typography fontSize={14} color='grey.600'>
                 Subtotal:
               </Typography>
 
-              <H6 my="0px">{currency(order.totalPrice)}</H6>
+              <H6 my='0px'>{currency(order.totalPrice)}</H6>
             </FlexBetween>
 
             <FlexBetween mb={1}>
-              <Typography fontSize={14} color="grey.600">
+              <Typography fontSize={14} color='grey.600'>
                 Shipping fee:
               </Typography>
 
-              <H6 my="0px">{currency(0)}</H6>
+              <H6 my='0px'>{currency(0)}</H6>
             </FlexBetween>
 
             <FlexBetween mb={1}>
-              <Typography fontSize={14} color="grey.600">
+              <Typography fontSize={14} color='grey.600'>
                 Discount:
               </Typography>
 
-              <H6 my="0px">{currency(order.discount)}</H6>
+              <H6 my='0px'>{currency(order.discount)}</H6>
             </FlexBetween>
 
             <Divider
@@ -296,8 +296,8 @@ const OrderDetails = ({ order }) => {
             />
 
             <FlexBetween mb={2}>
-              <H6 my="0px">Total</H6>
-              <H6 my="0px">{currency(order.totalPrice)}</H6>
+              <H6 my='0px'>Total</H6>
+              <H6 my='0px'>{currency(order.totalPrice)}</H6>
             </FlexBetween>
 
             <Typography fontSize={14}>Paid by Credit/Debit Card</Typography>
@@ -308,20 +308,20 @@ const OrderDetails = ({ order }) => {
   );
 };
 
-export const getStaticPaths = async () => {
-  const paths = await api.getIds();
-  return {
-    paths: paths,
-    //indicates that no page needs be created at build time
-    fallback: "blocking", //indicates the type of fallback
-  };
-};
-export const getStaticProps = async ({ params }) => {
-  const order = await api.getOrder(String(params.id));
-  return {
-    props: {
-      order,
-    },
-  };
-};
+// export const getStaticPaths = async () => {
+//   const paths = await api.getIds();
+//   return {
+//     paths: paths,
+//     //indicates that no page needs be created at build time
+//     fallback: "blocking", //indicates the type of fallback
+//   };
+// };
+// export const getStaticProps = async ({ params }) => {
+//   const order = await api.getOrder(String(params.id));
+//   return {
+//     props: {
+//       order,
+//     },
+//   };
+// };
 export default OrderDetails;

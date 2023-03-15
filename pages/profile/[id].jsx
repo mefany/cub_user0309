@@ -12,7 +12,7 @@ import { FlexBox } from "components/flex-box";
 import UserDashboardHeader from "components/header/UserDashboardHeader";
 import CustomerDashboardLayout from "components/layouts/customer-dashboard";
 import CustomerDashboardNavigation from "components/layouts/customer-dashboard/Navigations";
-import api from "utils/__api__/users";
+// import api from "utils/__api__/users";
 
 // ===========================================================
 const ProfileEditor = ({ user }) => {
@@ -32,14 +32,14 @@ const ProfileEditor = ({ user }) => {
     birth_date: yup.date().required("invalid date"),
   });
 
-  const handleFormSubmit = async (values) => {
+  const handleFormSubmit = async values => {
     console.log(values);
   }; // SECTION TITLE HEADER LINK
 
   const HEADER_LINK = (
-    <Link href="/profile" passHref>
+    <Link href='/profile' passHref>
       <Button
-        color="primary"
+        color='primary'
         sx={{
           px: 4,
           bgcolor: "primary.light",
@@ -59,16 +59,16 @@ const ProfileEditor = ({ user }) => {
       {/* TITLE HEADER AREA */}
       <UserDashboardHeader
         icon={Person}
-        title="Edit Profile"
+        title='Edit Profile'
         button={HEADER_LINK}
         navigation={<CustomerDashboardNavigation />}
       />
 
       {/* PROFILE EDITOR FORM */}
       <Card1>
-        <FlexBox alignItems="flex-end" mb={3}>
+        <FlexBox alignItems='flex-end' mb={3}>
           <Avatar
-            src="/assets/images/faces/ralph.png"
+            src='/assets/images/faces/ralph.png'
             sx={{
               height: 64,
               width: 64,
@@ -76,10 +76,10 @@ const ProfileEditor = ({ user }) => {
           />
 
           <Box ml={-2.5}>
-            <label htmlFor="profile-image">
+            <label htmlFor='profile-image'>
               <Button
-                component="span"
-                color="secondary"
+                component='span'
+                color='secondary'
                 sx={{
                   p: "8px",
                   height: "auto",
@@ -87,17 +87,17 @@ const ProfileEditor = ({ user }) => {
                   borderRadius: "50%",
                 }}
               >
-                <CameraEnhance fontSize="small" />
+                <CameraEnhance fontSize='small' />
               </Button>
             </label>
           </Box>
 
-          <Box display="none">
+          <Box display='none'>
             <input
-              onChange={(e) => console.log(e.target.files)}
-              id="profile-image"
-              accept="image/*"
-              type="file"
+              onChange={e => console.log(e.target.files)}
+              id='profile-image'
+              accept='image/*'
+              type='file'
             />
           </Box>
         </FlexBox>
@@ -122,8 +122,8 @@ const ProfileEditor = ({ user }) => {
                   <Grid item md={6} xs={12}>
                     <TextField
                       fullWidth
-                      name="first_name"
-                      label="First Name"
+                      name='first_name'
+                      label='First Name'
                       onBlur={handleBlur}
                       onChange={handleChange}
                       value={values.first_name}
@@ -135,8 +135,8 @@ const ProfileEditor = ({ user }) => {
                   <Grid item md={6} xs={12}>
                     <TextField
                       fullWidth
-                      name="last_name"
-                      label="Last Name"
+                      name='last_name'
+                      label='Last Name'
                       onBlur={handleBlur}
                       onChange={handleChange}
                       value={values.last_name}
@@ -148,9 +148,9 @@ const ProfileEditor = ({ user }) => {
                   <Grid item md={6} xs={12}>
                     <TextField
                       fullWidth
-                      name="email"
-                      type="email"
-                      label="Email"
+                      name='email'
+                      type='email'
+                      label='Email'
                       onBlur={handleBlur}
                       value={values.email}
                       onChange={handleChange}
@@ -162,8 +162,8 @@ const ProfileEditor = ({ user }) => {
                   <Grid item md={6} xs={12}>
                     <TextField
                       fullWidth
-                      label="Phone"
-                      name="contact"
+                      label='Phone'
+                      name='contact'
                       onBlur={handleBlur}
                       value={values.contact}
                       onChange={handleChange}
@@ -175,14 +175,14 @@ const ProfileEditor = ({ user }) => {
                   <Grid item md={6} xs={12}>
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                       <DatePicker
-                        label="Birth Date"
+                        label='Birth Date'
                         maxDate={new Date()}
                         value={values.birth_date}
-                        inputFormat="dd MMMM, yyyy"
-                        renderInput={(props) => (
+                        inputFormat='dd MMMM, yyyy'
+                        renderInput={props => (
                           <TextField
                             fullWidth
-                            size="small"
+                            size='small'
                             helperText={touched.birth_date && errors.birth_date}
                             error={
                               (!!touched.birth_date && !!errors.birth_date) ||
@@ -191,7 +191,7 @@ const ProfileEditor = ({ user }) => {
                             {...props}
                           />
                         )}
-                        onChange={(newValue) =>
+                        onChange={newValue =>
                           setFieldValue("birth_date", newValue)
                         }
                       />
@@ -200,7 +200,7 @@ const ProfileEditor = ({ user }) => {
                 </Grid>
               </Box>
 
-              <Button type="submit" variant="contained" color="primary">
+              <Button type='submit' variant='contained' color='primary'>
                 Save Changes
               </Button>
             </form>
@@ -211,20 +211,20 @@ const ProfileEditor = ({ user }) => {
   );
 };
 
-export const getStaticPaths = async () => {
-  const paths = await api.getUserIds();
-  return {
-    paths: paths,
-    //indicates that no page needs be created at build time
-    fallback: "blocking", //indicates the type of fallback
-  };
-};
-export const getStaticProps = async () => {
-  const user = await api.getUser();
-  return {
-    props: {
-      user,
-    },
-  };
-};
+// export const getStaticPaths = async () => {
+//   const paths = await api.getUserIds();
+//   return {
+//     paths: paths,
+//     //indicates that no page needs be created at build time
+//     fallback: "blocking", //indicates the type of fallback
+//   };
+// };
+// export const getStaticProps = async () => {
+//   const user = await api.getUser();
+//   return {
+//     props: {
+//       user,
+//     },
+//   };
+// };
 export default ProfileEditor;

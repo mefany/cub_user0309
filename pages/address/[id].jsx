@@ -7,7 +7,7 @@ import Card1 from "components/Card1";
 import UserDashboardHeader from "components/header/UserDashboardHeader";
 import CustomerDashboardLayout from "components/layouts/customer-dashboard";
 import CustomerDashboardNavigation from "components/layouts/customer-dashboard/Navigations";
-import api from "utils/__api__/address"; // =============================================================
+// import api from "utils/__api__/address"; // =============================================================
 
 // =============================================================
 const AddressEditor = ({ address }) => {
@@ -22,14 +22,14 @@ const AddressEditor = ({ address }) => {
     contact: yup.string().required("required"),
   }); // handle form submit
 
-  const handleFormSubmit = async (values) => {
+  const handleFormSubmit = async values => {
     console.log(values);
   }; // SECTION TITLE HEADER LINK
 
   const HEADER_LINK = (
-    <Link href="/address" passHref>
+    <Link href='/address' passHref>
       <Button
-        color="primary"
+        color='primary'
         sx={{
           bgcolor: "primary.light",
           px: 4,
@@ -45,7 +45,7 @@ const AddressEditor = ({ address }) => {
       <UserDashboardHeader
         icon={Place}
         button={HEADER_LINK}
-        title="Edit Address"
+        title='Edit Address'
         navigation={<CustomerDashboardNavigation />}
       />
 
@@ -70,8 +70,8 @@ const AddressEditor = ({ address }) => {
                   <Grid item md={6} xs={12}>
                     <TextField
                       fullWidth
-                      name="name"
-                      label="Name"
+                      name='name'
+                      label='Name'
                       onBlur={handleBlur}
                       value={values.name}
                       onChange={handleChange}
@@ -83,9 +83,9 @@ const AddressEditor = ({ address }) => {
                   <Grid item md={6} xs={12}>
                     <TextField
                       fullWidth
-                      name="address"
+                      name='address'
                       onBlur={handleBlur}
-                      label="Address Line"
+                      label='Address Line'
                       value={values.address}
                       onChange={handleChange}
                       error={!!touched.address && !!errors.address}
@@ -96,8 +96,8 @@ const AddressEditor = ({ address }) => {
                   <Grid item md={6} xs={12}>
                     <TextField
                       fullWidth
-                      label="Phone"
-                      name="contact"
+                      label='Phone'
+                      name='contact'
                       onBlur={handleBlur}
                       value={values.contact}
                       onChange={handleChange}
@@ -108,7 +108,7 @@ const AddressEditor = ({ address }) => {
                 </Grid>
               </Box>
 
-              <Button type="submit" variant="contained" color="primary">
+              <Button type='submit' variant='contained' color='primary'>
                 Save Changes
               </Button>
             </form>
@@ -119,20 +119,20 @@ const AddressEditor = ({ address }) => {
   );
 };
 
-export const getStaticPaths = async () => {
-  const paths = await api.getIds();
-  return {
-    paths: paths,
-    //indicates that no page needs be created at build time
-    fallback: "blocking", //indicates the type of fallback
-  };
-};
-export const getStaticProps = async ({ params }) => {
-  const address = await api.getAddress(String(params.id));
-  return {
-    props: {
-      address,
-    },
-  };
-};
+// export const getStaticPaths = async () => {
+//   const paths = await api.getIds();
+//   return {
+//     paths: paths,
+//     //indicates that no page needs be created at build time
+//     fallback: "blocking", //indicates the type of fallback
+//   };
+// };
+// export const getStaticProps = async ({ params }) => {
+//   const address = await api.getAddress(String(params.id));
+//   return {
+//     props: {
+//       address,
+//     },
+//   };
+// };
 export default AddressEditor;
