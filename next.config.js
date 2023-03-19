@@ -2,17 +2,7 @@ module.exports = {
   reactStrictMode: true,
   env: {
     DEV_API: "https://i9nwbiqoc6.execute-api.ap-northeast-2.amazonaws.com",
-    // IMG_URL: "https://rider.yanadoocdn.com"
   },
-  // async rewrites() {
-  //   return [
-  //     {
-  //       source: "/test",
-  //       destination:
-  //         "https://i9nwbiqoc6.execute-api.ap-northeast-2.amazonaws.com/test/:path*",
-  //     },
-  //   ];
-  // },
   images: {
     domains: ["image.yes24.com", "wimg.mk.co.kr", "shopping-phinf.pstatic.net"],
   },

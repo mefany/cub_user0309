@@ -2,7 +2,7 @@ import { Container, Grid } from "@mui/material";
 import BookCard from "components/product-cards/BookCard";
 import CategorySectionHeader from "components/CategorySectionHeader";
 // ====================================================
-const Section11 = ({ moreItems, title }) => {
+const GridBookSection = ({ books, title }) => {
   return (
     <Container
       sx={{
@@ -12,7 +12,7 @@ const Section11 = ({ moreItems, title }) => {
       <CategorySectionHeader title={title || "신규도서"} />
 
       <Grid container spacing={3}>
-        {moreItems.map(item => (
+        {books && books.map(item => (
           <Grid item lg={2} md={3} sm={4} xs={6} key={item.trade_uid}>
             <BookCard
               hoverEffect
@@ -31,4 +31,4 @@ const Section11 = ({ moreItems, title }) => {
   );
 };
 
-export default Section11;
+export default GridBookSection;

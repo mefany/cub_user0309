@@ -1,15 +1,11 @@
 import { useRouter } from "next/router";
-import { useState, useEffect, useCallback } from "react";
-import { Container, Grid, IconButton, useMediaQuery } from "@mui/material";
-import FilterList from "@mui/icons-material/FilterList";
+import { useState, useEffect } from "react";
+import { H2 } from "components/Typography";
+import { Container, Grid } from "@mui/material";
 import DefaultLayout from "components/layouts/DefaultLayout";
 import GridBookSection from "pages-sections/books/GridBookSection";
-
-import ProductCardList from "components/products/ProductCard1List";
-import ProductFilterCard from "components/products/ProductFilterCard";
 import ShopIntroCard from "components/shop/ShopIntroCard";
-import axios from "axios";
-import Sidenav from "components/sidenav/Sidenav";
+import api from "api/cubApi";
 
 // ============================================================
 const ShopDetails = () => {
@@ -19,41 +15,24 @@ const ShopDetails = () => {
 
   useEffect(() => {
     if (!router.isReady) return;
-
-    // codes using router.query
     getShopInfo(router.query.id);
     getShopBooks(router.query.id);
   }, [router]);
 
-  const getShopInfo = useCallback(async query => {
-    const res = await axios.get(
-      `https://i9nwbiqoc6.execute-api.ap-northeast-2.amazonaws.com/test/shop/${query}`
-    );
-    setShop(res.data[0]);
-  });
+  const getShopInfo = async query => {
+    const response = await api.ShopInfo(query);
+    setShop(response);
+  };
 
-  const getShopBooks = useCallback(async query => {
-    const res = await axios.get(
-      `https://i9nwbiqoc6.execute-api.ap-northeast-2.amazonaws.com/test/trade?shop=${query}`
-    );
-    if (res.status === 200) {
-      setShopBooks(res.data);
-    }
-  });
+  const getShopBooks = async query => {
+    const response = await api.BookListByShop(query);
+    setShopBooks(response)
+  };
 
   if (router.isFallback) {
     return <h1>Loading...</h1>;
   }
 
-  const ICON_BUTTON = (
-    <IconButton
-      sx={{
-        float: "right",
-      }}
-    >
-      <FilterList fontSize='small' />
-    </IconButton>
-  );
   return (
     <DefaultLayout>
       <Container
@@ -74,9 +53,9 @@ const ShopDetails = () => {
         <Grid container spacing={3}>
           <Grid item md={12} xs={12}>
             {/* PRODUCT LIST AREA */}
-            {shopBooks && (
-              <GridBookSection moreItems={shopBooks} title={"매장 보유 도서"} />
-            )}
+            {shopBooks && shopBooks.length !== 0 ? (
+              <GridBookSection books={shopBooks} title={"매장 보유 도서"} />
+            ) : (<H2>매장에서 판매중인 책이 없습니다.</H2>)}
           </Grid>
         </Grid>
       </Container>

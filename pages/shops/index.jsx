@@ -1,27 +1,25 @@
-import {
-  Container,
-  Grid,
-  Pagination,
-  Box,
-  Card,
-  MenuItem,
-  TextField,
-} from "@mui/material";
+import { useEffect, useState } from "react";
+import { Container, Grid, Card, MenuItem, TextField, } from "@mui/material";
 import { FlexBox } from "components/flex-box";
 import { H2, Paragraph } from "components/Typography";
 import ShopCard1 from "components/shop/ShopCard1";
-import { FlexBetween } from "components/flex-box";
 import DefaultLayout from "components/layouts/DefaultLayout";
-import axios from "axios";
-import Link from "next/link";
+import api from "api/cubApi";
 
 // =============================================
 const ShopList = ({ shops }) => {
-  fetch(`https://i9nwbiqoc6.execute-api.ap-northeast-2.amazonaws.com/test/shop`)
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-    });
+  const [stores, setStore] = useState([]);
+
+  // 매장 리스트 조회 
+  const getStoreList = (async () => {
+    const response = await api.StoreList();
+    setStore(response);
+  });
+
+  useEffect(() => {
+    getStoreList();
+  }, []);
+
 
   const handleOnChange = e => {
     if (e.target.value !== "latest") {
@@ -92,7 +90,7 @@ const ShopList = ({ shops }) => {
 
         {/* ALL SHOP LIST AREA */}
         <Grid container spacing={3}>
-          {shops.map(item => (
+          {stores.map(item => (
             <Grid item lg={4} sm={6} xs={12} key={item.shop_uid}>
               <ShopCard1
                 name={item.shop_name}
@@ -106,32 +104,9 @@ const ShopList = ({ shops }) => {
             </Grid>
           ))}
         </Grid>
-
-        {/* PAGINTAION AREA */}
-        {/* <FlexBetween flexWrap="wrap" mt={4}>
-          <Span color="grey.600">Showing 1-9 of 300 Shops</Span>
-          <Pagination
-            count={shops.length}
-            variant="outlined"
-            color="primary"
-          />
-        </FlexBetween> */}
       </Container>
     </DefaultLayout>
   );
-};
-
-export const getStaticProps = async () => {
-  const res2 = await axios.get(
-    "https://i9nwbiqoc6.execute-api.ap-northeast-2.amazonaws.com/test/shop"
-  );
-  const shops = await res2.data;
-
-  return {
-    props: {
-      shops,
-    },
-  };
 };
 
 const sortOptions = [

@@ -53,7 +53,7 @@ const IndexPage = () => {
       <CarouselBanner carouselData={mainCarouselData} />
 
       {/* newBooks */}
-      <GridBookSection moreItems={books} />
+      <GridBookSection books={books} />
 
       {/* StoreList */}
       <GridShopSection shops={stores} />

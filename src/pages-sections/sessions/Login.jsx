@@ -5,13 +5,11 @@ import Link from "next/link";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import { H1, H6 } from "components/Typography";
-import CommonImage from "components/CommonImage";
 import CommonTextField from "components/CommonTextField";
-import SocialButtons from "./SocialButtons";
 import EyeToggleButton from "./EyeToggleButton";
 import { FlexBox, FlexRowCenter } from "components/flex-box";
 import { useRouter } from "next/router";
-import axios from "axios";
+import api from "api/cubApi";
 
 const fbStyle = {
   background: "#3B5998",
@@ -56,7 +54,6 @@ const Login = () => {
   }, []);
 
   useEffect(() => {
-    // authContext.isLoggedIn ? redirect() : setLoading(true);
     if (sessionStorage.getItem("token") !== null) {
       redirect();
     } else {
@@ -71,79 +68,35 @@ const Login = () => {
   };
 
   const handleFormSubmit = async values => {
-    console.log(values);
     sendForm(values);
   };
 
-  function loginFormWithKakao() {
-    Kakao.Auth.loginForm({
-      success(authObj) {
-        getKakao(authObj.access_token);
-      },
-      fail(err) {
-        console.log(err);
-      },
-    });
-  }
-
-  function kakaoLogin() {
-    console.log("kakaoLogin");
-    reqKakaoLogin();
-    // Kakao.Auth.authorize({
-    //   redirectUri: "http://localhost:3000/kakao",
-    // });
-  }
-
   const reqKakaoLogin = async () => {
-    await axios
-      .post(
-        `https://i9nwbiqoc6.execute-api.ap-northeast-2.amazonaws.com/test/login/kakao`,
-        {}
-      )
+    await api.KakaoLogin({
+    })
       .then(response => {
-        console.log(response.data);
-        location.href = response.data;
-        // const { data } = response.data
-
-        // redirect(response.data)
-        // if (response.status === 200) {
-        //   sessionStorage.setItem("token", data[0].token);
-        //   sessionStorage.setItem("user_uid", data[0].user_uid);
-        //   redirect();
-        // }
+        location.href = response;
       })
       .catch(error => {
-        // console.log(error);
-        // if (error.response.status === 401) {
-        //   alert("이메일 주소 또는 비밀번호를 확인해주세요.");
-        // }
+        console.log(error);
       });
   };
 
   const sendForm = async values => {
-    await axios
-      .post(
-        `https://i9nwbiqoc6.execute-api.ap-northeast-2.amazonaws.com/test/login/`,
-        {
-          user_id: values.email,
-          password: values.password,
-          logout: false,
-        }
-      )
+    await api.Login({
+      user_id: values.email,
+      password: values.password,
+      logout: false,
+    })
       .then(response => {
-        console.log(response);
-        const { data } = response;
-        if (response.status === 200) {
-          sessionStorage.setItem("token", data.token);
-          sessionStorage.setItem("user_uid", data.user_uid);
-          authContext.onLogin();
-          redirect();
-        }
+        sessionStorage.setItem("token", response.token);
+        sessionStorage.setItem("user_uid", response.user_uid);
+        authContext.onLogin();
+        redirect();
       })
       .catch(error => {
         console.log(error);
         alert("이메일 주소 또는 비밀번호를 확인해주세요.");
-
       });
   };
 
@@ -170,13 +123,13 @@ const Login = () => {
           로그인 후 컵컵의 서비스를 만나보세요.
         </H1>
 
-        <a onClick={kakaoLogin}>
+        {/* <a onClick={kakaoLogin}>
           <img
             src='https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg'
             width='100%'
             alt='카카오 로그인 버튼'
           />
-        </a>
+        </a> */}
 
         <CommonTextField
           mb={1.5}
@@ -231,8 +184,19 @@ const Login = () => {
           로그인
         </Button>
       </form>
-
-      {/* <SocialButtons /> */}
+      <Button
+        onClick={reqKakaoLogin}
+        fullWidth
+        variant='contained'
+        sx={{
+          marginTop: '10px',
+          backgroundColor: "#F9e000",
+          color: '#000',
+          height: 44,
+        }}
+      >
+        카카오 로그인
+      </Button>
 
       <FlexRowCenter mt='1.25rem'>
         <Box>아직 회원이 아니신가요?</Box>

@@ -1,12 +1,7 @@
 import { Call, Place } from "@mui/icons-material";
 import { Avatar, Box, Button, Card, Rating } from "@mui/material";
 import { FlexBetween, FlexBox } from "components/flex-box";
-import FacebookFilled from "components/icons/FacebookFilled";
-import InstagramFilled from "components/icons/InstagramFilled";
-import TwitterFilled from "components/icons/TwitterFilled";
-import YoutubeFilled from "components/icons/YoutubeFilled";
-import { H3, Small, Span } from "components/Typography"; // =======================================================
-
+import { H3, Small, Span } from "components/Typography";
 // =======================================================
 const ShopIntroCard = (props) => {
   const { name, phone, address, coverPicture, profilePicture } = props;
@@ -57,23 +52,6 @@ const ShopIntroCard = (props) => {
                 {name}
               </H3>
             </Box>
-
-            {/* <FlexBox my={1} gap={1.5}>
-              {socialLinks.map((item, ind) => (
-                <a
-                  href={item.url}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  key={ind}
-                >
-                  <item.icon
-                    sx={{
-                      fontSize: 27,
-                    }}
-                  />
-                </a>
-              ))}
-            </FlexBox> */}
           </FlexBetween>
 
           <FlexBetween flexWrap="wrap">
@@ -108,17 +86,15 @@ const ShopIntroCard = (props) => {
               </FlexBox>
             </Box>
 
-            <a href="mailto:scarletbeauty@xmail.com">
-              <Button
-                variant="outlined"
-                color="primary"
-                sx={{
-                  my: 1.5,
-                }}
-              >
-                지도 보기
-              </Button>
-            </a>
+            {/* <Button
+              variant="outlined"
+              color="primary"
+              sx={{
+                my: 1.5,
+              }}
+            >
+              지도 보기
+            </Button> */}
           </FlexBetween>
         </Box>
       </FlexBox>
@@ -126,22 +102,4 @@ const ShopIntroCard = (props) => {
   );
 };
 
-const socialLinks = [
-  {
-    icon: FacebookFilled,
-    url: "https://facebook.com",
-  },
-  {
-    icon: TwitterFilled,
-    url: "https://twitter.com",
-  },
-  {
-    icon: YoutubeFilled,
-    url: "https://youtube.com",
-  },
-  {
-    icon: InstagramFilled,
-    url: "https://instagram.com",
-  },
-];
 export default ShopIntroCard;
