@@ -31,6 +31,7 @@ const ProductDetails = () => {
   const [reviews, setReviews] = useState(null);
   const [reviewCount, setReviewCount] = useState(0);
   const [relatedBook, setRelatedBook] = useState(null);
+  const [relatedShop, setRelatedShop] = useState(null);
   const [bookingUser, setBookingUser] = useState(null);
 
   useEffect(() => {
@@ -38,6 +39,7 @@ const ProductDetails = () => {
     getBookById(router.query.id);
     getBookingUser(router.query.id);
     getReviews(router.query.id);
+    getShopListByBook(router.query.id)
   }, [router]);
 
   useEffect(() => {
@@ -70,6 +72,12 @@ const ProductDetails = () => {
   const getBookingUser = async trade_uid => {
     const response = await api.BookingUser(trade_uid);
     setBookingUser(response)
+  };
+
+  //해당 도서를 보유하고 있는 매장
+  const getShopListByBook = async trade_uid => {
+    const response = await api.ShopListByBook(trade_uid);
+    setRelatedShop(response);
   };
 
   return (
@@ -107,7 +115,7 @@ const ProductDetails = () => {
         </Box>
 
         {relatedBook && <AvailableBooks data={relatedBook} />}
-        <AvailableShops />
+        {relatedShop && <AvailableShops data={relatedShop} />}
       </Container>
     </DefaultLayout>
   );

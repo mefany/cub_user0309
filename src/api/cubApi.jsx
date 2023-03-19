@@ -165,6 +165,16 @@ const BookListByShop = async uid => {
   const response = await axios(config);
   return response.data.data;
 };
+
+//해당 도서를 보유하고 있는 매장
+const ShopListByBook = async uid => {
+  const config = {
+    method: "get",
+    url: `${process.env.DEV_API}/test/shop?book_uid=${uid}`,
+  };
+  const response = await axios(config);
+  return response.data;
+};
 //----------- 유저 API ----------------//
 const UserInfo = async uid => {
   const config = {
@@ -200,6 +210,7 @@ export default {
   StoreList,
   ShopInfo,
   BookListByShop,
+  ShopListByBook,
   UserBookInfo,
   UserInfo,
   BookingUser,

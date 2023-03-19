@@ -10,7 +10,7 @@ const RelatedProducts = ({ data }) => {
 
   return (
     <Box mb={7.5}>
-      <H3 mb={3}>동일 상품</H3>
+      {data.length !== 0 && <H3 mb={3}>동일 상품</H3>}
       <Grid container spacing={3}>
         {data ? data.map((item, ind) => (
           <Grid item lg={2} md={2} sm={6} xs={6} key={ind}>
