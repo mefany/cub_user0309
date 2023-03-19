@@ -51,15 +51,15 @@ const My = () => {
 
   useEffect(() => {
     user_id = sessionStorage.getItem("user_uid")
-    getUserInfo(15, 0)
+    getUserBookInfo(15, 0)
   }, []);
 
   useEffect(() => {
-    getUserInfo(15, start)
+    getUserBookInfo(15, start)
   }, [start]);
 
-  const getUserInfo = async (user_uid, start) => {
-    const response = await api.UserInfo(user_uid, start);
+  const getUserBookInfo = async (user_uid, start) => {
+    const response = await api.UserBookInfo(user_uid, start);
     setData(response.data);
     setTotalPage(Math.ceil(response.total / 10))
   }

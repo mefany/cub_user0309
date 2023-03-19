@@ -29,7 +29,6 @@ const ProductDetails = () => {
   const handleOptionClick = (_, value) => setSelectedOption(value); // Show a loading state when the fallback is rendered
   const [book, setBook] = useState(null);
   const [relatedBook, setRelatedBook] = useState(null);
-  const [isLoading, setLoading] = useState(false);
   const [bookingUser, setBookingUser] = useState(null);
 
   useEffect(() => {

@@ -110,12 +110,12 @@ const linkList = [
         icon: Person,
         count: 3,
       },
-      {
-        href: "/address",
-        title: "단골매장",
-        icon: Place,
-        count: 16,
-      },
+      // {
+      //   href: "/address",
+      //   title: "단골매장",
+      //   icon: Place,
+      //   count: 16,
+      // },
       // {
       //   href: "/payment-methods",
       //   title: "Payment Methods",

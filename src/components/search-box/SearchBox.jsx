@@ -25,7 +25,7 @@ const SearchBox = () => {
     const title = searchText;
     if (searchText !== "") {
       router.push({
-        pathname: "/product/search",
+        pathname: "/search",
         query: {
           title: title,
         },
@@ -85,7 +85,7 @@ const SearchBox = () => {
       />
 
       {resultList.length > 0 && (
-        <Link href={`/product/search/`} passHref></Link>
+        <Link href={`/search`} passHref></Link>
       )}
     </Box>
   );

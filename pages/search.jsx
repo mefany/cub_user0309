@@ -4,7 +4,7 @@ import { FlexBox } from "components/flex-box";
 import { H5, Paragraph } from "components/Typography";
 import DefaultLayout from "components/layouts/DefaultLayout";
 import { useRouter } from "next/router";
-import axios from "axios";
+import api from "api/cubApi";
 import BookCard from "components/product-cards/BookCard";
 
 const ProductSearchResult = () => {
@@ -25,15 +25,8 @@ const ProductSearchResult = () => {
   }, [query]);
 
   const getSearchBooks = async query => {
-    const res = await axios.get(
-      `https://i9nwbiqoc6.execute-api.ap-northeast-2.amazonaws.com/test/trade?title=${query}`
-    );
-    const books = await res.data;
-    if (!books.length) {
-      setResultList([]);
-    } else {
-      setResultList(books);
-    }
+    const response = await api.SearchBook(query);
+    setResultList(response);
   };
 
   const handleOnChange = e => {
@@ -114,7 +107,7 @@ const ProductSearchResult = () => {
         <Grid container spacing={3}>
           {resultList ? (
             resultList.map((item, ind) => (
-              <Grid item lg={3} md={3} sm={6} xs={6} key={ind}>
+              <Grid item lg={2} md={2} sm={6} xs={6} key={ind}>
                 <BookCard
                   hoverEffect
                   shop_name={item.shop_name}
