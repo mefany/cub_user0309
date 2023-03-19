@@ -9,9 +9,9 @@ import UserDashboardHeader from "components/header/UserDashboardHeader";
 import CustomerDashboardLayout from "components/layouts/customer-dashboard";
 import CustomerDashboardNavigation from "components/layouts/customer-dashboard/Navigations";
 import { withAuth } from "../../hocs/withAuth ";
-import axios from "axios";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import api from "api/cubApi";
 
 const bookCard = {
   book_uid: null,
@@ -57,7 +57,7 @@ const ProfileEditor = () => {
 
   const handleIsbnSubmit = () => {
     if (isbn !== '') {
-      getBookByIsbn(isbn);
+      getIsbnBooks(isbn)
     }
   };
 
@@ -65,55 +65,25 @@ const ProfileEditor = () => {
     setIsbn(e.target.value)
   }
 
-  const getBookByIsbn = async (isbn) => {
-    await axios
-      .get(
-        `https://i9nwbiqoc6.execute-api.ap-northeast-2.amazonaws.com/test/isbn?isbn=${isbn}`
-      )
-      .then((response) => {
-        console.log(response.data.items[0]);
-        if (response.data.items[0] !== undefined) {
-          console.log(response.data.items[0])
-          setBookInfo(response.data.items[0])
-          postNewBook({ ...response.data.items[0], isbn: isbn })
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  //isbn 조회
+  const getIsbnBooks = (async (isbn) => {
+    const response = await api.FindBookByIsbn(isbn);
+    setBookInfo(response)
+    postNewBook({ ...response, isbn: isbn })
+  });
 
+  //신규 도서 등록
   const postNewBook = async (obj) => {
-    await axios
-      .post(
-        `https://i9nwbiqoc6.execute-api.ap-northeast-2.amazonaws.com/test/book`,
-        obj
-      )
-      .then((response) => {
-        if (response.status === 200) {
-          bookCard.book_uid = response.data
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const response = await api.NewBook(obj);
+    bookCard.book_uid = response
   };
 
-  const postNewTrade = async () => {
-    await axios
-      .post(
-        `https://i9nwbiqoc6.execute-api.ap-northeast-2.amazonaws.com/test/trade`,
-        bookCard
-      )
-      .then((response) => {
-        if (response.status === 200) {
-          alert('정상 등록되었습니다.')
-          router.push("/my");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const postNewTrade = async (newObj) => {
+    const response = await api.NewTrade(newObj);
+    if (response === 200) {
+      alert('정상 등록되었습니다.')
+      router.push("/my");
+    }
   };
 
   const HEADER_LINK = (
