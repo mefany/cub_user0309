@@ -1,43 +1,12 @@
 import Link from "next/link";
-import { Avatar, Box, Card, Grid } from "@mui/material";
-import { H3, H4 } from "components/Typography";
+import { Box, Grid } from "@mui/material";
+import { H3 } from "components/Typography";
 import ShopCard1 from "components/shop/ShopCard1";
-import axios from "axios";
-import { FlexRowCenter } from "components/flex-box"; // ====================================================
-
 // ====================================================
 const AvailableShops = () => {
   return (
     <Box mb={7.5}>
       <H3 mb={3}>도서 보유 매장</H3>
-
-      {/* <Grid container spacing={4}>
-        {shopList.map((item) => (
-          <Grid item lg={4} md={4} sm={4} xs={12} key={item.name}>
-            <Link href="/shops/53324">
-              <a>
-                <FlexRowCenter
-                  p={3.25}
-                  width="100%"
-                  component={Card}
-                  flexDirection="column"
-                >
-                  <Avatar
-                    src={item.imgUrl}
-                    sx={{
-                      width: 48,
-                      height: 48,
-                    }}
-                  />
-                  <H4 mt={1.5} color="grey.800">
-                    {item.name}
-                  </H4>
-                </FlexRowCenter>
-              </a>
-            </Link>
-          </Grid>
-        ))}
-      </Grid> */}
 
       {/* ALL SHOP LIST AREA */}
       <Grid container spacing={3}>
@@ -59,19 +28,6 @@ const AvailableShops = () => {
     </Box>
   );
 };
-
-// export const getStaticProps = async () => {
-//   const res2 = await axios.get(
-//     "https://i9nwbiqoc6.execute-api.ap-northeast-2.amazonaws.com/test/shop"
-//   );
-//   const shops = await res2.data;
-
-//   return {
-//     props: {
-//       shops,
-//     },
-//   };
-// };
 const shops = [
   {
     "shop_uid": 3,

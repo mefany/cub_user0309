@@ -1,13 +1,28 @@
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { Box, Button, TextField, Rating } from "@mui/material";
 import * as yup from "yup";
 import { useFormik } from "formik";
 import { FlexBox } from "components/flex-box";
 import ProductComment from "./ProductComment";
-import { H2, H5 } from "components/Typography"; // ===================================================
+import { H2, H5 } from "components/Typography";
+import api from "api/cubApi";
 
 // ===================================================
-const ProductReview = () => {
+const ProductReview = ({ data }) => {
+  const router = useRouter();
+  const [user_id, setUserId] = useState(null)
+  useEffect(() => {
+    setUserId(sessionStorage.getItem("user_uid"))
+  }, []);
+
   const handleFormSubmit = async (values, { resetForm }) => {
+    await api.NewReview(router.query.id, {
+      book_uid: router.query.id,
+      seller_uid: user_id,
+      stars: values.rating,
+      review: values.comment
+    });
     resetForm();
   };
 
@@ -28,59 +43,62 @@ const ProductReview = () => {
   });
   return (
     <Box>
-      {commentList.map((item, ind) => (
+      {data.map((item, ind) => (
         <ProductComment {...item} key={ind} />
       ))}
+      {user_id && (
+        <>
+          <H2 fontWeight="600" mt={7} mb={2.5}>
+            이 책에 대한 리뷰를 작성해주세요.
+          </H2>
 
-      <H2 fontWeight="600" mt={7} mb={2.5}>
-        Write a Review for this product
-      </H2>
+          <form onSubmit={handleSubmit}>
+            <Box mb={2.5}>
+              <FlexBox mb={1.5} gap={0.5}>
+                <H5 color="grey.700">별점</H5>
+                <H5 color="error.main">*</H5>
+              </FlexBox>
 
-      <form onSubmit={handleSubmit}>
-        <Box mb={2.5}>
-          <FlexBox mb={1.5} gap={0.5}>
-            <H5 color="grey.700">Your Rating</H5>
-            <H5 color="error.main">*</H5>
-          </FlexBox>
+              <Rating
+                color="warn"
+                size="medium"
+                value={values.rating}
+                onChange={(_, value) => setFieldValue("rating", value)}
+              />
+            </Box>
 
-          <Rating
-            color="warn"
-            size="medium"
-            value={values.rating}
-            onChange={(_, value) => setFieldValue("rating", value)}
-          />
-        </Box>
+            <Box mb={3}>
+              <FlexBox mb={1.5} gap={0.5}>
+                <H5 color="grey.700">리뷰 작성</H5>
+                <H5 color="error.main">*</H5>
+              </FlexBox>
 
-        <Box mb={3}>
-          <FlexBox mb={1.5} gap={0.5}>
-            <H5 color="grey.700">Your Review</H5>
-            <H5 color="error.main">*</H5>
-          </FlexBox>
+              <TextField
+                rows={8}
+                multiline
+                fullWidth
+                name="comment"
+                variant="outlined"
+                onBlur={handleBlur}
+                value={values.comment}
+                onChange={handleChange}
+                placeholder="리뷰를 작성해주세요."
+                error={!!touched.comment && !!errors.comment}
+                helperText={touched.comment && errors.comment}
+              />
+            </Box>
 
-          <TextField
-            rows={8}
-            multiline
-            fullWidth
-            name="comment"
-            variant="outlined"
-            onBlur={handleBlur}
-            value={values.comment}
-            onChange={handleChange}
-            placeholder="Write a review here..."
-            error={!!touched.comment && !!errors.comment}
-            helperText={touched.comment && errors.comment}
-          />
-        </Box>
+            <Button
+              variant="contained"
+              color="primary"
+              type="submit"
+              disabled={!(dirty && isValid)}
+            >
+              등록
+            </Button>
+          </form>
+        </>)}
 
-        <Button
-          variant="contained"
-          color="primary"
-          type="submit"
-          disabled={!(dirty && isValid)}
-        >
-          Submit
-        </Button>
-      </form>
     </Box>
   );
 };
@@ -88,7 +106,7 @@ const ProductReview = () => {
 const commentList = [
   {
     name: "Jannie Schumm",
-    imgUrl: "/assets/images/faces/7.png",
+    imgUrl: "/assets/images/avatars/001-man.svg",
     rating: 4.7,
     date: "2021-02-14",
     comment:
@@ -96,7 +114,7 @@ const commentList = [
   },
   {
     name: "Joe Kenan",
-    imgUrl: "/assets/images/faces/6.png",
+    imgUrl: "/assets/images/avatars/001-man.svg",
     rating: 4.7,
     date: "2019-08-10",
     comment:
@@ -104,7 +122,7 @@ const commentList = [
   },
   {
     name: "Jenifer Tulio",
-    imgUrl: "/assets/images/faces/8.png",
+    imgUrl: "/assets/images/avatars/002-woman.svg",
     rating: 4.7,
     date: "2021-02-05",
     comment:

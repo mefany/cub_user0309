@@ -104,6 +104,26 @@ const NewTrade = async data => {
   return response.status;
 };
 
+//도서 리뷰 목록 조회
+const ReviewList = async (uid) => {
+  const config = {
+    method: "get",
+    url: `${process.env.DEV_API}/test/review?book_uid=${uid}`,
+  };
+  const response = await axios(config);
+  return response.data;
+};
+
+//도서 리뷰 작성
+const NewReview = async (uid, data) => {
+  const config = {
+    method: "post",
+    url: `${process.env.DEV_API}/test/review?book_uid=${uid}`,
+    data
+  };
+  const response = await axios(config);
+  return response.data;
+};
 //----------- 도서 API ----------------//
 const NewBook = async data => {
   const config = {
@@ -173,6 +193,8 @@ export default {
   IsbnBooks,
   FindBookByIsbn,
   SearchBook,
+  ReviewList,
+  NewReview,
   NewTrade,
   NewBook,
   StoreList,

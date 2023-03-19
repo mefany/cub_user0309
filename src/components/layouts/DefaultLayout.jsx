@@ -28,7 +28,7 @@ const DefaultLayout = ({ children, showNavbar = true }) => {
       <MobileNavigationBar />
 
       {/* FOOTER */}
-      <Footer />
+      {/* <Footer /> */}
     </Fragment>
   );
 };

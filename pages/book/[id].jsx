@@ -28,6 +28,8 @@ const ProductDetails = () => {
   const [selectedOption, setSelectedOption] = useState(0);
   const handleOptionClick = (_, value) => setSelectedOption(value); // Show a loading state when the fallback is rendered
   const [book, setBook] = useState(null);
+  const [reviews, setReviews] = useState(null);
+  const [reviewCount, setReviewCount] = useState(0);
   const [relatedBook, setRelatedBook] = useState(null);
   const [bookingUser, setBookingUser] = useState(null);
 
@@ -35,6 +37,7 @@ const ProductDetails = () => {
     if (!router.isReady) return;
     getBookById(router.query.id);
     getBookingUser(router.query.id);
+    getReviews(router.query.id);
   }, [router]);
 
   useEffect(() => {
@@ -47,6 +50,15 @@ const ProductDetails = () => {
     const response = await api.BookInfoByUid(trade_uid);
     setBook(response);
   };
+
+  //선택한 도서 리뷰 정보
+  const getReviews = async (trade_uid) => {
+    const response = await api.ReviewList(trade_uid);
+    console.log(response)
+    setReviewCount(response.length)
+    setReviews(response);
+  };
+
 
   //동일한 isbn 판매상품 조회
   const getIsbnBooks = (async (isbn) => {
@@ -82,16 +94,16 @@ const ProductDetails = () => {
           onChange={handleOptionClick}
         >
           <Tab className='inner-tab' label='상세' />
-          <Tab className='inner-tab' label='리뷰 (3)' />
+          <Tab className='inner-tab' label={`리뷰(${reviewCount})`} />
         </StyledTabs>
 
         <Box mb={6}>
-          {selectedOption === 0 && book ? (
+          {selectedOption === 0 && book && (
             <ProductDescription data={book} />
-          ) : (
-            <H2>Loading...</H2>
           )}
-          {selectedOption === 1 && <ProductReview />}
+          {selectedOption === 1 && reviews && (
+            <ProductReview data={reviews} />
+          )}
         </Box>
 
         {relatedBook && <AvailableBooks data={relatedBook} />}
