@@ -9,7 +9,6 @@ import LazyImage from "components/LazyImage";
 import CommonCard from "components/CommonCard";
 import { H3, Span, Paragraph } from "components/Typography";
 import CommonRating from "components/CommonRating";
-import { useAppContext } from "contexts/AppContext";
 import BookViewDialog from "components/products/BookViewDialog";
 import { FlexBox } from "../flex-box";
 
@@ -83,39 +82,39 @@ const BookCard = ({
   showProductSize,
 }) => {
   const { enqueueSnackbar } = useSnackbar();
-  const { state, dispatch } = useAppContext();
   const [openModal, setOpenModal] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
   const toggleIsFavorite = () => setIsFavorite(fav => !fav);
 
   const toggleDialog = useCallback(() => setOpenModal(open => !open), []);
-  const cartItem = state.cart.find(item => item.slug === slug);
-
+  const discount = (price, sell_price) => {
+    return sell_price / price === 1 ? 0 : ((sell_price / price) * 100).toFixed(0)
+  }
   return (
     <StyledCommonCard hoverEffect={hoverEffect}>
       <ImageWrapper>
-        {/* {!!discount && (
-          <StyledChip color="primary" size="small" label={`${discount}% off`} />
-        )} */}
-        <StyledChip
-          color='primary'
-          size='small'
-          label={`${((sell_price / price) * 100).toFixed(0)}% 할인`}
-        />
+        {!!discount(price, sell_price) && (
+          <StyledChip
+            color='primary'
+            size='small'
+            label={`${discount(price, sell_price)}% 할인`}
+          />
+        )}
+
 
         <HoverIconWrapper className='hover-box'>
           <IconButton onClick={toggleDialog}>
             <RemoveRedEye color='disabled' fontSize='small' />
           </IconButton>
 
-          <IconButton onClick={toggleIsFavorite}>
+          {/* <IconButton onClick={toggleIsFavorite}>
             {isFavorite ? (
               <Favorite color='primary' fontSize='small' />
             ) : (
               <FavoriteBorder fontSize='small' color='disabled' />
             )}
-          </IconButton>
+          </IconButton> */}
         </HoverIconWrapper>
 
         <Link href={`/book/${trade_uid}`}>

@@ -1,16 +1,6 @@
 import { Container, Grid } from "@mui/material";
 import Navigations from "./Navigations";
 import DefaultLayout from "components/layouts/DefaultLayout";
-/**
- *  Used in:
- *  1. wish-list page
- *  2. address and address-details page
- *  3. orders and order-details page
- *  4. payment-methods and payment-method-details page
- *  5. profile and edit profile page
- *  6. support-tickets page
- */
-// ======================================================
 
 // ======================================================
 const CustomerDashboardLayout = ({ children }) => (

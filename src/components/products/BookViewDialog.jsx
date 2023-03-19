@@ -16,7 +16,6 @@ import CommonImage from "components/CommonImage";
 import CommonRating from "components/CommonRating";
 import Carousel from "components/carousel/Carousel";
 import { H1, H2, H3, H6, Paragraph } from "components/Typography";
-import { useAppContext } from "contexts/AppContext";
 import Link from "next/link";
 
 const ContentWrapper = styled(Box)(({ theme }) => ({
@@ -56,22 +55,6 @@ const ContentWrapper = styled(Box)(({ theme }) => ({
 // =====================================================
 const BookViewDialog = props => {
   const { product, openDialog, handleCloseDialog } = props;
-  const { state, dispatch } = useAppContext();
-  // const cartItem = state.cart.find(
-  //   (item) => item.trade_uid === product.trade_uid
-  // );
-
-  // const handleCartAmountChange = (amount) => () => {
-  //   dispatch({
-  //     type: "CHANGE_CART_AMOUNT",
-  //     payload: {
-  //       ...product,
-  //       qty: amount,
-  //       name: product.title,
-  //       imgUrl: product.imgGroup[0],
-  //     },
-  //   });
-  // };
 
   return (
     <Dialog

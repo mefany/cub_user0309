@@ -6,10 +6,9 @@ import DefaultLayout from "components/layouts/DefaultLayout";
 import BookIntro from "components/products/BookIntro";
 import ProductReview from "components/products/ProductReview";
 import AvailableShops from "components/products/AvailableShops";
-import RelatedProducts from "components/products/RelatedProducts";
 import AvailableBooks from "components/products/AvailableBooks";
 import ProductDescription from "components/products/ProductDescription";
-import axios from "axios";
+import api from "api/cubApi";
 
 const StyledTabs = styled(Tabs)(({ theme }) => ({
   minHeight: 0,
@@ -23,53 +22,43 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
   },
 })); // ===============================================================
 
-const bookingUser = [];
 // ===============================================================
-const ProductDetails = props => {
+const ProductDetails = () => {
   const router = useRouter();
   const [selectedOption, setSelectedOption] = useState(0);
   const handleOptionClick = (_, value) => setSelectedOption(value); // Show a loading state when the fallback is rendered
   const [book, setBook] = useState(null);
   const [relatedBook, setRelatedBook] = useState(null);
   const [isLoading, setLoading] = useState(false);
-  // const [bookingUser, setBookingUser] = useState(null);
+  const [bookingUser, setBookingUser] = useState(null);
 
   useEffect(() => {
     if (!router.isReady) return;
-    setLoading(true);
     getBookById(router.query.id);
     getBookingUser(router.query.id);
   }, [router]);
 
-  const getIsbnBooks = async isbn => {
-    console.log("get", isbn);
-    const res = await axios.get(
-      `https://i9nwbiqoc6.execute-api.ap-northeast-2.amazonaws.com/test/trade?isbn=${isbn}`
-    );
-    const books = await res.data;
-    console.log(books);
-    setRelatedBook(books);
-    setLoading(false);
-  };
-
-  const getBookById = async trade_uid => {
-    const res = await axios.get(
-      `https://i9nwbiqoc6.execute-api.ap-northeast-2.amazonaws.com/test/trade/${trade_uid}`
-    );
-    const book = await res.data[0];
-    setBook(book);
+  useEffect(() => {
+    if (!book) return;
     getIsbnBooks(book.isbn);
+  }, [book]);
+
+  //선택한 도서 정보
+  const getBookById = async (trade_uid) => {
+    const response = await api.BookInfoByUid(trade_uid);
+    setBook(response);
   };
 
+  //동일한 isbn 판매상품 조회
+  const getIsbnBooks = (async (isbn) => {
+    const response = await api.IsbnBooks(isbn);
+    setRelatedBook(response);
+  });
+
+  //예약자 정보 조회
   const getBookingUser = async trade_uid => {
-    const res = await axios.get(
-      `https://i9nwbiqoc6.execute-api.ap-northeast-2.amazonaws.com/test/booking/${trade_uid}`
-    );
-    const users = await res.data;
-    if (users.length > 0) {
-      bookingUser = users;
-    }
-    console.log("getBookingUser", bookingUser);
+    const response = await api.BookingUser(trade_uid);
+    setBookingUser(response)
   };
 
   return (
@@ -79,14 +68,14 @@ const ProductDetails = props => {
           my: 4,
         }}
       >
-        {/* PRODUCT DETAILS INFO AREA */}
+        {/* BOOK DETAILS INFO AREA */}
         {book ? (
           <BookIntro data={book} bookingUser={bookingUser} />
         ) : (
           <H2>Loading...</H2>
         )}
 
-        {/* PRODUCT DESCRIPTION AND REVIEW */}
+        {/* BOOK DESCRIPTION AND REVIEW */}
         <StyledTabs
           textColor='primary'
           value={selectedOption}
@@ -106,7 +95,7 @@ const ProductDetails = props => {
           {selectedOption === 1 && <ProductReview />}
         </Box>
 
-        <AvailableBooks data={relatedBook} />
+        {relatedBook && <AvailableBooks data={relatedBook} />}
         <AvailableShops />
       </Container>
     </DefaultLayout>

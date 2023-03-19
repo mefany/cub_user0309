@@ -6,10 +6,10 @@ import {
   Button,
   Chip,
   IconButton,
-  styled,
   Typography,
 } from "@mui/material";
-import { East, Place, ShoppingBag } from "@mui/icons-material";
+import { Place, ShoppingBag } from "@mui/icons-material";
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import TableRow from "components/TableRow";
 import { H5, Span } from "components/Typography";
 import { FlexBox } from "components/flex-box";
@@ -17,40 +17,57 @@ import UserDashboardHeader from "components/header/UserDashboardHeader";
 import CustomerDashboardLayout from "components/layouts/customer-dashboard";
 import CustomerDashboardNavigation from "components/layouts/customer-dashboard/Navigations";
 import { withAuth } from "../../hocs/withAuth ";
+import api from "api/cubApi";
 
 // ====================================================
-// styled components
-const StyledChip = styled(Chip)(({ theme, green }) => ({
-  height: 26,
-  margin: "6px",
-  padding: " 0 0.25rem",
-  color: green ? theme.palette.success.main : theme.palette.primary.main,
-  backgroundColor: green
-    ? theme.palette.success[100]
-    : theme.palette.primary.light,
-}));
 
-const Orders = () => {
+const getColor = (status) => {
+  switch (status) {
+    case "등록중":
+      return "secondary";
+
+    case "판매완료":
+      return "secondary";
+
+    case "예약중":
+      return "info";
+
+    case "판매중":
+      return "success";
+
+    case "판매취소":
+      return "error";
+
+    default:
+      return "";
+  }
+};
+
+const My = () => {
+  let user_id
   const [data, setData] = useState(null);
-  const [user_id, setUserId] = useState('')
-  const [isLoading, setLoading] = useState(false);
+  const [totalPage, setTotalPage] = useState(1);
+  const [start, setStart] = useState(0);
 
   useEffect(() => {
-    setLoading(true);
-    setUserId(sessionStorage.getItem("user_uid"))
-    getUserInfo(user_id)
+    user_id = sessionStorage.getItem("user_uid")
+    getUserInfo(15, 0)
   }, []);
 
-  const getUserInfo = (user_uid) => {
-    fetch(
-      `https://i9nwbiqoc6.execute-api.ap-northeast-2.amazonaws.com/test/trade?user_uid=${user_uid}`
-    )
-      .then(res => res.json())
-      .then(data => {
-        setData(data);
-        console.log(data);
-        setLoading(false);
-      });
+  useEffect(() => {
+    getUserInfo(15, start)
+  }, [start]);
+
+  const getUserInfo = async (user_uid, start) => {
+    const response = await api.UserInfo(user_uid, start);
+    setData(response.data);
+    setTotalPage(Math.ceil(response.total / 10))
+  }
+
+  const handlePageChange = (event, value) => {
+    console.log(event.targt, value)
+    if (value === 1) setStart(0)
+    else setStart((value - 1) * 10)
   }
 
   const NEWBOOK_BUTTON = (
@@ -79,53 +96,84 @@ const Orders = () => {
 
       {data ? (
         data.map((item, index) => (
-          <Link href={`/my/${item.trade_uid}`} key={index} passHref>
-            <TableRow
-              sx={{
-                my: "1rem",
-                p: "15px 24px",
-              }}
-            >
-              <Box>
-                <span>{item.title}</span>
-                <Span m={0.75} color='grey.600'>
-                  | {item.sell_price}원
-                </Span>
-                <FlexBox alignItems='center' flexWrap='wrap' pt={1} m={-0.75}>
-                  <StyledChip label={item.sell_state} size='small' green={1} />
+          <TableRow
+            sx={{
+              my: "1rem",
+              p: "15px 24px",
+            }}
+            key={index}
+          >
+            <Box>
+              <span>{item.title}</span>
+              <Span m={0.75} color='grey.600'>
+                | {item.sell_price}원
+              </Span>
+              <FlexBox alignItems='center' flexWrap='wrap' pt={1} m={-0.75}>
+                <Chip
+                  size="small"
+                  label={item.sell_state}
+                  sx={{
+                    p: "0.25rem 0.5rem",
+                    fontSize: 12,
+                    color: !!getColor(item.sell_state)
+                      ? `${getColor(item.sell_state)}.900`
+                      : "inherit",
+                    backgroundColor: !!getColor(item.sell_state)
+                      ? `${getColor(item.sell_state)}.100`
+                      : "none",
+                  }}
+                />
+                {item.shop_name && (
                   <Span m={0.75} color='grey.600'>
-                    <Place fontSize='small' color='inherit' /> {item.shop_name}
+                    <Place fontSize='small' color='inherit' style={{
+                      position: 'relative',
+                      top: '3px'
+                    }} /> {item.shop_name}
                   </Span>
-                </FlexBox>
-              </Box>
+                )}
+              </FlexBox>
+            </Box>
 
-              <Typography
-                flex='0 0 0 !important'
-                textAlign='center'
-                color='grey.600'
-              >
-                <IconButton>
-                  <East fontSize='small' color='inherit' />
-                </IconButton>
-              </Typography>
-            </TableRow>
-          </Link>
+            <Typography
+              flex='0 0 0 !important'
+              textAlign='center'
+              color='grey.600'
+            >
+              {item.sell_state !== '예약중' && item.sell_state !== '판매완료' ? (
+                <Link href={`/my/${item.trade_uid}`} key={index} passHref>
+                  <IconButton>
+                    <ModeEditIcon fontSize='small' color='inherit' />
+                  </IconButton>
+                </Link>
+              ) : null}
+            </Typography>
+
+
+          </TableRow>
 
         ))
       ) : (
-        <H5>Loading...</H5>
+        <Box
+          p="60px"
+          display="flex"
+          bgcolor="#fff"
+          borderRadius="5px"
+        >
+          <H5>판매중인 책이 없습니다.</H5>
+        </Box>
       )}
 
-      <FlexBox justifyContent='center' mt={5}>
-        <Pagination
-          count={5}
-          color='primary'
-          variant='outlined'
-          onChange={data => console.log(data)}
-        />
-      </FlexBox>
+      {totalPage > 1 && (
+        <FlexBox justifyContent='center' mt={5}>
+          <Pagination
+            count={totalPage}
+            color='primary'
+            variant='outlined'
+            onChange={handlePageChange}
+          />
+        </FlexBox>)}
     </CustomerDashboardLayout>
   );
 };
 
-export default withAuth(Orders);
+export default withAuth(My);

@@ -1,23 +1,19 @@
 import Link from "next/link";
-import { useState } from "react";
-import { Badge, Box, Button, Dialog, Drawer, styled } from "@mui/material";
+import { useState, useContext } from "react";
+import { AuthContext } from "contexts/AuthContext";
+import { Box, Button, Dialog, Drawer, styled } from "@mui/material";
 import Container from "@mui/material/Container";
 import { useTheme } from "@mui/material/styles";
-import IconButton from "@mui/material/IconButton";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { KeyboardArrowDown, PersonOutline, Add } from "@mui/icons-material";
 import clsx from "clsx";
 import Image from "components/CommonImage";
 import { FlexBox } from "components/flex-box";
 import MiniCart from "components/mini-cart/MiniCart";
-import CategoryMenu from "components/categories/CategoryMenu";
-import GrocerySearchBox from "components/search-box/GrocerySearchBox";
 import Category from "components/icons/Category";
-import ShoppingBagOutlined from "components/icons/ShoppingBagOutlined";
-import { useAppContext } from "contexts/AppContext";
+import CategoryMenu from "components/categories/CategoryMenu";
+import SearchBox from "components/search-box/SearchBox";
 import Login from "pages-sections/sessions/Login";
 import { layoutConstant } from "utils/constants";
-import SearchBox from "../search-box/SearchBox"; // styled component
 
 export const HeaderWrapper = styled(Box)(({ theme }) => ({
   zIndex: 3,
@@ -31,16 +27,13 @@ export const HeaderWrapper = styled(Box)(({ theme }) => ({
 })); // ==============================================================
 
 // ==============================================================
-const Header = ({ isFixed, className, searchBoxType = "type1" }) => {
+const Header = ({ className }) => {
+  const authContext = useContext(AuthContext);
   const theme = useTheme();
-  const { state } = useAppContext();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [sidenavOpen, setSidenavOpen] = useState(false);
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
-  const downMd = useMediaQuery(theme.breakpoints.down(1150));
-
   const toggleDialog = () => setDialogOpen(!dialogOpen);
-
   const toggleSidenav = () => setSidenavOpen(!sidenavOpen);
 
   return (
@@ -67,11 +60,13 @@ const Header = ({ isFixed, className, searchBoxType = "type1" }) => {
         >
           <Link href='/'>
             <a>
-              <Image height={44} src='/assets/images/logo2.svg' alt='logo' />
+              <h2 style={{ color: '#9d4100' }}>CUBCUB</h2>
+              {/* <Image height={44} src='/assets/images/logo2.svg' alt='logo' /> */}
             </a>
           </Link>
 
-          {isFixed && (
+          {/*navigations.js* 카테고리 목록*/}
+          {/* {isFixed && (
             <CategoryMenu>
               <FlexBox color='grey.600' alignItems='center' ml={2}>
                 <Button color='inherit'>
@@ -80,13 +75,11 @@ const Header = ({ isFixed, className, searchBoxType = "type1" }) => {
                 </Button>
               </FlexBox>
             </CategoryMenu>
-          )}
+          )} */}
         </FlexBox>
 
         <FlexBox justifyContent='center' flex='1 1 0'>
-          {/* {searchBoxType === "type1" && <SearchBox />}
-          {searchBoxType === "type2" && <GrocerySearchBox />} */}
-          <GrocerySearchBox />
+          <SearchBox />
         </FlexBox>
 
         <FlexBox
@@ -98,38 +91,59 @@ const Header = ({ isFixed, className, searchBoxType = "type1" }) => {
             },
           }}
         >
-          <Box
-            component={IconButton}
-            p={1.25}
-            bgcolor='grey.200'
-            onClick={toggleDialog}
-          >
-            <PersonOutline />
-          </Box>
+          {authContext.isLoggedIn ? (
+            <>
+              <Link href='/my'>
+                <Button
+                  size='small'
+                  color='primary'
+                  disableElevation
+                  variant='contained'
+                  className='button-link'
+                  sx={{
+                    height: 20,
+                    borderRadius: "4px",
+                  }}
+                >
+                  내정보
+                </Button>
+              </Link>
 
-          <Box
-            ml={2.5}
-            p={1.25}
-            bgcolor='grey.200'
-            component={IconButton}
-            // onClick={toggleSidenav}
-          >
-            <Link href='/my/create'>
-              <Add fontSize='small' />
+              <Link href='/my/create'>
+                <Button
+                  size='small'
+                  color='primary'
+                  disableElevation
+                  variant='contained'
+                  className='button-link'
+                  sx={{
+                    marginLeft: 1,
+                    height: 20,
+                    borderRadius: "4px",
+                  }}
+                >
+                  내책판매
+                </Button>
+              </Link>
+            </>
+          ) : (
+            <Link href='/login'>
+              <Button
+                size='small'
+                color='primary'
+                disableElevation
+                variant='contained'
+                className='button-link'
+                sx={{
+                  height: 20,
+                  borderRadius: "4px",
+                }}
+              >
+                로그인
+              </Button>
             </Link>
-          </Box>
+          )}
 
-          {/* <Badge badgeContent={state.cart.length} color="primary">
-            <Box
-              ml={2.5}
-              p={1.25}
-              bgcolor="grey.200"
-              component={IconButton}
-              onClick={toggleSidenav}
-            >
-              <ShoppingBagOutlined />
-            </Box>
-          </Badge> */}
         </FlexBox>
 
         <Dialog
@@ -142,7 +156,7 @@ const Header = ({ isFixed, className, searchBoxType = "type1" }) => {
         </Dialog>
 
         <Drawer open={sidenavOpen} anchor='right' onClose={toggleSidenav}>
-          <MiniCart toggleSidenav={() => {}} />
+          <MiniCart toggleSidenav={() => { }} />
         </Drawer>
       </Container>
     </HeaderWrapper>

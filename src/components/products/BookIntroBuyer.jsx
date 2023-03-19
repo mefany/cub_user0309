@@ -11,11 +11,10 @@ const BookIntroBuyer = ({ bookingUser, trade_uid }) => {
   useEffect(() => {
     const my_uid = sessionStorage.getItem("user_uid")
     if (bookingUser === null) {
-      setBookingState('예약신청')
+      setBookingState('예약전')
     } else {
       for (const el of bookingUser) {
         if (el.user_uid == my_uid) {
-          console.log('dd', el.state)
           setBookingState(el.state)
           setTradeUser(el)
           break;

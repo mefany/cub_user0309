@@ -3,11 +3,10 @@ import Head from "next/head";
 import Router from "next/router";
 import nProgress from "nprogress";
 import MuiTheme from "theme/MuiTheme";
-import { AppProvider } from "contexts/AppContext";
-import SettingsProvider from "contexts/SettingContext";
+import AuthProvider from "contexts/AuthContext";
 import SnackbarProvider from "components/SnackbarProvider";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState, useContext, createContext } from "react";
 import "nprogress/nprogress.css";
 import "simplebar/dist/simplebar.min.css";
 
@@ -51,15 +50,15 @@ const App = ({ Component, pageProps }) => {
         <title>CUBCUB</title>
       </Head>
 
-      <SettingsProvider>
-        <AppProvider>
-          <MuiTheme>
-            <SnackbarProvider>
-              {getLayout(<AnyComponent {...pageProps} />)}
-            </SnackbarProvider>
-          </MuiTheme>
-        </AppProvider>
-      </SettingsProvider>
+      {/* <SettingsProvider> */}
+      <AuthProvider>
+        <MuiTheme>
+          <SnackbarProvider>
+            {getLayout(<AnyComponent {...pageProps} />)}
+          </SnackbarProvider>
+        </MuiTheme>
+      </AuthProvider>
+      {/* </SettingsProvider> */}
     </Fragment>
   );
 }; // Only uncomment this method if you have blocking data requirements for

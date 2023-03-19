@@ -1,4 +1,5 @@
-import { useCallback, useState, useEffect } from "react";
+import { useCallback, useState, useEffect, useContext } from "react";
+import { AuthContext } from "contexts/AuthContext";
 import { Button, Card, Box, styled } from "@mui/material";
 import Link from "next/link";
 import * as yup from "yup";
@@ -46,6 +47,7 @@ export const Wrapper = styled(({ children, passwordVisibility, ...rest }) => (
 }));
 
 const Login = () => {
+  const authContext = useContext(AuthContext);
   const router = useRouter();
   const [isLoading, setLoading] = useState(false);
   const [passwordVisibility, setPasswordVisibility] = useState(false);
@@ -54,6 +56,7 @@ const Login = () => {
   }, []);
 
   useEffect(() => {
+    // authContext.isLoggedIn ? redirect() : setLoading(true);
     if (sessionStorage.getItem("token") !== null) {
       redirect();
     } else {
@@ -62,7 +65,7 @@ const Login = () => {
   }, []);
 
   const redirect = () => {
-    sessionStorage.getItem("prevPath") === "null" || null
+    sessionStorage.getItem("prevPath") === "null" || null || '/login'
       ? router.push("/")
       : router.push(sessionStorage.getItem("prevPath"));
   };
@@ -131,16 +134,16 @@ const Login = () => {
         console.log(response);
         const { data } = response;
         if (response.status === 200) {
-          sessionStorage.setItem("token", data[0].token);
-          sessionStorage.setItem("user_uid", data[0].user_uid);
+          sessionStorage.setItem("token", data.token);
+          sessionStorage.setItem("user_uid", data.user_uid);
+          authContext.onLogin();
           redirect();
         }
       })
       .catch(error => {
         console.log(error);
-        if (error.response.status === 401) {
-          alert("이메일 주소 또는 비밀번호를 확인해주세요.");
-        }
+        alert("이메일 주소 또는 비밀번호를 확인해주세요.");
+
       });
   };
 

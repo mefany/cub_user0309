@@ -1,71 +1,40 @@
 import Link from "next/link";
-import { useEffect, useRef, useState, useTransition } from "react";
-import { Box, MenuItem, TextField, styled } from "@mui/material";
-import { KeyboardArrowDownOutlined } from "@mui/icons-material";
-import TouchRipple from "@mui/material/ButtonBase";
-import CommonMenu from "components/CommonMenu";
-import { FlexBox } from "components/flex-box";
-import { SearchOutlinedIcon, SearchResultCard } from "./styled";
-const DropDownHandler = styled(FlexBox)(({ theme }) => ({
-  whiteSpace: "pre",
-  borderTopRightRadius: 300,
-  borderBottomRightRadius: 300,
-  borderLeft: `1px solid ${theme.palette.text.disabled}`,
-  [theme.breakpoints.down("xs")]: {
-    display: "none",
-  },
-}));
+// import { useEffect, useRef, useState, useTransition } from "react";
+import { useEffect, useRef, useState } from "react";
+
+import { Box, Button, TextField } from "@mui/material";
+import { SearchOutlinedIcon } from "./styled";
+import { useRouter } from "next/router";
 
 const SearchBox = () => {
+  const router = useRouter();
   const parentRef = useRef();
-  const [_, startTransition] = useTransition();
-  const [category, setCategory] = useState("All Categories");
+  // const [_, startTransition] = useTransition();
   const [resultList, setResultList] = useState([]);
-
-  const handleCategoryChange = cat => () => setCategory(cat);
+  const [searchText, setSearchText] = useState("");
 
   const handleSearch = e => {
-    startTransition(() => {
-      const value = e.target?.value;
-      if (!value) setResultList([]);
-      else setResultList(dummySearchResult);
-    });
+    // startTransition(() => {
+    const value = e.target?.value;
+    if (!value) setSearchText("");
+    else setSearchText(e.target.value);
+    // });
   };
 
-  const handleDocumentClick = () => setResultList([]);
+  const handleDocumentClick = () => {
+    const title = searchText;
+    if (searchText !== "") {
+      router.push({
+        pathname: "/product/search",
+        query: {
+          title: title,
+        },
+      });
+    } else {
+      alert("검색어를 입력하세요");
+    }
+  };
 
-  useEffect(() => {
-    window.addEventListener("click", handleDocumentClick);
-    return () => window.removeEventListener("click", null);
-  }, []);
-  const categoryDropdown = (
-    <CommonMenu
-      direction='left'
-      sx={{
-        zIndex: 1502,
-      }}
-      handler={
-        <DropDownHandler
-          px={3}
-          gap={0.5}
-          height='100%'
-          color='grey.700'
-          bgcolor='grey.100'
-          alignItems='center'
-          component={TouchRipple}
-        >
-          {category}
-          <KeyboardArrowDownOutlined fontSize='small' color='inherit' />
-        </DropDownHandler>
-      }
-    >
-      {categories.map(item => (
-        <MenuItem key={item} onClick={handleCategoryChange(item)}>
-          {item}
-        </MenuItem>
-      ))}
-    </CommonMenu>
-  );
   return (
     <Box
       position='relative'
@@ -79,7 +48,11 @@ const SearchBox = () => {
       <TextField
         fullWidth
         variant='outlined'
-        placeholder='Searching for...'
+        placeholder={
+          router.pathname.includes("/shops/")
+            ? "매장내 도서를 검색해보세요"
+            : "도서를 검색해보세요."
+        }
         onChange={handleSearch}
         InputProps={{
           sx: {
@@ -92,38 +65,30 @@ const SearchBox = () => {
               borderColor: "primary.main",
             },
           },
-          endAdornment: categoryDropdown,
+          endAdornment: (
+            <Button
+              color='primary'
+              disableElevation
+              variant='contained'
+              sx={{
+                width: "140px",
+                height: "100%",
+                borderRadius: "0 300px 300px 0",
+              }}
+              onClick={handleDocumentClick}
+            >
+              검색
+            </Button>
+          ),
           startAdornment: <SearchOutlinedIcon fontSize='small' />,
         }}
       />
 
       {resultList.length > 0 && (
-        <SearchResultCard elevation={2}>
-          {resultList.map(item => (
-            <Link href={`/product/search/${item}`} key={item} passHref>
-              <MenuItem key={item}>{item}</MenuItem>
-            </Link>
-          ))}
-        </SearchResultCard>
+        <Link href={`/product/search/`} passHref></Link>
       )}
     </Box>
   );
 };
 
-const categories = [
-  "All Categories",
-  "Car",
-  "Clothes",
-  "Electronics",
-  "Laptop",
-  "Desktop",
-  "Camera",
-  "Toys",
-];
-const dummySearchResult = [
-  "Macbook Air 13",
-  "Asus K555LA",
-  "Acer Aspire X453",
-  "iPad Mini 3",
-];
 export default SearchBox;

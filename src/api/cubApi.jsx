@@ -1,14 +1,99 @@
 import axios from "axios";
 
+//----------- 도서 거래 API ----------------//
 // 판매 도서 리스트 조회
-const BookList = async sort => {
+const BookList = async (sort, start, count) => {
   const config = {
     method: "get",
-    url: `${process.env.DEV_API}/test/trade?date_order=${sort}`,
+    url: `${process.env.DEV_API}/test/trade?date_order=${sort}&start=${start}&count=${count}`,
+  };
+  const response = await axios(config);
+  return response.data.data;
+};
+
+// 단일 도서 정보 조회
+const BookInfoByUid = async (trade_uid) => {
+  const config = {
+    method: "get",
+    url: `${process.env.DEV_API}/test/trade/${trade_uid}`,
   };
   const response = await axios(config);
   return response.data;
 };
+
+// 판매 등록된 도서중 ISBN 조회
+const IsbnBooks = async isbn => {
+  const config = {
+    method: "get",
+    url: `${process.env.DEV_API}/test/trade?isbn=${isbn}`,
+  };
+  const response = await axios(config);
+  return response.data.data;
+};
+
+//도서 ISBN 조회
+const FindBookByIsbn = async isbn => {
+  const config = {
+    method: "get",
+    url: `${process.env.DEV_API}/test/isbn?isbn=${isbn}`,
+  };
+  const response = await axios(config);
+  return response.data.items[0];
+};
+
+//유저 판매중 책 정보 조회
+const UserInfo = async (user_uid, start) => {
+  const config = {
+    method: "get",
+    url: `${process.env.DEV_API}/test/trade?user_uid=${user_uid}&start=${start}`,
+  };
+  const response = await axios(config);
+  return response.data;
+};
+
+const NewTrade = async data => {
+  const config = {
+    method: "post",
+    url: `${process.env.DEV_API}/test/trade`,
+    data
+  };
+  const response = await axios(config);
+  return response.status;
+};
+
+//----------- 도서 API ----------------//
+const NewBook = async data => {
+  const config = {
+    method: "post",
+    url: `${process.env.DEV_API}/test/book`,
+    data
+  };
+  const response = await axios(config);
+  return response.data;
+};
+
+//----------- 매장 API ----------------//
+//매장 정보 조회
+const StoreList = async sort => {
+  const config = {
+    method: "get",
+    url: `${process.env.DEV_API}/test/shop`,
+  };
+  const response = await axios(config);
+  return response.data;
+};
+
+
+//----------- 예약 API ----------------//
+const BookingUser = async trade_uid => {
+  const config = {
+    method: "get",
+    url: `${process.env.DEV_API}/test/booking/${trade_uid}`,
+  };
+  const response = await axios(config);
+  return response.data;
+};
+
 
 // 공지사항/FAQ 등록
 const NoticeFaqRegister = async data => {
@@ -39,13 +124,10 @@ const NoticeFaqUpdate = async (data, id) => {
 const NoticeFaqSearch = async (form, pageNum) => {
   const config = {
     method: "get",
-    url: `${process.env.DEV_API}/api/admin/notice/list?noticeType=${
-      form.noticeType
-    }&startDt=${form.startDt}&endDt=${form.endDt}&showYn=${
-      form.showYn
-    }&searchKeyword=${form.searchKeyword}&category=${
-      form.category === 2012 ? 0 : form.category
-    }&pageNum=${pageNum}`,
+    url: `${process.env.DEV_API}/api/admin/notice/list?noticeType=${form.noticeType
+      }&startDt=${form.startDt}&endDt=${form.endDt}&showYn=${form.showYn
+      }&searchKeyword=${form.searchKeyword}&category=${form.category === 2012 ? 0 : form.category
+      }&pageNum=${pageNum}`,
     headers: {
       logintoken,
     },
@@ -57,8 +139,7 @@ const NoticeFaqSearch = async (form, pageNum) => {
 // 서비스운영 별 타입 조회
 const NoticeFaqSubValue = async noticeType => {
   const response = await axios.get(
-    `${process.env.DEV_API}/api/notice/type/search?key=notice&subValue1=1${
-      noticeType ? `&type=${noticeType}` : ""
+    `${process.env.DEV_API}/api/notice/type/search?key=notice&subValue1=1${noticeType ? `&type=${noticeType}` : ""
     }`
   );
   return response.data.data.configList;
@@ -158,14 +239,12 @@ const BoardsDetails = async (type, id) => {
 
 export default {
   BookList,
-  NoticeFaqRegister,
-  NoticeFaqUpdate,
-  NoticeFaqSearch,
-  NoticeFaqSubValue,
-  NoticeFaqDetails,
-  BoardsSearch,
-  BoardsRegister,
-  BoardsUpdate,
-  PartnerCheckNum,
-  BoardsDetails,
+  BookInfoByUid,
+  IsbnBooks,
+  FindBookByIsbn,
+  NewTrade,
+  NewBook,
+  StoreList,
+  UserInfo,
+  BookingUser,
 };
