@@ -199,6 +199,7 @@ const UserInfo = async uid => {
 };
 
 //----------- 예약 API ----------------//
+//도서 구매 예약 현황 조회
 const BookingUser = async trade_uid => {
   const config = {
     method: "get",
@@ -206,6 +207,49 @@ const BookingUser = async trade_uid => {
   };
   const response = await axios(config);
   return response.data;
+};
+
+//도서 구매 예약
+const BookingBuy = async data => {
+  const config = {
+    method: "post",
+    url: `${process.env.DEV_API}/test/booking`,
+    data,
+  };
+  const response = await axios(config);
+  return response;
+};
+
+//도서 구매 예약 취소
+const CancleBuy = async uid => {
+  const config = {
+    method: "delete",
+    url: `${process.env.DEV_API}/test/booking?booking_uid=${uid}`,
+    data,
+  };
+  const response = await axios(config);
+  return response;
+};
+
+//계좌 정보 조회
+const AccountInfo = async (trade_uid, user_uid) => {
+  const config = {
+    method: "get",
+    url: `${process.env.DEV_API}/test/trade/bank?trade_uid=${trade_uid}&user_uid=${user_uid}`,
+  };
+  const response = await axios(config);
+  return response;
+};
+
+//예약 상태 변경
+const ChangeBookingState = async data => {
+  const config = {
+    method: "put",
+    url: `${process.env.DEV_API}test/booking`,
+    data,
+  };
+  const response = await axios(config);
+  return response;
 };
 
 export default {
@@ -229,4 +273,8 @@ export default {
   Signup,
   UserInfo,
   BookingUser,
+  BookingBuy,
+  CancleBuy,
+  AccountInfo,
+  ChangeBookingState,
 };
