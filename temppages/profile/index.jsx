@@ -17,36 +17,29 @@ import { FlexBetween, FlexBox } from "components/flex-box";
 import UserDashboardHeader from "components/header/UserDashboardHeader";
 import CustomerDashboardLayout from "components/layouts/customer-dashboard";
 import CustomerDashboardNavigation from "components/layouts/customer-dashboard/Navigations";
-import axios from "axios";
-
-import { currency } from "lib";
-// import api from "utils/__api__/users";
+import api from "api/cubApi";
 
 // ============================================================
 const Profile = () => {
-
   const [user, setUser] = useState(null);
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
-    fetch(
-      `https://i9nwbiqoc6.execute-api.ap-northeast-2.amazonaws.com/test/user/15`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setUser(data);
-        console.log(data);
-        setLoading(false);
-      });
+    user_id = sessionStorage.getItem("user_uid");
+    getUserInfo(user_id);
   }, []);
 
-  const downMd = useMediaQuery((theme) => theme.breakpoints.down("md")); // SECTION TITLE HEADER LINK
+  const getUserInfo = async user_id => {
+    const response = await api.UserInfo(user_id);
+    setUser(response);
+  };
+
+  const downMd = useMediaQuery(theme => theme.breakpoints.down("md")); // SECTION TITLE HEADER LINK
 
   const HEADER_LINK = (
     // <Link href={`/profile/${user.id}`} passHref>
     <Button
-      color="primary"
+      color='primary'
       sx={{
         px: 4,
         bgcolor: "primary.light",
@@ -79,7 +72,7 @@ const Profile = () => {
       {/* TITLE HEADER AREA */}
       <UserDashboardHeader
         icon={Person}
-        title="내 정보"
+        title='내 정보'
         button={HEADER_LINK}
         navigation={<CustomerDashboardNavigation />}
       />
@@ -163,10 +156,10 @@ const Profile = () => {
           }),
         }}
       >
-        <TableRowItem title="닉네임" value="홍길동맨2" />
-        <TableRowItem title="유저코드" value="15" />
-        <TableRowItem title="이메일" value="test_user2@gmail.com" />
-        <TableRowItem title="연락처" value="010-1234-1234" />
+        <TableRowItem title='닉네임' value='홍길동맨2' />
+        <TableRowItem title='유저코드' value='15' />
+        <TableRowItem title='이메일' value='test_user2@gmail.com' />
+        <TableRowItem title='연락처' value='010-1234-1234' />
         {/* <TableRowItem
           title="Birth date"
           value={format(new Date(user.dateOfBirth), "dd MMM, yyyy")}
@@ -178,8 +171,8 @@ const Profile = () => {
 
 const TableRowItem = ({ title, value }) => {
   return (
-    <FlexBox flexDirection="column" p={1}>
-      <Small color="grey.600" mb={0.5} textAlign="left">
+    <FlexBox flexDirection='column' p={1}>
+      <Small color='grey.600' mb={0.5} textAlign='left'>
         {title}
       </Small>
       <span>{value}</span>

@@ -1,4 +1,3 @@
-
 import { useRouter } from "next/router";
 import { useEffect, useContext } from "react";
 import { AuthContext } from "contexts/AuthContext";
@@ -9,13 +8,26 @@ const Kakao = () => {
   const router = useRouter();
   const { code: authCode, error: kakaoServerError } = router.query;
 
+  useEffect(() => {
+    if (sessionStorage.getItem("token") !== null) {
+      redirect();
+    }
+  }, []);
+
+  const redirect = () => {
+    sessionStorage.getItem("prevPath") === "null" || null || "/login"
+      ? router.push("/")
+      : router.push(sessionStorage.getItem("prevPath"));
+  };
+
   const loginHandler = async code => {
-    await api.KakaoLoginAuth(code)
+    await api
+      .KakaoLoginAuth(code)
       .then(response => {
         sessionStorage.setItem("token", response.token);
         sessionStorage.setItem("user_uid", response.user_uid);
         authContext.onLogin();
-        router.push("/");
+        redirect();
       })
       .catch(error => {
         console.log(error);

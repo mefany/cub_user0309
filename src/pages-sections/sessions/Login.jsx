@@ -62,7 +62,7 @@ const Login = () => {
   }, []);
 
   const redirect = () => {
-    sessionStorage.getItem("prevPath") === "null" || null || '/login'
+    sessionStorage.getItem("prevPath") === "null" || null || "/login"
       ? router.push("/")
       : router.push(sessionStorage.getItem("prevPath"));
   };
@@ -72,8 +72,8 @@ const Login = () => {
   };
 
   const reqKakaoLogin = async () => {
-    await api.KakaoLogin({
-    })
+    await api
+      .KakaoLogin({})
       .then(response => {
         location.href = response;
       })
@@ -83,11 +83,12 @@ const Login = () => {
   };
 
   const sendForm = async values => {
-    await api.Login({
-      user_id: values.email,
-      password: values.password,
-      logout: false,
-    })
+    await api
+      .Login({
+        user_id: values.email,
+        password: values.password,
+        logout: false,
+      })
       .then(response => {
         sessionStorage.setItem("token", response.token);
         sessionStorage.setItem("user_uid", response.user_uid);
@@ -112,25 +113,9 @@ const Login = () => {
   return (
     <Wrapper elevation={3} passwordVisibility={passwordVisibility}>
       <form onSubmit={handleSubmit}>
-        {/* <CommonImage
-          src=""
-          sx={{
-            m: "auto",
-          }}
-        /> */}
-
         <H1 textAlign='center' mt={1} mb={4} fontSize={16}>
           로그인 후 컵컵의 서비스를 만나보세요.
         </H1>
-
-        {/* <a onClick={kakaoLogin}>
-          <img
-            src='https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg'
-            width='100%'
-            alt='카카오 로그인 버튼'
-          />
-        </a> */}
-
         <CommonTextField
           mb={1.5}
           fullWidth
@@ -189,9 +174,9 @@ const Login = () => {
         fullWidth
         variant='contained'
         sx={{
-          marginTop: '10px',
+          marginTop: "10px",
           backgroundColor: "#F9e000",
-          color: '#000',
+          color: "#000",
           height: 44,
         }}
       >

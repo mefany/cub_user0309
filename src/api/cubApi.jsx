@@ -1,32 +1,32 @@
 import axios from "axios";
 //------------로그인 API ----------------//
 //일반 로그인
-const Login = async (data) => {
+const Login = async data => {
   const config = {
     method: "post",
     url: `${process.env.DEV_API}/test/login`,
-    data
+    data,
   };
   const response = await axios(config);
   return response.data;
 };
 
 //카카오 로그인
-const KakaoLogin = async (data) => {
+const KakaoLogin = async data => {
   const config = {
     method: "post",
     url: `${process.env.DEV_API}/test/login/kakao`,
-    data
+    data,
   };
   const response = await axios(config);
   return response.data;
 };
 
 //카카오 로그인 인가코드 받기
-const KakaoLoginAuth = async (code) => {
+const KakaoLoginAuth = async code => {
   const config = {
     method: "get",
-    url: `${process.env.DEV_API}/test/login/kakao?code=${code}`
+    url: `${process.env.DEV_API}/test/login/kakao?code=${code}`,
   };
   const response = await axios(config);
   return response.data;
@@ -44,7 +44,7 @@ const BookList = async (sort, start, count) => {
 };
 
 // 단일 도서 정보 조회
-const BookInfoByUid = async (trade_uid) => {
+const BookInfoByUid = async trade_uid => {
   const config = {
     method: "get",
     url: `${process.env.DEV_API}/test/trade/${trade_uid}`,
@@ -84,7 +84,7 @@ const UserBookInfo = async (user_uid, start) => {
 };
 
 //등록된 도서 검색
-const SearchBook = async (title) => {
+const SearchBook = async title => {
   const config = {
     method: "get",
     url: `${process.env.DEV_API}/test/trade?title=${title}`,
@@ -98,14 +98,14 @@ const NewTrade = async data => {
   const config = {
     method: "post",
     url: `${process.env.DEV_API}/test/trade`,
-    data
+    data,
   };
   const response = await axios(config);
   return response.status;
 };
 
 //도서 리뷰 목록 조회
-const ReviewList = async (uid) => {
+const ReviewList = async uid => {
   const config = {
     method: "get",
     url: `${process.env.DEV_API}/test/review?book_uid=${uid}`,
@@ -119,7 +119,7 @@ const NewReview = async (uid, data) => {
   const config = {
     method: "post",
     url: `${process.env.DEV_API}/test/review?book_uid=${uid}`,
-    data
+    data,
   };
   const response = await axios(config);
   return response.data;
@@ -129,7 +129,7 @@ const NewBook = async data => {
   const config = {
     method: "post",
     url: `${process.env.DEV_API}/test/book`,
-    data
+    data,
   };
   const response = await axios(config);
   return response.data;
@@ -175,7 +175,20 @@ const ShopListByBook = async uid => {
   const response = await axios(config);
   return response.data;
 };
+
 //----------- 유저 API ----------------//
+//회원 가입
+const Signup = async data => {
+  const config = {
+    method: "post",
+    url: `${process.env.DEV_API}/test/user`,
+    data,
+  };
+  const response = await axios(config);
+  return response;
+};
+
+//유저 정보 조회
 const UserInfo = async uid => {
   const config = {
     method: "get",
@@ -184,6 +197,7 @@ const UserInfo = async uid => {
   const response = await axios(config);
   return response.data[0];
 };
+
 //----------- 예약 API ----------------//
 const BookingUser = async trade_uid => {
   const config = {
@@ -212,6 +226,7 @@ export default {
   BookListByShop,
   ShopListByBook,
   UserBookInfo,
+  Signup,
   UserInfo,
   BookingUser,
 };

@@ -5,56 +5,73 @@ import {
   Box,
   FormControlLabel,
   MenuItem,
-  TextField,
 } from "@mui/material";
 import Link from "next/link";
 import * as yup from "yup";
 import { useFormik } from "formik";
-import { FlexBox, FlexRowCenter } from "components/flex-box";
+import { FlexRowCenter } from "components/flex-box";
 import { H1, H6 } from "components/Typography";
-import CommonImage from "components/CommonImage";
 import CommonTextField from "components/CommonTextField";
 import { Wrapper } from "./Login";
-import SocialButtons from "./SocialButtons";
 import EyeToggleButton from "./EyeToggleButton";
 import { useRouter } from "next/router";
-import axios from "axios";
+import api from "api/cubApi";
 
 const Signup = () => {
   const router = useRouter();
   const [region, setRegion] = useState(sortOptions[0].value);
   const [passwordVisibility, setPasswordVisibility] = useState(false);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("token") !== null) {
+      redirect();
+    }
+  }, []);
+
+  const redirect = () => {
+    sessionStorage.getItem("prevPath") === "null" || null || "/login"
+      ? router.push("/")
+      : router.push(sessionStorage.getItem("prevPath"));
+  };
+
   const togglePasswordVisibility = useCallback(() => {
     setPasswordVisibility(visible => !visible);
   }, []);
 
   const handleFormSubmit = async values => {
-    console.log(values);
     sendForm(values);
   };
 
   const handleOnChange = e => {
-    console.log(e.target.value);
     setRegion(e.target.value);
   };
 
+  const reqKakaoLogin = async () => {
+    await api
+      .KakaoLogin({})
+      .then(response => {
+        location.href = response;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
   const sendForm = async values => {
-    await axios
-      .post(
-        `https://i9nwbiqoc6.execute-api.ap-northeast-2.amazonaws.com/test/user/`,
-        {
-          user_name: values.name,
-          user_id: values.email,
-          password: values.password,
-          nickname: values.name,
-          gender: "F",
-          phone: values.phone,
-          email: values.email,
-          favorite_gu_1: region,
-        }
-      )
+    await api
+      .Signup({
+        user_name: values.name,
+        user_id: values.email,
+        password: values.password,
+        nickname: values.name,
+        gender: "F",
+        phone: values.phone,
+        email: values.email,
+        favorite_gu_1: region,
+      })
       .then(response => {
         if (response.status === 200) {
+          alert("회원가입이 완료되었습니다.");
           router.push("/login");
         }
       })
@@ -75,13 +92,6 @@ const Signup = () => {
   return (
     <Wrapper elevation={3} passwordVisibility={passwordVisibility}>
       <form onSubmit={handleSubmit}>
-        {/* <CommonImage
-          src="/assets/images/bazaar-black-sm.svg"
-          sx={{
-            m: "auto",
-          }}
-        /> */}
-
         <H1 textAlign='center' mt={1} mb={4} fontSize={16}>
           신규 회원 가입
         </H1>
@@ -249,6 +259,19 @@ const Signup = () => {
           계정 생성하기
         </Button>
       </form>
+      <Button
+        onClick={reqKakaoLogin}
+        fullWidth
+        variant='contained'
+        sx={{
+          marginTop: "10px",
+          backgroundColor: "#F9e000",
+          color: "#000",
+          height: 44,
+        }}
+      >
+        카카오로 가입하기
+      </Button>
 
       {/* <SocialButtons /> */}
       <FlexRowCenter mt='1.25rem'>
