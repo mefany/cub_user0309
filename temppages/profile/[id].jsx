@@ -12,7 +12,6 @@ import { FlexBox } from "components/flex-box";
 import UserDashboardHeader from "components/header/UserDashboardHeader";
 import CustomerDashboardLayout from "components/layouts/customer-dashboard";
 import CustomerDashboardNavigation from "components/layouts/customer-dashboard/Navigations";
-// import api from "utils/__api__/users";
 
 // ===========================================================
 const ProfileEditor = ({ user }) => {

@@ -32,7 +32,7 @@ const Error404 = () => {
           }}
           onClick={handleGoBack}
         >
-          Go Back
+          돌아가기
         </Button>
 
         <Link href='/' passHref legacyBehavior>
@@ -43,7 +43,7 @@ const Error404 = () => {
               m: 1,
             }}
           >
-            Go to Home
+            메인으로
           </Button>
         </Link>
       </FlexBox>
