@@ -6,7 +6,7 @@ import MuiTheme from "theme/MuiTheme";
 import AuthProvider from "contexts/AuthContext";
 import SnackbarProvider from "components/SnackbarProvider";
 import { useRouter } from "next/router";
-import { useEffect, useState, useContext, createContext } from "react";
+import { useEffect } from "react";
 import "nprogress/nprogress.css";
 import "simplebar/dist/simplebar.min.css";
 
@@ -50,7 +50,6 @@ const App = ({ Component, pageProps }) => {
         <title>CUBCUB</title>
       </Head>
 
-      {/* <SettingsProvider> */}
       <AuthProvider>
         <MuiTheme>
           <SnackbarProvider>
@@ -58,7 +57,6 @@ const App = ({ Component, pageProps }) => {
           </SnackbarProvider>
         </MuiTheme>
       </AuthProvider>
-      {/* </SettingsProvider> */}
     </Fragment>
   );
 }; // Only uncomment this method if you have blocking data requirements for

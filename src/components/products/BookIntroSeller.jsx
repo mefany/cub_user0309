@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button, MenuItem, TextField } from "@mui/material";
 import { FlexBox } from "../flex-box";
-import axios from "axios";
 import api from "api/cubApi";
 
 //================================================================
