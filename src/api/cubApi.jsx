@@ -220,7 +220,7 @@ const BookingBuy = async data => {
   return response;
 };
 
-//도서 구매 예약 취소
+//도서 예약 취소 (판매자가 취소)
 const CancleBuy = async uid => {
   const config = {
     method: "delete",
