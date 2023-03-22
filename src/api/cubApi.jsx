@@ -101,7 +101,7 @@ const NewTrade = async data => {
     data,
   };
   const response = await axios(config);
-  return response.status;
+  return response;
 };
 
 //도서 리뷰 목록 조회

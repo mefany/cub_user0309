@@ -1,11 +1,12 @@
 import { Fragment } from "react";
 import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 import { Card, styled, Typography } from "@mui/material";
-import { CreditCard, FavoriteBorder, Person, Place } from "@mui/icons-material";
+import { Person } from "@mui/icons-material";
 import ShoppingBagOutlined from "@mui/icons-material/ShoppingBagOutlined";
 import { FlexBox } from "components/flex-box";
-import CustomerService from "components/icons/CustomerService";
 import NavLink from "components/nav-link/NavLink"; // custom styled components
+import api from "api/cubApi";
 
 const MainContainer = styled(Card)(({ theme }) => ({
   paddingBottom: "1.5rem",
@@ -38,31 +39,44 @@ const StyledNavLink = styled(({ children, isCurrentPath, ...rest }) => (
 }));
 
 const Navigations = () => {
+  let user_id;
   const { pathname } = useRouter();
+  const [bookCount, setBookCount] = useState(0);
+
+  useEffect(() => {
+    user_id = sessionStorage.getItem("user_uid");
+    getUserBookInfo(15, 0);
+  }, []);
+
+  const getUserBookInfo = async (user_uid, start) => {
+    const response = await api.UserBookInfo(user_uid, start);
+    setBookCount(response.total);
+  };
+
   return (
     <MainContainer>
-      {linkList.map((item) => (
+      {linkList.map(item => (
         <Fragment key={item.title}>
-          <Typography p="26px 30px 1rem" color="grey.600" fontSize="12px">
+          <Typography p='26px 30px 1rem' color='grey.600' fontSize='12px'>
             {item.title}
           </Typography>
 
-          {item.list.map((item) => (
+          {item.list.map(item => (
             <StyledNavLink
               href={item.href}
               key={item.title}
               isCurrentPath={pathname.includes(item.href)}
             >
-              <FlexBox alignItems="center" gap={1}>
+              <FlexBox alignItems='center' gap={1}>
                 <item.icon
-                  color="inherit"
-                  fontSize="small"
-                  className="nav-icon"
+                  color='inherit'
+                  fontSize='small'
+                  className='nav-icon'
                 />
                 <span>{item.title}</span>
               </FlexBox>
 
-              <span>{item.count}</span>
+              {item.title === "내책판매" && <span>{bookCount}</span>}
             </StyledNavLink>
           ))}
         </Fragment>
@@ -102,13 +116,13 @@ const linkList = [
         href: "/my",
         title: "내책판매",
         icon: ShoppingBagOutlined,
-        count: 5,
+        // count: 5,
       },
       {
         href: "/profile",
         title: "계정정보",
         icon: Person,
-        count: 3,
+        // count: 3,
       },
       // {
       //   href: "/address",
