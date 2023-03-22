@@ -79,7 +79,6 @@ const ProfileEditor = () => {
   };
 
   const postNewTrade = async newObj => {
-    console.log(newObj);
     const response = await api.NewTrade(newObj);
     if (response.status === 200) {
       alert("정상 등록되었습니다.");
