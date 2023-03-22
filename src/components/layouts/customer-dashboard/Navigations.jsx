@@ -45,7 +45,7 @@ const Navigations = () => {
 
   useEffect(() => {
     user_id = sessionStorage.getItem("user_uid");
-    getUserBookInfo(15, 0);
+    getUserBookInfo(user_id, 0);
   }, []);
 
   const getUserBookInfo = async (user_uid, start) => {

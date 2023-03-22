@@ -45,11 +45,11 @@ const My = () => {
 
   useEffect(() => {
     user_id = sessionStorage.getItem("user_uid");
-    getUserBookInfo(15, 0);
+    getUserBookInfo(user_id, 0);
   }, []);
 
   useEffect(() => {
-    getUserBookInfo(15, start);
+    getUserBookInfo(user_id, start);
   }, [start]);
 
   const getUserBookInfo = async (user_uid, start) => {
